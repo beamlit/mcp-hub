@@ -1,0 +1,13 @@
+repository: https://github.com/cploujoux/mcp-puppeteer
+smitheryPath: smithery.yaml
+dockerfile: "@mcp-hub"
+displayName: Puppeteer
+branch: main
+packageManager: apt
+url: https://www.puppeteer.com
+icon: https://user-images.githubusercontent.com/10379601/29446482-04f7036a-841f-11e7-9872-91d1fc2ea683.png
+description: Take screenshots, click elements, and more with Puppeteer
+longDescription: Take screenshots, click elements, and more with Puppeteer
+categories:
+  - automation
+  - browser-use

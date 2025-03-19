@@ -13,7 +13,8 @@ func BuildImage(ctx context.Context, imageName string, smitheryPath string, dock
 	directory := filepath.Dir(dockerfilePath)
 	dockerfile := filepath.Base(dockerfilePath)
 
-	if smitheryPath != "" && strings.Contains(smitheryPath, "/") {
+	// special case for browserbase where the repository has browserbase in name and it contains a folder browserbase where the smithery file is located
+	if !strings.Contains(imageName, "browserbase") && smitheryPath != "" && strings.Contains(smitheryPath, "/") {
 		directory = strings.Replace(directory, filepath.Dir(smitheryPath), "", 1)
 	}
 	if dockerfileDir != "" && strings.Contains(dockerfileDir, "/") && dockerfileDir != "/" {

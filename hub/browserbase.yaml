@@ -1,0 +1,13 @@
+repository: https://github.com/smithery-ai/mcp-server-browserbase-1
+smitheryPath: browserbase/smithery.yaml
+dockerfile: "@mcp-hub"
+branch: smithery/config-0oc4
+displayName: Browserbase
+url: https://www.browserbase.com
+icon: https://www.browserbase.com/browserbase-logo.svg
+description: Take screenshots, click elements, and more with Browserbase
+longDescription: Take screenshots, click elements, and more with Browserbase
+secrets:
+  - browserbaseApiKey
+categories:
+  - browser-use
