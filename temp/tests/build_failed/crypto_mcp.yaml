@@ -1,0 +1,22 @@
+branch: main
+categories:
+- security
+- other
+description: A Model Context Protocol server for AES encryption and decryption, supporting
+  various modes, padding, and input/output formats for secure data handling.
+displayName: Crypto MCP
+distPath: build
+icon: https://github.com/1595901624/crypto-mcp/raw/main/logo/logo.png
+language: typescript
+longDescription: 'Crypto MCP is a Model Context Protocol server designed to handle
+  encryption and decryption tasks using AES and other algorithms. It supports various
+  modes, padding schemes, and input/output formats to ensure secure data handling.
+  The server provides tools for AES encryption and decryption, as well as hashing
+  functions like MD5, SHA1, SHA256, SHA384, SHA512, and SHA224. Additionally, it supports
+  DES encryption and decryption.
+
+  '
+repository: https://github.com/1595901624/crypto-mcp
+secrets: []
+srcPath: src
+url: https://glama.ai/mcp/servers/e9xj0jkg5y

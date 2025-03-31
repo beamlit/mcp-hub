@@ -1,0 +1,23 @@
+branch: main
+categories:
+- payment
+- other
+description: This is an MCP server to manage PayPal
+displayName: PayPal MCP Server
+distPath: build
+icon: https://www.paypalobjects.com/webstatic/icon/pp258.png
+language: typescript
+longDescription: 'The PayPal MCP Server is designed to manage various PayPal operations
+  through the Model Context Protocol (MCP). It provides tools for creating payment
+  tokens, payments, payouts, orders, partner referrals, web profiles, products, and
+  invoices. It also supports listing products and retrieving disputes and user information.
+  The server is remote-capable and can be integrated with other systems to automate
+  PayPal-related tasks.
+
+  '
+repository: https://github.com/DynamicEndpoints/Paypal-MCP
+secrets:
+- paypalClientId
+- paypalClientSecret
+srcPath: src
+url: https://glama.ai/mcp/servers/6op9uaqyev

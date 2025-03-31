@@ -1,0 +1,22 @@
+branch: main
+categories:
+- database
+- AI
+- other
+description: A Model Context Protocol server that enables natural language queries
+  to MySQL databases, powered by XiYanSQL text-to-SQL technology.
+displayName: XiYan MCP Server
+icon: https://github.com/XGenerationLab/xiyan_mcp_server/raw/main/imgs/icon.png
+language: python
+longDescription: 'The XiYan MCP Server is a Model Context Protocol server that utilizes
+  XiyanSQL with databases. This server enables AI assistants to list tables, read
+  data, and execute natural language queries. It is designed to work with MySQL databases
+  and leverages the power of XiYanSQL for text-to-SQL conversion. The server is built
+  using Python and requires Python 3.11 or higher. It includes dependencies such as
+  mcp, mysql-connector-python, llama_index, sqlalchemy, and pymysql.
+
+  '
+repository: https://github.com/XGenerationLab/xiyan_mcp_server
+secrets: []
+srcPath: src/xiyan_mcp_server
+url: https://glama.ai/mcp/servers/38egctvcux

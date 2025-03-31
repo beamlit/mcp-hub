@@ -1,0 +1,20 @@
+branch: main
+categories:
+- email
+description: Provides IMAP and SMTP capabilities, enabling developers to manage email
+  services with seamless integration and automated workflows.
+displayName: MCP Email Server
+icon: https://ai-zerolab.github.io/mcp-email-server/favicon.ico
+language: python
+longDescription: 'The MCP Email Server provides IMAP and SMTP capabilities via an
+  MCP Server, allowing developers to manage email services with seamless integration
+  and automated workflows. It supports configuration through a user interface and
+  can be integrated with various MCP clients. The server is available on PyPI and
+  can be installed using pip or via Docker. It is managed using the UV package manager,
+  ensuring a streamlined development and deployment process.
+
+  '
+repository: https://github.com/ai-zerolab/mcp-email-server
+secrets: []
+srcPath: mcp_email_server
+url: https://glama.ai/mcp/servers/s9p1636sin

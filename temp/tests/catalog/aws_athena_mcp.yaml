@@ -1,0 +1,30 @@
+branch: main
+categories:
+- document
+- other
+description: Run SQL queries with AWS Athena to access data available from AWS Glue
+  catalog.
+displayName: AWS Athena MCP
+distPath: build
+icon: https://example.com/aws-athena-icon.png
+language: typescript
+longDescription: 'The AWS Athena MCP server allows you to run SQL queries using AWS
+  Athena, providing access to data available from the AWS Glue catalog. It supports
+  various operations such as running queries, retrieving results, and checking query
+  status. The server is designed to be remote-capable and integrates with AWS services
+  seamlessly.
+
+  '
+repository: https://github.com/lishenxydlgzs/aws-athena-mcp
+secrets:
+- outputS3Path
+- awsRegion
+- awsProfile
+- awsAccessKeyId
+- awsSecretAccessKey
+- awsSessionToken
+- queryTimeoutMs
+- maxRetries
+- retryDelayMs
+srcPath: src
+url: https://glama.ai/mcp/servers/0i7dhkex6t

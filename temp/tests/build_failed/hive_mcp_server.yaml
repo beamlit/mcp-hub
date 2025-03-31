@@ -1,0 +1,26 @@
+branch: master
+categories:
+- blockchain
+- ai
+- social
+description: An MCP server that enables AI assistants to interact with the Hive blockchain.
+displayName: Hive MCP Server
+distPath: dist
+icon: https://example.com/icon.png
+language: typescript
+longDescription: 'The Hive MCP Server allows AI assistants to interact with the Hive
+  blockchain through the Model Context Protocol. It provides tools for account information
+  retrieval, content reading and creation, cryptocurrency transfers, and cryptographic
+  operations. The server supports various functionalities such as getting account
+  info, retrieving account history, managing vesting delegations, reading and creating
+  posts, voting on posts, sending tokens, signing messages, and verifying signatures.
+
+  '
+repository: https://github.com/gluneau/hive-mcp-server
+secrets:
+- hiveUsername
+- hivePostingKey
+- hiveActiveKey
+- hiveMemoKey
+srcPath: src
+url: https://glama.ai/mcp/servers/pobodojvqv

@@ -1,0 +1,24 @@
+branch: main
+categories:
+- database
+- other
+description: A server that provides Claude with Redis database access and operations
+  through a set of tools for basic operations, lists, hashes, sets, and pub/sub functionality.
+displayName: MCP Server Redis
+icon: https://github.com/prajwalnayak7/mcp-server-redis/raw/main/icon.png
+language: python
+longDescription: 'MCP Server Redis is designed to interact with Redis servers, AWS
+  Memory DB, and other in-memory key-value storage solutions. It provides a comprehensive
+  set of tools for basic operations, list manipulations, hash operations, set operations,
+  and pub/sub functionalities. The server ensures robust error handling and automatic
+  reconnection to Redis if the connection is lost. It can be tested with the MCP Inspector
+  or installed in Claude Desktop for seamless integration.
+
+  '
+repository: https://github.com/prajwalnayak7/mcp-server-redis
+secrets:
+- redisHost
+- redisPort
+- redisDb
+srcPath: src
+url: https://glama.ai/mcp/servers/5ydzwgd6w0

@@ -1,0 +1,20 @@
+branch: main
+categories:
+- search
+- other
+description: A Model Context Protocol (MCP) server that provides web search capabilities
+  through DuckDuckGo, with additional features for content fetching and parsing.
+displayName: DuckDuckGo MCP Server
+icon: https://glama.ai/mcp/servers/phcus2gcpn/badge
+language: python
+longDescription: 'The DuckDuckGo MCP Server is designed to provide web search capabilities
+  through DuckDuckGo, with advanced features for content fetching and parsing. It
+  includes built-in rate limiting, error handling, and LLM-friendly output formatting.
+  The server can be installed via Smithery or directly from PyPI using `uv`. It supports
+  remote hosting and can be integrated with Claude Desktop for enhanced functionality.
+
+  '
+repository: https://github.com/nickclyde/duckduckgo-mcp-server
+secrets: []
+srcPath: src/duckduckgo_mcp_server
+url: https://glama.ai/mcp/servers/phcus2gcpn

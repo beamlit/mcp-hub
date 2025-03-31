@@ -1,0 +1,30 @@
+branch: main
+categories:
+- database
+- other
+description: A server for interacting with SingleStore databases, enabling table querying,
+  schema descriptions, and ER diagram generation with secure SSL support and TypeScript
+  safety.
+displayName: SingleStore MCP Server
+distPath: build
+icon: https://example.com/singlestore-icon.png
+language: typescript
+longDescription: 'The SingleStore MCP Server is designed to facilitate interactions
+  with SingleStore databases. It provides functionalities such as querying tables,
+  describing schemas, and generating ER diagrams. The server is built with TypeScript,
+  ensuring type safety and robust error handling. It supports secure SSL connections
+  to SingleStore databases and is capable of generating synthetic data and optimizing
+  SQL queries. The server can be hosted remotely and is equipped with tools for generating
+  ER diagrams, listing tables, querying tables, describing tables, running read queries,
+  creating tables, generating synthetic data, and optimizing SQL.
+
+  '
+repository: https://github.com/madhukarkumar/singlestore-mcp-server
+secrets:
+- singlestoreHost
+- singlestorePort
+- singlestoreUser
+- singlestorePassword
+- singlestoreDatabase
+srcPath: src
+url: https://glama.ai/mcp/servers/6t5uvbrpor

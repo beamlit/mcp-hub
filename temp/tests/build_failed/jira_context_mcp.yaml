@@ -1,0 +1,24 @@
+branch: main
+categories:
+- other
+description: MCP server to provide Jira Tickets information to AI coding agents like
+  Cursor
+displayName: Jira MCP
+distPath: dist
+icon: https://avatars.githubusercontent.com/u/9919?s=200&v=4
+language: typescript
+longDescription: 'The Jira MCP server is designed to integrate with Jira to provide
+  ticket information to AI coding agents such as Cursor. It uses the Model Context
+  Protocol to facilitate communication and data exchange. The server is built using
+  TypeScript and leverages Express for handling HTTP requests. It requires configuration
+  for Jira''s base URL, username, and API token to authenticate and interact with
+  Jira''s API.
+
+  '
+repository: https://github.com/rahulthedevil/Jira-Context-MCP
+secrets:
+- jiraBaseUrl
+- jiraUsername
+- jiraApiToken
+srcPath: src
+url: https://glama.ai/mcp/servers/a8ob8depqc

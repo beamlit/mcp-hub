@@ -1,0 +1,25 @@
+branch: main
+categories:
+- other
+description: A Model Context Protocol server implementation that enables Claude to
+  interact with RabbitMQ message queues and topics.
+displayName: RabbitMQ MCP Server
+icon: https://smithery.ai/badge/@kenliao94/mcp-server-rabbitmq
+language: python
+longDescription: 'The RabbitMQ MCP Server is a Model Context Protocol server implementation
+  for RabbitMQ. It allows MCP clients to interact with queues and topics hosted in
+  a RabbitMQ instance. This server can be installed via Smithery for the Claude Desktop
+  app, enabling read/write operations on a RabbitMQ instance. The server supports
+  configuration options such as hostname, port, username, password, and TLS usage
+  for secure connections.
+
+  '
+repository: https://github.com/kenliao94/mcp-server-rabbitmq
+secrets:
+- rabbitmqHost
+- port
+- username
+- password
+- useTls
+srcPath: src/mcp_server_rabbitmq
+url: https://glama.ai/mcp/servers/eg0ax0yodl

@@ -1,0 +1,27 @@
+branch: main
+categories:
+- data
+- analytics
+- AI
+description: A server that enables querying the dbt Semantic Layer through natural
+  language conversations with Claude Desktop and other AI assistants.
+displayName: DBT Semantic Layer MCP Server
+distPath: dist
+icon: https://example.com/icon.png
+language: typescript
+longDescription: 'The DBT Semantic Layer MCP Server provides a powerful interface
+  for interacting with the DBT Semantic Layer API, allowing users to execute complex
+  queries and retrieve structured data efficiently. Built on the Model Context Protocol
+  (MCP), it integrates seamlessly with various tools and resources, enabling dynamic
+  data manipulation and retrieval. This server allows users to discover metrics, create
+  queries, analyze data, and visualize results using natural language conversations
+  with AI assistants like Claude Desktop.
+
+  '
+repository: https://github.com/TommyBez/dbt-semantic-layer-mcp-server
+secrets:
+- SEMANTIC_LAYER_API_KEY
+- SEMANTIC_LAYER_URL
+- SEMANTIC_LAYER_ENVIRONMENT_ID
+srcPath: src
+url: https://glama.ai/mcp/servers/ckhrsq9uep

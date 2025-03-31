@@ -1,0 +1,20 @@
+branch: main
+categories:
+- image
+- other
+description: Run AI workflows hosted on Glif.app via MCP
+displayName: Glif Server
+distPath: build
+icon: https://glif.app/favicon.ico
+language: typescript
+longDescription: 'The Glif MCP server allows you to run AI magic workflows from glif.app,
+  including ComfyUI-based image generators, meme generators, selfies, chained LLM
+  calls, and more. It provides tools such as ''run_glif'', ''list_featured_glifs'',
+  ''glif_info'', ''my_glifs'', and ''my_glif_user_info''. The server is officially
+  authored and supports hybrid hosting.
+
+  '
+repository: https://github.com/glifxyz/glif-mcp-server
+secrets:
+- glifApiToken
+url: https://glama.ai/mcp/servers/gwrql5ibq2

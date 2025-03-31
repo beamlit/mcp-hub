@@ -1,0 +1,23 @@
+branch: main
+categories:
+- email
+- other
+description: Provides an interface to manage email marketing, contact lists, dynamic
+  templates, and email analytics via SendGrid's API.
+displayName: SendGrid MCP Server
+distPath: build
+icon: https://sendgrid.com/brand/sg-twilio-logo.png
+language: typescript
+longDescription: 'The SendGrid MCP Server offers a comprehensive interface to interact
+  with SendGrid''s API, allowing users to manage email marketing campaigns, contact
+  lists, dynamic templates, and access email analytics. It supports a wide range of
+  tools including sending emails, managing contacts, creating templates, and retrieving
+  analytics data. The server is designed to be remote-capable and integrates seamlessly
+  with SendGrid''s services.
+
+  '
+repository: https://github.com/Garoth/sendgrid-mcp
+secrets:
+- sendgridApiKey
+srcPath: src
+url: https://glama.ai/mcp/servers/82glmn141z

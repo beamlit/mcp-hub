@@ -1,0 +1,23 @@
+branch: master
+categories:
+- image
+- search
+- other
+description: A Pinterest Model Context Protocol (MCP) server for image search and
+  information retrieval
+displayName: Pinterest MCP Server
+distPath: dist
+icon: https://smithery.ai/badge/mcp-pinterest
+language: typescript
+longDescription: 'The Pinterest MCP Server allows for image search and information
+  retrieval from Pinterest. It supports searching for images by keywords and retrieving
+  detailed information about Pinterest images. The server integrates seamlessly with
+  Cursor IDE through MCP and supports headless browser mode with limit control for
+  search results. It is designed to be used as an MCP server in Cursor, providing
+  functions like `pinterest_search` and `pinterest_get_image_info`.
+
+  '
+repository: https://github.com/terryso/mcp-pinterest
+secrets: []
+srcPath: .
+url: https://glama.ai/mcp/servers/9czyga0hyf

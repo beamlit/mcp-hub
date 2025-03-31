@@ -1,0 +1,19 @@
+branch: main
+categories:
+- other
+description: MCP server for Azure DevOps integration
+displayName: Azure DevOps MCP
+distPath: dist
+icon: https://azure.microsoft.com/svghandler/devops/
+language: typescript
+longDescription: This server provides a convenient API for interacting with Azure
+  DevOps services, enabling AI assistants and other tools to manage work items, code
+  repositories, boards, sprints, and more. Built with the Model Context Protocol,
+  it provides a standardized interface for communicating with Azure DevOps.
+repository: https://github.com/RyanCardin15/AzureDevOps-MCP
+secrets:
+- AZURE_DEVOPS_ORG_URL
+- AZURE_DEVOPS_PERSONAL_ACCESS_TOKEN
+- AZURE_DEVOPS_PROJECT
+srcPath: src
+url: https://glama.ai/mcp/servers/z7mxfcinp8

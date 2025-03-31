@@ -1,0 +1,21 @@
+branch: main
+categories:
+- search
+- other
+description: A headless browser MCP server that allows AI agents to fetch web content
+  and perform Google searches without API keys.
+displayName: Fetch Browser
+distPath: build
+icon: https://www.sethrose.dev/favicon.ico
+language: typescript
+longDescription: Fetch Browser is an MCP server that acts as a headless browser, enabling
+  AI agents to fetch web content and perform Google searches without the need for
+  API keys. It supports various output formats including Markdown, JSON, HTML, and
+  text. The server is designed to be used in hybrid hosting environments and provides
+  tools for URL fetching and Google searching.
+repository: https://github.com/TheSethRose/Fetch-Browser
+secrets:
+- fetchUrl
+- googleSearch
+srcPath: src
+url: https://glama.ai/mcp/servers/oomh2nd8sl

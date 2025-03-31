@@ -1,0 +1,14 @@
+branch: main
+categories:
+- search
+description: A Model Context Protocol server for searching barnsworthburning.net
+displayName: Barnsworthburning MCP
+distPath: build
+icon: https://barnsworthburning.net/favicon.ico
+language: typescript
+longDescription: A Model Context Protocol server that enables searching content from
+  barnsworthburning.net directly through compatible AI clients like Claude for Desktop.
+repository: https://github.com/Aias/barnsworthburning-mcp
+secrets: []
+srcPath: src
+url: https://glama.ai/mcp/servers/5aibjjzkkb

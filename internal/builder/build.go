@@ -2,66 +2,78 @@ package builder
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"os"
 	"path/filepath"
 	"strings"
 
-	"github.com/beamlit/mcp-hub/internal/docker"
 	"github.com/beamlit/mcp-hub/internal/files"
 	"github.com/beamlit/mcp-hub/internal/hub"
 )
 
 func (b *Build) Build(name string, repository *hub.Repository) error {
 	imageName := fmt.Sprintf("%s:%s", strings.ToLower(name), b.tag)
-	switch repository.Language {
-	case "typescript":
-		err := b.prepareTypescript(name, repository)
+	language := strings.ToLower(repository.Build.Language)
+	switch language {
+	case "typescript", "javascript":
+		err := b.prepareTypescript(repository)
 		if err != nil {
 			return fmt.Errorf("prepare typescript: %w", err)
 		}
 	case "python":
-		err := b.preparePython(name, repository)
+		fmt.Println("prepare python")
+		err := b.preparePython(repository)
 		if err != nil {
 			return fmt.Errorf("prepare python: %w", err)
 		}
 	default:
-		return fmt.Errorf("unsupported language: %s", repository.Language)
+		return fmt.Errorf("unsupported language: %s", language)
 	}
 
 	buildArgs := map[string]string{}
-	if repository.BasePath != "" {
-		buildArgs["BUILD_PATH"] = "/" + repository.BasePath
+	if repository.Build.Path != "" {
+		buildArgs["BUILD_PATH"] = "/" + repository.Build.Path
 	}
-	if repository.DistPath != "" {
-		buildArgs["DIST_PATH"] = repository.DistPath
+	if repository.Build.Output != "" {
+		buildArgs["DIST_PATH"] = repository.Build.Output
+	}
+	smitheryDir := filepath.Join(repository.Source.Path, "smithery")
+	dockerfileDir := filepath.Join(repository.Source.Path, "Dockerfile")
+	var cmd []string
+	switch language {
+	case "typescript", "javascript":
+		cmd = append(cmd, repository.Run.Entrypoint...)
+	case "python":
+		cmd = []string{"/usr/bin/python3", "-m", fmt.Sprintf("blaxel.%s", strings.ReplaceAll(repository.Build.Output, "/", "."))}
+	}
+	fmt.Println("Injecting command", cmd, "into Dockerfile", dockerfileDir, "in", repository.Source.LocalPath)
+	_, err := b.runtime.Inject(context.Background(), name, fmt.Sprintf("%s/%s", repository.Source.LocalPath, repository.Source.Path), smitheryDir, dockerfileDir, cmd)
+	if err != nil {
+		return fmt.Errorf("inject: %w", err)
 	}
 	fmt.Println("buildArgs", buildArgs)
-	err := docker.BuildImage(context.Background(), imageName, repository.Path, buildArgs)
+	err = b.runtime.Build(context.Background(), imageName, fmt.Sprintf("%s/%s", repository.Source.LocalPath, repository.Source.Path), buildArgs)
 	if err != nil {
 		return fmt.Errorf("build image: %w", err)
 	}
-
 	return nil
 }
 
-func (b *Build) preparePython(name string, repository *hub.Repository) error {
-	srcPath := repository.Path
-	if repository.SrcPath != "" {
-		srcPath = filepath.Join(repository.Path, repository.SrcPath)
+func (b *Build) preparePython(repository *hub.Repository) error {
+	srcPath := repository.Source.LocalPath
+	filesToCopy := map[string]string{
+		"Dockerfile": "envs/python/Dockerfile",
+		"Kraftfile":  "envs/python/Kraftfile",
+		fmt.Sprintf("%s/transport.py", repository.Build.Output): "envs/python/transport.py",
 	}
-	err := files.CopyFile("envs/python/Dockerfile", filepath.Join(repository.Path, "Dockerfile"))
-	if err != nil {
-		return fmt.Errorf("copy dockerfile: %w", err)
+	for dst, src := range filesToCopy {
+		err := files.CopyFile(src, filepath.Join(srcPath, dst))
+		if err != nil {
+			return fmt.Errorf("copy %s: %w", dst, err)
+		}
 	}
-	err = files.CopyFile("envs/python/transport.py", filepath.Join(srcPath, "transport.py"))
-	if err != nil {
-		return fmt.Errorf("copy transport.py: %w", err)
-	}
-	err = files.AddLineToStartOfFile(
+	err := files.AddLineToStartOfFile(
 		filepath.Join(srcPath, "__init__.py"),
-		"from .transport import websocket_server",
+		"from .transport import websocket_server\nfrom .server import main\n",
 	)
 	if err != nil {
 		return fmt.Errorf("add line to start of file: %w", err)
@@ -76,41 +88,20 @@ func (b *Build) preparePython(name string, repository *hub.Repository) error {
 	return nil
 }
 
-func (b *Build) prepareTypescript(name string, repository *hub.Repository) error {
-	basePath := repository.Path
-	if repository.BasePath != "" {
-		basePath = filepath.Join(repository.Path, repository.BasePath)
+func (b *Build) prepareTypescript(repository *hub.Repository) error {
+	basePath := repository.Source.LocalPath
+	if repository.Build.Path != "" {
+		basePath = filepath.Join(repository.Source.LocalPath, repository.Build.Path)
 	}
-
-	srcPath := repository.Path
-	if repository.SrcPath != "" {
-		srcPath = filepath.Join(repository.Path, repository.SrcPath)
+	filesToCopy := map[string]string{
+		"Dockerfile": "envs/typescript/Dockerfile",
+		"Kraftfile":  "envs/typescript/Kraftfile",
 	}
-
-	packageJson, err := os.ReadFile(filepath.Join(basePath, "package.json"))
-	if err != nil {
-		return fmt.Errorf("read package.json: %w", err)
-	}
-	type PackageJson struct {
-		Type string `json:"type"`
-	}
-	var pj PackageJson
-	err = json.Unmarshal(packageJson, &pj)
-	if err != nil {
-		return fmt.Errorf("unmarshal package.json: %w", err)
-	}
-
-	err = files.CopyFile("envs/typescript/Dockerfile", filepath.Join(repository.Path, "Dockerfile"))
-	if err != nil {
-		return fmt.Errorf("copy dockerfile: %w", err)
-	}
-	if pj.Type == "module" {
-		err = files.CopyMergeDir("envs/typescript/esm", srcPath)
-	} else {
-		return fmt.Errorf("unsupported package.json type: %s, only module is supported", pj.Type)
-	}
-	if err != nil {
-		return fmt.Errorf("copy overrides: %w", err)
+	for dst, src := range filesToCopy {
+		err := files.CopyFile(src, filepath.Join(basePath, dst))
+		if err != nil {
+			return fmt.Errorf("copy %s: %w", dst, err)
+		}
 	}
 	return nil
 }

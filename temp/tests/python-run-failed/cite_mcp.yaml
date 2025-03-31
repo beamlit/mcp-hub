@@ -1,0 +1,20 @@
+branch: main
+categories:
+- document
+- search
+- other
+description: Retrieve citation data effortlessly from CiteAs and Google Scholar.
+displayName: CiteAssist MCP Server
+icon: https://smithery.ai/badge/@ndchikin/reference-mcp
+language: python
+longDescription: 'A Model Context Protocol server that provides BibTeX-formatted citation
+  data from CiteAs and Google Scholar. Enhance your research workflow by integrating
+  citation retrieval directly into your applications. The server offers tools to retrieve
+  BibTeX-formatted citations for specified resources using CiteAs and Google Scholar,
+  making it a valuable asset for researchers and developers alike.
+
+  '
+repository: https://github.com/ndchikin/reference-mcp
+secrets: []
+srcPath: src/reference_mcp
+url: https://glama.ai/mcp/servers/0u1mpui801

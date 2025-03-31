@@ -1,0 +1,24 @@
+branch: main
+categories:
+- image
+- document
+- other
+description: A Model Context Protocol (MCP) server that converts Mermaid diagrams
+  to PNG images.
+displayName: Mermaid MCP Server
+distPath: dist
+icon: https://github.com/peng-shawn/mermaid-mcp-server/raw/main/diagrams/mermaid_component_architecture.png
+language: typescript
+longDescription: 'The Mermaid MCP Server is designed to convert Mermaid diagrams into
+  PNG images. It leverages the Model Context Protocol (MCP) to facilitate diagram
+  visualization and rendering. The server is built using Node.js and TypeScript, and
+  it utilizes Puppeteer for rendering diagrams. The server can be configured to return
+  images directly in the response or save them to disk.
+
+  '
+repository: https://github.com/peng-shawn/mermaid-mcp-server
+secrets:
+- CONTENT_IMAGE_SUPPORTED
+- PUPPETEER_EXECUTABLE_PATH
+srcPath: .
+url: https://glama.ai/mcp/servers/lzjlbitkzr

@@ -1,0 +1,18 @@
+branch: main
+categories:
+- image
+- ai
+- other
+description: MCP for Replicate Flux Model. Generating images by prompts.
+displayName: Replicate Flux MCP
+distPath: build
+icon: https://github.com/awkoy/replicate-flux-mcp/raw/main/icon.png
+language: typescript
+longDescription: This MCP server is designed for the Replicate Flux Model, enabling
+  image generation through various tools such as generating single or multiple images,
+  creating image variants, generating SVGs, and managing predictions. It leverages
+  the Replicate API for its operations.
+repository: https://github.com/awkoy/replicate-flux-mcp
+secrets:
+- replicateApiToken
+url: https://glama.ai/mcp/servers/ss8n1knen8

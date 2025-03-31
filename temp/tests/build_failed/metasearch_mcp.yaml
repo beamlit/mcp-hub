@@ -1,0 +1,22 @@
+branch: main
+categories:
+- search
+- other
+description: MCP server for using various search tools like Tavily API.
+displayName: Metasearch MCP Server
+icon: https://glama.ai/mcp/servers/xxb4uogn02/badge
+language: python
+longDescription: 'The Metasearch MCP server is designed to perform searches using
+  the Tavily API and potentially other search tools like searxng. It returns search
+  results in text format, including AI responses, URIs, and titles. The server can
+  be configured to run locally using Docker Compose or integrated with applications
+  like Claude Desktop. It requires a Tavily API key and optionally a searxng server
+  URL for configuration.
+
+  '
+repository: https://github.com/YeonwooSung/metasearch-mcp
+secrets:
+- searxngUrl
+- tavilyApiKey
+srcPath: src
+url: https://glama.ai/mcp/servers/xxb4uogn02

@@ -1,0 +1,20 @@
+branch: main
+categories:
+- weather
+description: Fetches precipitation forecasts for any location using Buienradar and
+  integrates with Claude for Desktop to provide accurate two-hour weather predictions.
+displayName: Buienradar MCP Server
+icon: https://smithery.ai/badge/@wpnbos/buienradar-mcp-server
+language: python
+longDescription: 'This MCP server fetches precipitation data for a given latitude
+  and longitude using Buienradar. It exposes a single MCP tool, `get_precipitation_for`,
+  which provides precipitation forecasts for the next two hours. The server is designed
+  to integrate with Claude for Desktop, allowing users to receive real-time weather
+  updates directly through the application. Installation and configuration are streamlined
+  via Smithery, ensuring easy setup and deployment.
+
+  '
+repository: https://github.com/wpnbos/buienradar-mcp-server
+secrets: []
+srcPath: .
+url: https://glama.ai/mcp/servers/gjbnco22u9

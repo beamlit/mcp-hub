@@ -1,0 +1,28 @@
+name: mcp-repl
+displayName: MCP REPL
+description: Simple REPL server using the Model Context Protocol.
+longDescription: A secure JavaScript REPL (Read-Eval-Print-Loop) for executing code snippets with comprehensive error handling, memory management, and output formatting.
+siteUrl: https://github.com/AnEntrypoint/mcp-repl
+icon: https://img.logo.dev/mcp-repl
+categories:
+  - REPL
+  - JavaScript
+  - Development Tools
+version: 1.0.0
+
+tools: []
+
+source:
+  repo: https://github.com/AnEntrypoint/mcp-repl
+  branch: main
+  path: .
+
+build:
+  language: javascript
+  command: npm run build
+  output: dist
+
+run:
+  config: {}
+  entrypoint: ["node", "simple-repl-server.js"]
+  env: {}

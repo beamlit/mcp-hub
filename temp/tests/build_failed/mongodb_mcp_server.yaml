@@ -1,0 +1,21 @@
+branch: main
+categories:
+- database
+- tools
+- ai
+description: A protocol server that enables LLMs like Claude to interact with MongoDB
+  databases.
+displayName: MongoDB MCP Server
+distPath: dist
+icon: https://avatars.githubusercontent.com/u/9919?s=200&v=4
+language: typescript
+longDescription: High-performance MongoDB Model Context Protocol (MCP) server optimized
+  for LLMs - enables AI agents to safely and efficiently query and manipulate MongoDB
+  data with type safety, schema validation, and controlled access patterns. Provides
+  tools for schema exploration, aggregation queries, and data analysis through natural
+  language in Cursor.
+repository: https://github.com/1RB/mongo-mcp
+secrets:
+- mongoConnectionUrl
+srcPath: src
+url: https://glama.ai/mcp/servers/7w2bcv6rg0

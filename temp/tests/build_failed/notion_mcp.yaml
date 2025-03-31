@@ -1,0 +1,19 @@
+branch: master
+categories:
+- document
+- other
+description: A Model Context Protocol server that integrates with Notion's API to
+  manage personal todo lists.
+displayName: Notion MCP
+icon: https://example.com/notion-icon.png
+language: python
+longDescription: A simple Model Context Protocol (MCP) server that integrates with
+  Notion's API to manage personal todo lists, allowing users to view, add, and update
+  tasks directly from Claude. The server uses Python and requires an API token for
+  Notion integration.
+repository: https://github.com/Badhansen/notion-mcp
+secrets:
+- notionToken
+- pageId
+srcPath: src
+url: https://glama.ai/mcp/servers/02p0quowuj

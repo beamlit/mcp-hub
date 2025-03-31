@@ -1,0 +1,12 @@
+118 servers => 109hub definition => 75 build
+                                    => TYPESCRIPT_MCP_COUNT: 52 => 23
+                                    ----------------------------
+                                    => PYTHON_MCP_COUNT: 23 => 3
+
+26/118 = 22%
+500 * 0.22 = 110
+
+- Automated credential generation for automated tests
+- Automated function call testing
+- Sourcing of tools? Smithery? Glama? MCP.so? Autogen? Using API References (URL or OpenAPI files or SDK Docs)?
+- Can we test user tools? (Low priority)

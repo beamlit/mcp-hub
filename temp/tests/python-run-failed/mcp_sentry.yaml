@@ -1,0 +1,22 @@
+branch: main
+categories:
+- other
+description: A Model Context Protocol server for retrieving and analyzing Sentry.io
+  issues.
+displayName: MCP Sentry
+icon: https://sentry.io/_assets/branding/sentry-glyph-black-1e9e9c1b.svg
+language: python
+longDescription: 'MCP Sentry is a server that integrates with Sentry.io to retrieve
+  and analyze issues. It allows users to inspect error reports, stacktraces, and debugging
+  information from their Sentry account. The server is designed to work with the Model
+  Context Protocol, providing a seamless way to manage and debug issues reported to
+  Sentry.
+
+  '
+repository: https://github.com/MCP-100/mcp-sentry
+secrets:
+- authToken
+- projectSlug
+- organizationSlug
+srcPath: src/mcp_sentry
+url: https://glama.ai/mcp/servers/lqepczdj3x

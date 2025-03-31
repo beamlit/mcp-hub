@@ -1,0 +1,20 @@
+branch: main
+categories:
+- monitoring
+- cloud
+- analytics
+description: MCP server for interacting with Datadog API
+displayName: MCP Server Datadog
+distPath: build
+icon: https://www.datadoghq.com/favicon.ico
+language: typescript
+longDescription: The MCP server provides an interface to the Datadog API, enabling
+  seamless management of incidents, monitoring, logs, dashboards, metrics, traces,
+  and hosts. Its extensible design allows easy integration of additional Datadog APIs
+  for future expansions.
+repository: https://github.com/winor30/mcp-server-datadog
+secrets:
+- datadogApiKey
+- datadogAppKey
+srcPath: src
+url: https://glama.ai/mcp/servers/bu8gtzkwfr

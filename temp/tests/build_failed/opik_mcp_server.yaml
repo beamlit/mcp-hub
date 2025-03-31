@@ -1,0 +1,14 @@
+branch: main
+categories:
+- other
+description: An implementation of the Model Context Protocol for the Opik platform.
+displayName: Opik MCP Server
+distPath: build
+icon: https://github.com/comet-ml/opik-mcp/raw/main/docs/icon.png
+language: typescript
+longDescription: An implementation of the Model Context Protocol for the Opik platform
+  that provides a unified interface for accessing Opik's capabilities, supporting
+  multiple transport mechanisms for flexible integration with IDEs and other environments.
+repository: https://github.com/comet-ml/opik-mcp
+secrets: []
+url: https://glama.ai/mcp/servers/hcctr0h0vs

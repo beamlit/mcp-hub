@@ -1,0 +1,21 @@
+branch: master
+categories:
+- other
+description: An MCP server providing timezone conversions and time-related operations
+  via RESTful API endpoints, featuring comprehensive error handling and timezone database
+  integration.
+displayName: Time Server
+icon: https://img.shields.io/badge/MCP-Protocol-blue
+language: python
+longDescription: 'The Time Server is an MCP server designed for timezone conversions
+  and time-related operations. It is built with the Model Context Protocol standards
+  and offers features such as getting the current time in any timezone, converting
+  time between timezones, and providing RESTful API endpoints. The server is implemented
+  in Python, ensuring type safety and comprehensive error handling. It integrates
+  a timezone database and adheres to the Contributor Covenant code of conduct.
+
+  '
+repository: https://github.com/clssck/mcp-time-server
+secrets: []
+srcPath: src
+url: https://glama.ai/mcp/servers/lo6ocr3732

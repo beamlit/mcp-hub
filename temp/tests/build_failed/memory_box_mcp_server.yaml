@@ -1,0 +1,24 @@
+branch: main
+categories:
+- search
+- document
+- other
+description: Cline MCP integration that allows users to save, search, and format memories
+  with semantic understanding.
+displayName: Memory Box MCP Server
+distPath: build
+icon: https://github.com/amotivv/memory-box-mcp/raw/main/icon.png
+language: typescript
+longDescription: 'The Memory Box MCP Server provides tools to store and retrieve information
+  using vector embeddings for meaning-based search. It allows users to save, search,
+  and format memories with semantic understanding. The server supports various tools
+  such as saving memories, searching memories, getting all memories, retrieving bucket
+  memories, formatting memories, and getting usage statistics. It is designed to be
+  remote-capable and integrates seamlessly with the Cline MCP.
+
+  '
+repository: https://github.com/amotivv/memory-box-mcp
+secrets:
+- memoryBoxToken
+srcPath: src
+url: https://glama.ai/mcp/servers/wtbejx9zwc

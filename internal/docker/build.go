@@ -7,7 +7,7 @@ import (
 	"os/exec"
 )
 
-func BuildImage(ctx context.Context, imageName string, repoPath string, buildArgs map[string]string) error {
+func (r *DockerRuntime) Build(ctx context.Context, imageName string, repoPath string, buildArgs map[string]string) error {
 	fmt.Println("Building image", imageName, "in directory", repoPath)
 	cmd := exec.Command(
 		"docker", "build",

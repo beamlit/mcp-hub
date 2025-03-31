@@ -1,0 +1,16 @@
+branch: main
+categories:
+- other
+description: Model Context Protocol server for Railway.app - Enables AI agents to
+  manage Railway infrastructure through natural language.
+displayName: Railway MCP
+distPath: build
+icon: https://github.com/jason-tan-swe/railway-mcp/raw/main/icon.png
+language: typescript
+longDescription: Let Claude and Cursor manage your Railway infrastructure through
+  natural language. Deploy, configure, and monitor - autonomously and safely.
+repository: https://github.com/jason-tan-swe/railway-mcp
+secrets:
+- railwayApiToken
+srcPath: src
+url: https://glama.ai/mcp/servers/lwn74iwigz

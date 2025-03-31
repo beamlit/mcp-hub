@@ -1,0 +1,20 @@
+branch: main
+categories:
+- database
+- other
+description: A Model Context Protocol server that provides read-only access to MySQL
+  databases.
+displayName: MCP Server for MySQL
+distPath: dist
+icon: https://github.com/benborla/mcp-server-mysql/raw/main/assets/icon.png
+language: typescript
+longDescription: This MCP server allows for interaction with MySQL databases, enabling
+  LLMs to inspect database schemas and execute read-only queries. It is built using
+  Node.js and TypeScript, and it provides a robust interface for database inspection.
+repository: https://github.com/benborla/mcp-server-mysql
+secrets:
+- mysqlHost
+- mysqlPort
+- mysqlUser
+srcPath: .
+url: https://glama.ai/mcp/servers/h3l0fukpq6

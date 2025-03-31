@@ -1,0 +1,22 @@
+branch: main
+categories:
+- search
+- image
+- news
+description: A Model Context Protocol server that integrates with Microsoft Bing Search
+  API, allowing AI assistants to perform web, news, and image searches.
+displayName: Bing Search MCP Server
+icon: https://github.com/leehanchung/bing-search-mcp/raw/main/assets/mcp_server_bing_search.png
+language: python
+longDescription: 'The Bing Search MCP Server is designed to integrate with the Microsoft
+  Bing Search API, providing AI assistants with the capability to perform web, news,
+  and image searches. It features rate limiting to prevent API abuse and comprehensive
+  error handling. The server requires Python 3.10 or higher and a Microsoft Bing Search
+  API key. It can be configured to run with MCP-compatible clients like Claude Desktop.
+
+  '
+repository: https://github.com/leehanchung/bing-search-mcp
+secrets:
+- BING_API_KEY
+srcPath: mcp_server_bing_search
+url: https://glama.ai/mcp/servers/nwtqbda2xc

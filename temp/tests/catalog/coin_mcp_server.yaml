@@ -1,0 +1,24 @@
+branch: main
+categories:
+- finance
+- data
+- api
+description: A Model Context Protocol server that provides access to CoinMarketCap's
+  cryptocurrency data.
+displayName: Coin MCP Server
+icon: https://smithery.ai/badge/coin-api-mcp
+language: python
+longDescription: 'Coin MCP Server is a Model Context Protocol server that provides
+  access to CoinMarketCap''s cryptocurrency data. This server enables AI-powered applications
+  to retrieve cryptocurrency listings, quotes, and detailed information about various
+  coins. It offers tools such as `listing-coins`, `get-coin-info`, and `get-coin-quotes`
+  to fetch market data, detailed coin information, and latest quotes. The server requires
+  a CoinMarketCap API key to function, which can be provided as an environment variable
+  or command-line argument. Contributions to expand and improve the server are welcome.
+
+  '
+repository: https://github.com/longmans/coin_api_mcp
+secrets:
+- coinmarketcapApiKey
+srcPath: src/coin_api_mcp
+url: https://glama.ai/mcp/servers/504t0uq4s6

@@ -1,0 +1,27 @@
+branch: main
+categories:
+- search
+- document
+- other
+description: Provides a semantic memory layer that integrates LLMs with OpenSearch,
+  enabling storage and retrieval of memories within the OpenSearch engine.
+displayName: MCP Server for OpenSearch
+icon: https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo.svg
+language: python
+longDescription: 'The MCP Server for OpenSearch is an implementation of the Model
+  Context Protocol (MCP) that acts as a semantic memory layer on top of the OpenSearch
+  database. It allows for the storage and retrieval of memories within the OpenSearch
+  engine, providing seamless integration between LLM applications and external data
+  sources. The server is designed to be used with the Claude Desktop app and can be
+  installed via Smithery or using the UV package manager. It supports configuration
+  through environment variables and offers tools for storing and querying data in
+  OpenSearch.
+
+  '
+repository: https://github.com/ibrooksSDX/mcp-server-opensearch
+secrets:
+- opensearchUrl
+- opensearchHostPort
+- indexName
+srcPath: src/mcp-server-opensearch
+url: https://glama.ai/mcp/servers/n8ldec4vzj

@@ -1,0 +1,17 @@
+branch: main
+categories:
+- other
+description: Enables AI models to interact with AWS Lambda functions via the MCP protocol.
+displayName: MCP2Lambda
+icon: https://example.com/icon.png
+language: python
+longDescription: 'MCP2Lambda acts as a bridge between MCP clients and AWS Lambda functions,
+  allowing AI models to access private resources, real-time data, and perform custom
+  computations in a secure environment. It leverages the MCP protocol to facilitate
+  seamless communication and interaction with AWS Lambda.
+
+  '
+repository: https://github.com/danilop/MCP2Lambda
+secrets: []
+srcPath: mcp_client_bedrock
+url: https://glama.ai/mcp/servers/4hokv207sz

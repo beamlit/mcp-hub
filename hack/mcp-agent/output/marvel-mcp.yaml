@@ -1,0 +1,55 @@
+name: marvelMCP
+displayName: Marvel MCP
+description: A demo server for Marvel APIs using MCP architecture.
+longDescription: The Marvel MCP module serves as a demonstration of how to integrate and utilize Marvel APIs within a server environment, showcasing the capabilities of the Model Context Protocol (MCP) for managing data interactions and API calls.
+siteUrl: https://github.com/DanWahlin/marvel-mcp
+icon: https://img.logo.dev/marvel.mcp
+categories:
+  - API
+  - Server
+  - Demo
+version: 1.5.0
+
+tools: []
+
+source:
+  repo: https://github.com/DanWahlin/marvel-mcp
+  branch: main
+  path: .
+
+build:
+  language: javascript/typescript
+  command: npm run build
+  output: dist
+
+run:
+  config:
+    MARVEL_PUBLIC_KEY:
+      type: string
+      description: "The public key for accessing the Marvel API."
+      required: true
+      secret: true
+    MARVEL_PRIVATE_KEY:
+      type: string
+      description: "The private key for accessing the Marvel API."
+      required: true
+      secret: true
+    MARVEL_API_BASE:
+      type: string
+      description: "The base URL for the Marvel API."
+      default: "https://gateway.marvel.com/v1/public"
+      required: false
+  entrypoint: ["tsx", "./src/index.ts"]
+  env:
+    MARVEL_PUBLIC_KEY:
+      value: ${config.MARVEL_PUBLIC_KEY}
+      description: "The public key for accessing the Marvel API."
+      required: true
+    MARVEL_PRIVATE_KEY:
+      value: ${config.MARVEL_PRIVATE_KEY}
+      description: "The private key for accessing the Marvel API."
+      required: true
+    MARVEL_API_BASE:
+      value: ${config.MARVEL_API_BASE}
+      description: "The base URL for the Marvel API."
+      required: false

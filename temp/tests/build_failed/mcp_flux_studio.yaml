@@ -1,0 +1,22 @@
+branch: main
+categories:
+- image
+- ai
+- other
+description: A server that integrates Flux's advanced image generation and manipulation
+  features into AI coding assistants.
+displayName: MCP Flux Studio
+distPath: build
+icon: https://avatars.githubusercontent.com/u/9919?s=200&v=4
+language: typescript
+longDescription: MCP Flux Studio is a server that integrates Flux's advanced image
+  generation and manipulation features into AI coding assistants, enabling seamless
+  text-to-image and image control workflows in IDEs like Cursor and Windsurf. It supports
+  tools such as 'generate', 'img2img', 'inpaint', and 'control', and is capable of
+  remote hosting.
+repository: https://github.com/jmanhype/mcp-flux-studio
+secrets:
+- bflApiKey
+- fluxPath
+srcPath: src
+url: https://glama.ai/mcp/servers/aztg02jhr7

@@ -1,5 +1,6 @@
 ### BUILD IMAGE
 FROM node:21-alpine AS build
+RUN apk add --no-cache git
 
 WORKDIR /blaxel
 
@@ -10,10 +11,12 @@ COPY . .
 ARG BUILD_PATH=""
 WORKDIR /blaxel${BUILD_PATH}
 
-RUN npm install ws @types/ws uuid
-RUN npm install
+ARG INSTALL_COMMAND="npm install"
+ARG BUILD_COMMAND="npm run build"
 
-RUN npm run build
+RUN ${INSTALL_COMMAND}
+RUN npm install https://github.com/beamlit/blaxel-mcp-typescript-sdk-fork.git 
+RUN ${BUILD_COMMAND}
 
 ### SYSTEM IMAGE
 
@@ -55,6 +58,8 @@ ARG BUILD_PATH=""
 COPY --from=build /blaxel/node_modules /blaxel/node_modules
 COPY --from=build /blaxel${BUILD_PATH}/node_modules /blaxel/node_modules
 COPY --from=build /blaxel${BUILD_PATH}/package.json /blaxel/package.json
-COPY --from=build /blaxel/${DIST_PATH} /blaxel/build
+COPY --from=build /blaxel/${DIST_PATH} /blaxel/${DIST_PATH}
 
-ENTRYPOINT ["/usr/bin/node",  "/blaxel/build/loader.js"]
+WORKDIR /blaxel
+
+ENTRYPOINT ["/usr/bin/node",  "/blaxel/${DIST_PATH}/loader.js"] # Will be replaced by the entrypoint in the MCP server

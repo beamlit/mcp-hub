@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/beamlit/mcp-hub/internal/builder"
+	"github.com/beamlit/mcp-hub/internal/docker"
 	"github.com/beamlit/mcp-hub/internal/errors"
 	"github.com/beamlit/mcp-hub/internal/hub"
 	"github.com/joho/godotenv"
@@ -43,14 +44,13 @@ func runCatalog(cmd *cobra.Command, args []string) {
 	errors.HandleError("validate config file", hub.ValidateWithDefaultValues())
 
 	repository := hub.Repositories[mcp]
-	buildInstance := builder.NewBuild(tag, true)
+	buildInstance := builder.NewBuild(tag, true, docker.NewRuntime())
 	defer buildInstance.Clean()
 	c, err := buildInstance.CloneRepository(mcp, repository)
 	if err != nil {
 		log.Printf("Failed to process repository %s: %v", mcp, err)
 		os.Exit(1)
 	}
-	artifact := c.Artifacts[0]
-	json, _ := json.MarshalIndent(artifact, "", "  ")
+	json, _ := json.MarshalIndent(c, "", "  ")
 	fmt.Printf("%s", string(json))
 }

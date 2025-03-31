@@ -1,0 +1,24 @@
+branch: main
+categories:
+- search
+- document
+- other
+description: A production-ready Model Context Protocol server that enables language
+  models to leverage AI-powered web scraping capabilities.
+displayName: ScrapeGraph MCP Server
+icon: https://glama.ai/mcp/servers/37us0q2tr6/badge
+language: python
+longDescription: 'The ScrapeGraph MCP Server is a production-ready Model Context Protocol
+  (MCP) server that provides seamless integration with the ScapeGraph AI API. This
+  server enables language models to leverage advanced AI-powered web scraping capabilities
+  with enterprise-grade reliability. It offers tools such as `markdownify` to transform
+  webpages into markdown, `smartscraper` to extract structured data, and `searchscraper`
+  for AI-powered web searches. The server implements robust error handling and is
+  distributed under the MIT License.
+
+  '
+repository: https://github.com/ScrapeGraphAI/scrapegraph-mcp
+secrets:
+- scrapegraphApiKey
+srcPath: src/scrapegraph_mcp
+url: https://glama.ai/mcp/servers/37us0q2tr6

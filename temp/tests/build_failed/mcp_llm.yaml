@@ -1,0 +1,19 @@
+branch: main
+categories:
+- other
+description: An MCP server that provides LLMs access to other LLMs
+displayName: MCP LLM
+distPath: build
+icon: https://github.com/sammcj/mcp-llm/raw/main/legit.png
+language: typescript
+longDescription: 'The MCP LLM server is designed to facilitate interactions with Large
+  Language Models (LLMs) using LlamaIndexTS. It provides a set of tools for generating
+  code, documentation, and answering questions, making it a versatile solution for
+  developers working with AI and LLMs. The server is capable of remote hosting and
+  is built with TypeScript, ensuring a robust and scalable architecture.
+
+  '
+repository: https://github.com/sammcj/mcp-llm
+secrets: []
+srcPath: src
+url: https://glama.ai/mcp/servers/i1gantlfrs

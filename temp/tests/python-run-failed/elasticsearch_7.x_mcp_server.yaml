@@ -1,0 +1,27 @@
+branch: main
+categories:
+- search
+- document
+- other
+description: Provides an MCP protocol interface for interacting with Elasticsearch
+  7.x databases, supporting comprehensive search functionality including aggregations,
+  highlighting, and sorting.
+displayName: Elasticsearch 7.x MCP Server
+icon: https://smithery.ai/badge/@imlewc/elasticsearch7-mcp-server
+language: python
+longDescription: 'The Elasticsearch 7.x MCP Server offers a robust MCP protocol interface
+  for seamless interaction with Elasticsearch 7.x versions. It supports essential
+  Elasticsearch operations such as ping and info, along with comprehensive search
+  functionalities including aggregation queries, highlighting, sorting, and more.
+  This server is designed to facilitate easy access to Elasticsearch capabilities
+  through any MCP client, making it an ideal choice for developers looking to integrate
+  Elasticsearch search functionalities into their applications.
+
+  '
+repository: https://github.com/imlewc/elasticsearch7-mcp-server
+secrets:
+- elasticHost
+- elasticUsername
+- elasticPassword
+srcPath: src/elasticsearch7_mcp_server
+url: https://glama.ai/mcp/servers/zxwxozvlme

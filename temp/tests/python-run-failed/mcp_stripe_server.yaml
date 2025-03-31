@@ -1,0 +1,23 @@
+branch: main
+categories:
+- payment
+- other
+description: A server that integrates with Stripe for handling payments, customers,
+  and refunds through the Model Context Protocol, providing a secure API to manage
+  financial transactions.
+displayName: MCP Stripe Server
+icon: https://smithery.ai/badge/@atharvagupta2003/mcp-stripe
+language: python
+longDescription: 'The MCP Stripe Server is a Model Context Protocol (MCP) server implementation
+  that integrates with Stripe for handling payments, customers, and refunds. This
+  server provides a structured API to manage financial transactions securely. It supports
+  audit logging of all Stripe operations, including customer management, payment operations,
+  and refund operations. The server ensures secure payments, comprehensive error handling,
+  and MCP integration for compatible tools and resource listing.
+
+  '
+repository: https://github.com/atharvagupta2003/mcp-stripe
+secrets:
+- stripeApiKey
+srcPath: src
+url: https://glama.ai/mcp/servers/wiypoirrk3

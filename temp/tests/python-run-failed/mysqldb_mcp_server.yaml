@@ -1,0 +1,26 @@
+branch: master
+categories:
+- database
+- other
+description: An MCP server that enables MySQL database integration with Claude. You
+  can execute SQL queries and manage database connections.
+displayName: MySQLDB MCP Server
+icon: https://smithery.ai/badge/@burakdirin/mysqldb-mcp-server
+language: python
+longDescription: 'The mysqldb-mcp-server is a MySQL database MCP server project that
+  allows integration with Claude. It provides tools to connect to a specific MySQL
+  database and execute SQL queries. The server can be configured using environment
+  variables for MySQL host, user, password, and database settings. It supports read-only
+  mode and can be installed using `uv` or `pip`. The server is designed to run over
+  stdio and can be debugged using the MCP Inspector.
+
+  '
+repository: https://github.com/burakdirin/mysqldb-mcp-server
+secrets:
+- MYSQL_HOST
+- MYSQL_USER
+- MYSQL_PASSWORD
+- MYSQL_DATABASE
+- MYSQL_READONLY
+srcPath: src/mysqldb_mcp_server
+url: https://glama.ai/mcp/servers/qgvfelf3i1

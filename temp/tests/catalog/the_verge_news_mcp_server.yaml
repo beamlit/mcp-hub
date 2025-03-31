@@ -1,0 +1,21 @@
+branch: main
+categories:
+- news
+- search
+- other
+description: Provides tools to fetch and search news from The Verge's RSS feed.
+displayName: The Verge News MCP Server
+distPath: build
+icon: https://www.theverge.com/favicon.ico
+language: typescript
+longDescription: 'The Verge News MCP Server provides tools to fetch and search news
+  from The Verge''s RSS feed. It allows users to get today''s news, retrieve random
+  articles from the past week, and search for specific keywords in recent Verge content.
+  The server is built using TypeScript and utilizes the Model Context Protocol SDK
+  to interact with The Verge''s RSS feed.
+
+  '
+repository: https://github.com/manimohans/verge-news-mcp
+secrets: []
+srcPath: src
+url: https://glama.ai/mcp/servers/n6lbwdnbxa

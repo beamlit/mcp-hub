@@ -1,0 +1,21 @@
+branch: main
+categories:
+- other
+description: MCP server for managing Jenkins operations
+displayName: Jenkins MCP
+icon: https://www.jenkins.io/images/logos/jenkins/jenkins.png
+language: python
+longDescription: 'Jenkins MCP is a server that enables managing Jenkins operations
+  such as listing jobs, triggering builds, and checking build statuses through a configurable
+  MCP server. It is designed to work with Jenkins servers and provides tools like
+  ''list_jobs'', ''trigger_build'', and ''get_build_status''. The server is remote-capable
+  and can be configured using a JSON schema for Jenkins server details.
+
+  '
+repository: https://github.com/kjozsa/jenkins-mcp
+secrets:
+- jenkinsUrl
+- jenkinsUsername
+- jenkinsPassword
+srcPath: jenkins_mcp
+url: https://glama.ai/mcp/servers/7j3zk84u5p

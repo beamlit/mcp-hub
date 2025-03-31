@@ -1,0 +1,18 @@
+branch: main
+categories:
+- other
+description: Enables querying WolframAlpha's LLM API for natural language questions,
+  providing structured and simplified answers optimized for LLM consumption.
+displayName: WolframAlpha LLM MCP Server
+distPath: build
+icon: https://www.wolframalpha.com/favicon.ico
+language: typescript
+longDescription: This server allows users to interact with WolframAlpha's LLM API,
+  enabling natural language queries and returning structured answers that are optimized
+  for consumption by language models. It supports tools like 'ask_llm', 'get_simple_answer',
+  and 'validate_key', and is capable of remote hosting.
+repository: https://github.com/Garoth/wolframalpha-llm-mcp
+secrets:
+- wolframLlAppId
+srcPath: src
+url: https://glama.ai/mcp/servers/vl1rk0ntm6

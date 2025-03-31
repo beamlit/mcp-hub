@@ -1,0 +1,26 @@
+branch: master
+categories:
+- document
+- other
+description: A Python package that enables LLM models to interact with Memos server
+  through the Model Context Protocol interface, allowing search, creation, retrieval,
+  and management of memos.
+displayName: MCP Server Memos
+icon: https://img.shields.io/pypi/v/mcp-server-memos.svg
+language: python
+longDescription: 'MCP Server Memos is a Python package that provides LLM models with
+  the ability to interact with the Memos server through the MCP (Model Context Protocol)
+  interface. It offers features such as searching memos with keywords, creating new
+  memos with customizable visibility, retrieving memo content by ID, and managing
+  memo tags. The server ensures secure authentication using access tokens and can
+  be installed via Smithery or manually using pip. It provides tools like list_memo_tags,
+  search_memo, create_memo, and get_memo for interacting with Memos.
+
+  '
+repository: https://github.com/RyoJerryYu/mcp-server-memos-py
+secrets:
+- host
+- port
+- token
+srcPath: src/mcp_server_memos
+url: https://glama.ai/mcp/servers/strjm92qcp

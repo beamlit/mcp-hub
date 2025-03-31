@@ -1,0 +1,23 @@
+branch: main
+categories:
+- chat
+- other
+description: Enables integration with OpenAI models through the MCP protocol, supporting
+  concise and detailed responses for use with Claude Desktop.
+displayName: OpenAI MCP Server
+icon: https://smithery.ai/badge/@thadius83/mcp-server-openai
+language: python
+longDescription: 'The OpenAI MCP Server allows direct integration with OpenAI''s API,
+  supporting multiple models such as o3-mini and gpt-4o-mini. It provides a simple
+  interface through the MCP protocol, enabling users to query OpenAI models directly
+  from Claude. The server supports configurable message formatting, error handling,
+  and logging. Installation can be done via Smithery or manually, and it requires
+  an OpenAI API key. The server offers a tool named ''ask-openai'' for querying models,
+  with detailed usage examples and troubleshooting guidance available in the documentation.
+
+  '
+repository: https://github.com/thadius83/mcp-server-openai
+secrets:
+- openaiApiKey
+srcPath: src/mcp_server_openai
+url: https://glama.ai/mcp/servers/fzgyk9mw5e

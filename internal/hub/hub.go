@@ -8,7 +8,6 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/beamlit/mcp-hub/internal/smithery"
 	"gopkg.in/yaml.v2"
 )
 
@@ -16,39 +15,72 @@ type Hub struct {
 	Repositories map[string]*Repository `yaml:"repositories"`
 }
 
-type PackageManager string
-
-const (
-	PackageManagerAPK PackageManager = "apk"
-	PackageManagerAPT PackageManager = "apt"
-)
-
 type Repository struct {
-	Repository      string                   `yaml:"repository" mandatory:"false"`
-	Path            string                   `yaml:"path" mandatory:"false"`
-	BasePath        string                   `yaml:"basePath" mandatory:"false" default:""`
-	SrcPath         string                   `yaml:"srcPath" mandatory:"false" default:"src"`
-	DistPath        string                   `yaml:"distPath" mandatory:"false" default:"dist"`
-	Smithery        *smithery.SmitheryConfig `yaml:"smithery" mandatory:"false"`
-	Language        string                   `yaml:"language" mandatory:"false" default:"typescript"`
-	PackageManager  PackageManager           `yaml:"packageManager" mandatory:"false" default:"apk"`
-	DoNotShow       []string                 `yaml:"doNotShow" mandatory:"false"`
-	HasNPM          bool                     `yaml:"hasNPM" mandatory:"false" default:"true"`
-	Branch          string                   `yaml:"branch" mandatory:"false" default:"main"`
-	URL             string                   `yaml:"url" mandatory:"false"`
-	DisplayName     string                   `yaml:"displayName" mandatory:"true"`
-	Icon            string                   `yaml:"icon" mandatory:"true"`
-	Disabled        bool                     `yaml:"disabled" mandatory:"false" default:"false"`
-	Description     string                   `yaml:"description" mandatory:"true"`
-	LongDescription string                   `yaml:"longDescription" mandatory:"true"`
-	Enterprise      bool                     `yaml:"enterprise" mandatory:"false" default:"false"`
-	ComingSoon      bool                     `yaml:"comingSoon" mandatory:"false" default:"false"`
-	Secrets         []string                 `yaml:"secrets" mandatory:"false"`
-	HiddenSecrets   []string                 `yaml:"hiddenSecrets" mandatory:"false"`
-	OAuth           *OAuth                   `yaml:"oauth" mandatory:"false"`
-	Integration     string                   `yaml:"integration" mandatory:"false"`
-	Tags            []string                 `yaml:"tags"`
-	Categories      []string                 `yaml:"categories"`
+	Name               string   `yaml:"name" mandatory:"true"`
+	DisplayName        string   `yaml:"displayName" mandatory:"true"`
+	Description        string   `yaml:"description" mandatory:"true"`
+	LongDescription    string   `yaml:"longDescription" mandatory:"true"`
+	Documentation      string   `yaml:"documentation" mandatory:"false"`
+	GetCredentialsLink string   `yaml:"getCredentialsLink" mandatory:"false"`
+	Icon               string   `yaml:"icon" mandatory:"true"`
+	Integration        string   `yaml:"integration" mandatory:"false"`
+	Categories         []string `yaml:"categories" mandatory:"true"`
+	Version            string   `yaml:"version" mandatory:"true"`
+	//Tools              []Tool   `yaml:"tools" mandatory:"false"`
+	Disabled   bool   `yaml:"disabled" mandatory:"false"`
+	Enterprise bool   `yaml:"enterprise" mandatory:"false"`
+	ComingSoon bool   `yaml:"comingSoon" mandatory:"false"`
+	Source     Source `yaml:"source" mandatory:"true"`
+	Build      Build  `yaml:"build" mandatory:"true"`
+	Run        Run    `yaml:"run" mandatory:"true"`
+}
+
+type Tool struct {
+	Name         string `yaml:"name" mandatory:"true"`
+	Description  string `yaml:"description" mandatory:"true"`
+	InputSchema  Schema `yaml:"inputSchema" mandatory:"true"`
+	OutputSchema Schema `yaml:"outputSchema" mandatory:"true"`
+}
+
+type Schema struct {
+	Type       string              `yaml:"type" mandatory:"true"`
+	Properties map[string]Property `yaml:"properties" mandatory:"true"`
+}
+
+type Property struct {
+	Type     string   `yaml:"type" mandatory:"true"`
+	Required bool     `yaml:"required" mandatory:"true"`
+	Default  string   `yaml:"default" mandatory:"false"`
+	Enum     []string `yaml:"enum" mandatory:"false"`
+	Hidden   bool     `yaml:"hidden" mandatory:"false"`
+	Secret   bool     `yaml:"secret" mandatory:"false"`
+	Label    string   `yaml:"label" mandatory:"false"`
+	Min      int      `yaml:"min" mandatory:"false"`
+	Max      int      `yaml:"max" mandatory:"false"`
+	Pattern  string   `yaml:"pattern" mandatory:"false"`
+	Format   string   `yaml:"format" mandatory:"false"`
+	Example  string   `yaml:"example" mandatory:"false"`
+}
+
+type Source struct {
+	Repo      string `yaml:"repo" mandatory:"true"`
+	Branch    string `yaml:"branch" mandatory:"true"`
+	Path      string `yaml:"path" mandatory:"false"`
+	LocalPath string `yaml:"localPath" mandatory:"false"`
+}
+
+type Build struct {
+	Path         string   `yaml:"path" mandatory:"true"`
+	Language     string   `yaml:"language" mandatory:"true"`
+	Command      string   `yaml:"command" mandatory:"true"`
+	Output       string   `yaml:"output" mandatory:"true"`
+	Dependencies []string `yaml:"dependencies" mandatory:"false"`
+}
+
+type Run struct {
+	Config     map[string]Property `yaml:"config" mandatory:"true"`
+	Entrypoint []string            `yaml:"entrypoint" mandatory:"true"`
+	Env        map[string]Property `yaml:"env" mandatory:"true"`
 }
 
 type OAuth struct {

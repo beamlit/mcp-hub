@@ -1,0 +1,21 @@
+branch: master
+categories:
+- data
+- analysis
+- api
+description: Enables AI assistants to interact with the World Bank open data API,
+  allowing for listing and analysis of indicators across available countries.
+displayName: World Bank MCP Server
+icon: https://smithery.ai/badge/@anshumax/world_bank_mcp_server
+language: python
+longDescription: 'A Model Context Protocol (MCP) server that enables interaction with
+  the open World Bank data API. This server allows AI assistants to list indicators
+  and analyze those indicators for the countries that are available with the World
+  Bank. Features include listing available countries and indicators, analyzing indicators
+  such as population segments and poverty numbers, and comprehensive logging.
+
+  '
+repository: https://github.com/anshumax/world_bank_mcp_server
+secrets: []
+srcPath: src/world_bank_mcp_server
+url: https://glama.ai/mcp/servers/yavdzdo2j6

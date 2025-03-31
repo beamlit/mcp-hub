@@ -1,0 +1,24 @@
+branch: main
+categories:
+- document
+- other
+description: Fetches and extracts comprehensive package documentation from multiple
+  programming language ecosystems for LLMs like Claude without requiring API keys.
+displayName: DocsFetcher MCP Server
+distPath: build
+icon: https://example.com/icon.png
+language: typescript
+longDescription: 'The DocsFetcher MCP Server is designed to fetch and extract comprehensive
+  package documentation from various programming language ecosystems such as JavaScript,
+  Python, and Java. It is particularly useful for large language models (LLMs) like
+  Claude, as it provides access to structured documentation data without the need
+  for API keys. This server supports multiple tools including ''fetch-url-docs'',
+  ''fetch-package-docs'', ''fetch-library-docs'', and ''fetch-multilingual-docs'',
+  making it a versatile solution for developers seeking to enhance their development
+  experience with easy access to documentation.
+
+  '
+repository: https://github.com/cdugo/package-documentation-mcp
+secrets: []
+srcPath: src
+url: https://glama.ai/mcp/servers/8yfwtryuc5

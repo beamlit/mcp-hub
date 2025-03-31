@@ -1,0 +1,20 @@
+branch: main
+categories:
+- other
+description: A template for creating custom tools for Cursor IDE using Model Context
+  Protocol (MCP).
+displayName: MCP Hitchcode
+icon: https://example.com/icon.png
+language: python
+longDescription: 'MCP Hitchcode is a server template designed for developers to create
+  custom tools for the Cursor IDE. It leverages the Model Context Protocol (MCP) to
+  extend Cursor''s functionality, allowing for the integration of server-based tools.
+  The server supports various tools such as ''mcp_fetch'', ''mood'', and ''fetch_railway_docs'',
+  among others. It is designed to run in a hybrid hosting environment and can be configured
+  to use different transports like SSE and stdio.
+
+  '
+repository: https://github.com/jankowtf/mcp-hitchcode
+secrets: []
+srcPath: mcp_hitchcode
+url: https://glama.ai/mcp/servers/rbgsskqcgb

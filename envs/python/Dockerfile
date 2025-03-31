@@ -1,12 +1,12 @@
 FROM ghcr.io/astral-sh/uv:python3.12-bookworm AS render-requirements
 
 WORKDIR /app
+ARG SRC_PATH=""
 COPY pyproject.toml /app/pyproject.toml
-COPY uv.lock /app/uv.lock
 
 COPY README.m[d] /app/README.md
 COPY LICENS[E] /app/LICENSE
-COPY src /app/src
+COPY ${SRC_PATH} /app/${SRC_PATH}
 RUN uv sync
 RUN uv add 'uvicorn[standard]'
 RUN uv export --no-hashes --format requirements-txt > requirements.txt
@@ -16,14 +16,13 @@ FROM python:3.12-bookworm AS build
 RUN apt update && apt install -y curl
 
 WORKDIR /blaxel
-
+ARG SRC_PATH=""
 # Install the application dependencies.
 COPY pyproject.toml /blaxel/pyproject.toml
-COPY uv.lock /blaxel/uv.lock
 
 COPY README.m[d] /blaxel/README.md
 COPY LICENS[E] /blaxel/LICENSE
-COPY src /blaxel/src
+COPY ${SRC_PATH} /blaxel/${SRC_PATH}
 COPY --from=render-requirements /app/requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt --no-cache-dir
 RUN /usr/sbin/ldconfig /usr/local/lib

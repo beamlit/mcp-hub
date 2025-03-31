@@ -1,0 +1,35 @@
+branch: main
+categories:
+- chat
+- document
+- other
+description: The Model Context Protocol (MCP) Server enables integration between MCP
+  clients and the Graphlit service.
+displayName: Graphlit MCP Server
+distPath: build
+icon: https://example.com/graphlit-icon.png
+language: typescript
+longDescription: The Graphlit MCP Server provides an interface between the Graphlit
+  Platform API and MCP clients. It allows for the ingestion of various data sources
+  such as Slack, Gmail, podcast feeds, and web crawling into a Graphlit project. Users
+  can then retrieve relevant contents from the MCP client. The server supports environment
+  variables for authentication and configuration, including organization ID, environment
+  ID, and JWT secret.
+repository: https://github.com/graphlit/graphlit-mcp-server
+secrets:
+- organizationId
+- environmentId
+- jwtSecret
+- slackBotToken
+- discordBotToken
+- googleEmailRefreshToken
+- googleEmailClientId
+- googleEmailClientSecret
+- linearApiKey
+- githubPersonalAccessToken
+- jiraEmail
+- jiraToken
+- notionApiKey
+- notionDatabaseId
+srcPath: src
+url: https://glama.ai/mcp/servers/fscrivteod

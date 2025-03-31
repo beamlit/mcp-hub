@@ -1,0 +1,22 @@
+branch: main
+categories:
+- image
+- document
+- other
+description: An MCP server for processing images using Florence-2.
+displayName: Florence-2 MCP Server
+icon: https://img.shields.io/github/license/jkawamoto/mcp-florence2
+language: python
+longDescription: 'The Florence-2 MCP Server is designed to process images or PDF files
+  stored on a local or web server. It can extract text using OCR (Optical Character
+  Recognition) or generate descriptive captions summarizing the content of the images.
+  The server is compatible with various platforms, including Claude Desktop and Goose
+  CLI, and can be configured easily by editing the respective configuration files.
+  The server provides tools for OCR and caption generation, making it a versatile
+  solution for image processing tasks.
+
+  '
+repository: https://github.com/jkawamoto/mcp-florence2
+secrets: []
+srcPath: src/mcp_florence2
+url: https://glama.ai/mcp/servers/mziprujksn

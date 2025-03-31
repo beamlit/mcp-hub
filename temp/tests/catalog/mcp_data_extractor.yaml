@@ -1,0 +1,20 @@
+branch: main
+categories:
+- document
+- other
+description: A Model Context Protocol server that extracts embedded data from TypeScript/JavaScript
+  source code into structured JSON configuration files.
+displayName: MCP Data Extractor
+distPath: build
+icon: https://github.com/sammcj/mcp-data-extractor/raw/main/icon.png
+language: typescript
+longDescription: 'The MCP Data Extractor is a server designed to migrate embedded
+  data such as i18n translations or key/value configurations from TypeScript/JavaScript
+  source code into structured JSON configuration files. It supports tools like ''extract_data''
+  and ''extract_svg'', and is capable of remote hosting.
+
+  '
+repository: https://github.com/sammcj/mcp-data-extractor
+secrets: []
+srcPath: src
+url: https://glama.ai/mcp/servers/40c3iyazm5

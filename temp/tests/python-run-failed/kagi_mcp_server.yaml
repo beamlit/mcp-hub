@@ -1,0 +1,22 @@
+branch: main
+categories:
+- search
+description: An MCP server that integrates Kagi search capabilities with Claude AI,
+  enabling Claude to perform real-time web searches when answering questions that
+  require up-to-date information.
+displayName: Kagi MCP Server
+icon: https://glama.ai/mcp/servers/xabrrs4bka/badge
+language: python
+longDescription: 'The Kagi MCP server is designed to integrate Kagi search capabilities
+  with Claude AI. It allows Claude to perform real-time web searches, providing up-to-date
+  information when answering questions. The server is currently in closed beta and
+  requires access to the search API, which can be requested from Kagi support. The
+  server can be installed via Smithery or manually set up with Claude Desktop. It
+  supports debugging through the MCP CLI SDK or manually using the MCP Inspector.
+
+  '
+repository: https://github.com/kagisearch/kagimcp
+secrets:
+- kagiApiKey
+srcPath: src/kagimcp
+url: https://glama.ai/mcp/servers/xabrrs4bka

@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/beamlit/mcp-hub/internal/builder"
+	"github.com/beamlit/mcp-hub/internal/docker"
 	"github.com/beamlit/mcp-hub/internal/errors"
 	"github.com/beamlit/mcp-hub/internal/hub"
 	"github.com/joho/godotenv"
@@ -50,10 +51,12 @@ func runStart(cmd *cobra.Command, args []string) {
 		log.Printf("Repository %s not found", mcp)
 		os.Exit(1)
 	}
-	buildInstance := builder.NewBuild(tag, debug)
+
+	runtime := docker.NewRuntime()
+	buildInstance := builder.NewBuild(tag, debug, runtime)
 	defer buildInstance.Clean()
 
-	c, err := buildInstance.CloneRepository(mcp, repository)
+	_, err := buildInstance.CloneRepository(mcp, repository)
 	if err != nil {
 		log.Printf("Failed to process repository %s: %v", mcp, err)
 		os.Exit(1)
@@ -64,7 +67,7 @@ func runStart(cmd *cobra.Command, args []string) {
 		os.Exit(1)
 	}
 
-	err = buildInstance.Start(mcp, repository, c)
+	err = buildInstance.Start(mcp, repository)
 	if err != nil {
 		log.Printf("Failed to start image for repository %s: %v", mcp, err)
 		os.Exit(1)

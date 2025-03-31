@@ -1,0 +1,19 @@
+branch: main
+categories:
+- document
+- audio
+- other
+description: Provides intelligent transcript processing capabilities for Claude.
+displayName: Transcription Tools MCP
+distPath: build
+icon: https://example.com/icon.png
+language: typescript
+longDescription: 'The Transcription Tools MCP Server offers advanced transcript processing
+  capabilities, including natural formatting, contextual repair, and smart summarization.
+  It leverages Deep Thinking LLMs to enhance the quality and coherence of transcriptions,
+  making it an essential tool for users requiring high-quality transcript outputs.
+
+  '
+repository: https://github.com/MushroomFleet/TranscriptionTools-MCP
+secrets: []
+url: https://glama.ai/mcp/servers/in1wo7l928

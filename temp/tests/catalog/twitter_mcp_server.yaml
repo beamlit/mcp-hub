@@ -1,0 +1,24 @@
+branch: main
+categories:
+- social
+- other
+description: An MCP server that enables Claude to interact with Twitter, allowing
+  for posting tweets and searching Twitter content.
+displayName: Twitter MCP Server
+distPath: build
+icon: https://example.com/twitter-icon.png
+language: typescript
+longDescription: 'The Twitter MCP Server is a Model Context Protocol server that allows
+  interaction with Twitter. It enables functionalities such as posting tweets and
+  searching Twitter content. The server is designed to work with Claude, providing
+  seamless integration with Twitter''s API.
+
+  '
+repository: https://github.com/EnesCinr/twitter-mcp
+secrets:
+- apiKey
+- apiSecretKey
+- accessToken
+- accessTokenSecret
+srcPath: src
+url: https://glama.ai/mcp/servers/dhsudtc7cd

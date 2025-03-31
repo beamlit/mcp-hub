@@ -1,0 +1,22 @@
+branch: main
+categories:
+- other
+description: A Model Context Protocol (MCP) server implementation that provides EMQX
+  MQTT broker interaction.
+displayName: EMQX MCP Server
+icon: https://example.com/emqx-icon.png
+language: python
+longDescription: 'EMQX MCP Server is an implementation of Anthropic''s Model Context
+  Protocol (MCP) that allows interaction with MQTT brokers. It acts as a bridge between
+  MCP clients and the EMQX MQTT infrastructure, providing tools such as listing MQTT
+  clients, getting MQTT client details, kicking MQTT clients, and publishing MQTT
+  messages.
+
+  '
+repository: https://github.com/Benniu/emqx-mcp-server
+secrets:
+- emqxApiUrl
+- emqxApiKey
+- emqxApiSecret
+srcPath: src/emqx_mcp_server
+url: https://glama.ai/mcp/servers/m7zgbcr053

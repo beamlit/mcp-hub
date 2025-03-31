@@ -1,0 +1,21 @@
+branch: main
+categories:
+- productivity
+- task-management
+- project-management
+description: An MCP server that enables LLMs to interact with Todoist tasks, projects,
+  and other features through the Todoist API.
+displayName: Todoist MCP
+distPath: build
+icon: https://www.todoist.com/favicon.ico
+language: typescript
+longDescription: This server connects the Model Context Protocol (MCP) to Todoist,
+  allowing large language models (LLMs) to manage tasks, projects, and other Todoist
+  features. It provides a comprehensive set of tools for task management, including
+  adding, updating, and deleting tasks, projects, and comments. The server is designed
+  to be remote-capable and integrates seamlessly with the Todoist API.
+repository: https://github.com/miottid/todoist-mcp
+secrets:
+- todoistApiKey
+srcPath: src
+url: https://glama.ai/mcp/servers/2010u29g1w

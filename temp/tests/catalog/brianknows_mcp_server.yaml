@@ -1,0 +1,19 @@
+branch: main
+categories:
+- search
+- other
+description: An MCP server that connects Claude to BrianKnows' blockchain knowledge
+  base.
+displayName: BrianKnows MCP Server
+distPath: build
+icon: https://example.com/icon.png
+language: typescript
+longDescription: This MCP server allows users to search for blockchain/DeFi information
+  and interact with a specialized agent across multiple knowledge bases. It connects
+  Claude to BrianKnows' blockchain knowledge base, providing a seamless integration
+  for accessing and interacting with blockchain data.
+repository: https://github.com/antoncoding/mcp-brianknows
+secrets:
+- brianKey
+srcPath: src
+url: https://glama.ai/mcp/servers/idfph0fstx

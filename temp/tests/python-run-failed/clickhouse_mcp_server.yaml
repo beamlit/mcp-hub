@@ -1,0 +1,27 @@
+branch: master
+categories:
+- database
+- other
+description: An MCP server implementation that enables Claude AI to interact with
+  Clickhouse databases.
+displayName: Clickhouse MCP Server
+icon: https://smithery.ai/badge/@burakdirin/clickhouse-mcp-server
+language: python
+longDescription: 'The Clickhouse MCP server is a project designed to facilitate interaction
+  between Claude AI and Clickhouse databases. It provides secure database connections,
+  query execution capabilities, support for read-only mode, and the ability to handle
+  multiple queries. The server can be installed using `uv` or `pip` and is configured
+  using environment variables such as `CLICKHOUSE_HOST`, `CLICKHOUSE_USER`, `CLICKHOUSE_PASSWORD`,
+  `CLICKHOUSE_DATABASE`, and `CLICKHOUSE_READONLY`. The server is compatible with
+  Claude Desktop and can be installed via Smithery for seamless integration.
+
+  '
+repository: https://github.com/burakdirin/clickhouse-mcp-server
+secrets:
+- CLICKHOUSE_HOST
+- CLICKHOUSE_USER
+- CLICKHOUSE_PASSWORD
+- CLICKHOUSE_DATABASE
+- CLICKHOUSE_READONLY
+srcPath: src/clickhouse_mcp_server
+url: https://glama.ai/mcp/servers/8rcaf3zosc

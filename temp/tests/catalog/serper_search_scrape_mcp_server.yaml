@@ -1,0 +1,23 @@
+branch: main
+categories:
+- search
+- other
+description: This Serper MCP Server supports search and webpage scraping, and all
+  the most recent parameters introduced by the Serper API, like location.
+displayName: Serper Search Scrape MCP Server
+distPath: build
+icon: https://github.com/marcopesani/mcp-server-serper/raw/main/icon.png
+language: typescript
+longDescription: 'The Serper Search Scrape MCP Server is designed to support search
+  and webpage scraping functionalities. It integrates with the Serper API, allowing
+  users to utilize the latest parameters such as location. The server is equipped
+  with tools like ''google_search'' and ''scrape'', making it versatile for various
+  search and scraping tasks. It is also remote-capable, providing flexibility in hosting
+  and deployment.
+
+  '
+repository: https://github.com/marcopesani/mcp-server-serper
+secrets:
+- serperApiKey
+srcPath: src
+url: https://glama.ai/mcp/servers/5zk327i0pj

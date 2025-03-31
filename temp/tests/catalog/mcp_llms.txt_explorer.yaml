@@ -1,0 +1,17 @@
+branch: main
+categories:
+- search
+- other
+description: A server that helps discover and analyze websites implementing the llms.txt
+  standard.
+displayName: MCP LLMS.txt Explorer
+distPath: build
+icon: https://github.com/thedaviddias.png
+language: typescript
+longDescription: This server allows users to check if websites have llms.txt files
+  and list known compliant websites. It provides tools such as 'check_website' and
+  'list_websites' to facilitate the exploration of websites with llms.txt files.
+repository: https://github.com/thedaviddias/mcp-llms-txt-explorer
+secrets: []
+srcPath: src
+url: https://glama.ai/mcp/servers/lhyj3pva0z

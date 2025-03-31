@@ -1,0 +1,26 @@
+branch: main
+categories:
+- document
+- other
+description: A powerful Model Context Protocol framework that extends Cursor IDE with
+  tools for web content retrieval, PDF processing, and Word document parsing.
+displayName: MCP Development Framework
+icon: https://smithery.ai/badge/@aigo666/mcp-framework
+language: python
+longDescription: 'The MCP Development Framework is a robust framework designed for
+  creating custom tools that interact with large language models. It provides a comprehensive
+  set of tools to easily extend the functionality of the Cursor IDE, enabling advanced
+  features such as web content retrieval, file processing (PDF, Word, Excel, CSV),
+  and AI conversations. The framework supports intelligent file type recognition,
+  efficient document processing, and memory optimization, making it a versatile solution
+  for developers.
+
+  '
+repository: https://github.com/aigo666/mcp-framework
+secrets:
+- mcpServerPort
+- mcpServerHost
+- debug
+- mcpUserAgent
+srcPath: mcp_tool
+url: https://glama.ai/mcp/servers/i6x9dydcf7

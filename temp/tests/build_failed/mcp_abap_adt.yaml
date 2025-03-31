@@ -1,0 +1,24 @@
+branch: main
+categories:
+- other
+description: A server that bridges the Model Context Protocol (MCP) with SAP ABAP
+  systems.
+displayName: MCP ABAP ADT
+distPath: ./dist
+icon: https://example.com/icon.png
+language: typescript
+longDescription: 'The MCP ABAP ADT server allows interaction with SAP systems using
+  the Model Context Protocol. It supports retrieving ABAP source code, table structures,
+  and other development artifacts. The server is designed to work with tools like
+  Cline, providing functionalities such as getting program source, class source, function
+  group source, and more. It requires configuration with SAP system details to operate.
+
+  '
+repository: https://github.com/mario-andreschak/mcp-abap-adt
+secrets:
+- sapUrl
+- sapUsername
+- sapPassword
+- sapClient
+srcPath: ./src
+url: https://glama.ai/mcp/servers/gwkh12xlu7

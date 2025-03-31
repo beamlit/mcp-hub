@@ -1,0 +1,23 @@
+branch: main
+categories:
+- document
+- other
+description: Facilitates the analysis of Figma file structures by extracting node
+  hierarchies, accessible via REST API or MCP protocol.
+displayName: Figma Node Explorer
+distPath: dist
+icon: https://example.com/figma-icon.png
+language: typescript
+longDescription: 'The Figma Node Explorer is an MCP server designed to analyze Figma
+  file structures. It extracts node hierarchies and provides insights into design
+  files. The server can be accessed via a REST API or the MCP protocol, making it
+  versatile for various applications. It supports remote hosting and requires a Figma
+  API Key for accessing Figma files. The server is built using TypeScript and leverages
+  Express for handling requests.
+
+  '
+repository: https://github.com/moonray/mcp-figma
+secrets:
+- figmaApiKey
+srcPath: src
+url: https://glama.ai/mcp/servers/4xg15vn8hw

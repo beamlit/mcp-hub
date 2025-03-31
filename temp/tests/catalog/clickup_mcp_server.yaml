@@ -1,0 +1,24 @@
+branch: main
+categories:
+- chat
+- document
+- other
+description: An enhanced Model Context Protocol server for interacting with ClickUp
+  workspaces.
+displayName: ClickUp MCP Server
+distPath: build
+icon: https://glama.ai/assets/clickup-icon.png
+language: typescript
+longDescription: 'The ClickUp MCP Server is an advanced Model Context Protocol server
+  that allows AI assistants to seamlessly interact with ClickUp workspaces. It supports
+  a wide range of functionalities including task relationships, comments, checklists,
+  and workspace management through natural language. This server is designed to enhance
+  productivity by integrating AI capabilities with ClickUp''s project management tools.
+
+  '
+repository: https://github.com/v4lheru/clickup-mcp-server
+secrets:
+- clickupApiKey
+- clickupTeamId
+srcPath: src
+url: https://glama.ai/mcp/servers/4tcfjbyxq4

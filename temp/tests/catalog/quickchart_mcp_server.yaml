@@ -1,0 +1,18 @@
+branch: main
+categories:
+- image
+- document
+- other
+description: An MCP server for generating customizable data visualizations using QuickChart.io.
+displayName: QuickChart MCP Server
+distPath: build
+icon: https://quickchart.io/favicon.ico
+language: typescript
+longDescription: This server allows for the generation of various types of charts
+  using QuickChart.io, supporting multiple chart types and Chart.js configuration.
+  It is designed to work with the Model Context Protocol (MCP) to provide data visualization
+  capabilities.
+repository: https://github.com/GongRzhe/Quickchart-MCP-Server
+secrets: []
+srcPath: src
+url: https://glama.ai/mcp/servers/y17zluizso

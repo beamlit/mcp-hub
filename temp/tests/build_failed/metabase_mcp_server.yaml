@@ -1,0 +1,19 @@
+branch: main
+categories:
+- document
+- other
+description: Enables AI assistants to interact with Metabase databases and dashboards.
+displayName: Metabase MCP Server
+distPath: dist
+icon: https://example.com/path/to/icon.png
+language: typescript
+longDescription: This server allows users to list and execute queries, access data
+  visualizations, and interact with database resources through natural language, enhancing
+  data-driven decision-making processes.
+repository: https://github.com/imlewc/metabase-server
+secrets:
+- metabaseUrl
+- metabaseUsername
+- metabasePassword
+srcPath: src
+url: https://glama.ai/mcp/servers/s07i4zuilb

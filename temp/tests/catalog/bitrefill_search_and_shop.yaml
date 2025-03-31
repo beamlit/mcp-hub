@@ -1,0 +1,16 @@
+branch: master
+categories:
+- payment
+- other
+description: Shop for gift cards, mobile refills, and digital services on Bitrefill
+  using cryptocurrency
+displayName: Bitrefill Search and Shop
+distPath: build
+icon: https://bitrefill.com/favicon.ico
+language: typescript
+longDescription: This MCP wraps Bitrefill public API to allow agents to search for
+  products and shop using cryptocurrencies like Bitcoin, Ethereum, Solana, and many
+  more.
+repository: https://github.com/bitrefill/bitrefill-mcp-server
+secrets: []
+url: https://glama.ai/mcp/servers/ee6rjptag1

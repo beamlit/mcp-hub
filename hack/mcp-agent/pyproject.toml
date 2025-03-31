@@ -1,0 +1,17 @@
+[project]
+name = "mcp-agent"
+version = "0.1.0"
+description = "A tool to discover MCP servers"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx",
+    "pydantic",
+    "langchain-core",
+    "langchain-openai",
+    "langchain-community",
+    "langchain",
+    "openai",
+    "langchain-experimental>=0.3.4",
+    "duckduckgo-search>=7.5.2",
+]

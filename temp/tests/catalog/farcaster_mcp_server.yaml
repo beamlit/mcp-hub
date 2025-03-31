@@ -1,0 +1,21 @@
+branch: main
+categories:
+- social
+- other
+description: Provides tools to interact with the Farcaster network, allowing AI models
+  to fetch casts, search channels, and analyze content.
+displayName: Farcaster MCP Server
+distPath: build
+icon: https://example.com/icon.png
+language: typescript
+longDescription: 'The Farcaster MCP Server is designed to interface with the Farcaster
+  network, providing a suite of tools that allow AI models to interact with user-generated
+  content. It supports fetching casts from specific users, channels, and usernames,
+  making it a versatile tool for content analysis and interaction within the Farcaster
+  ecosystem.
+
+  '
+repository: https://github.com/manimohans/farcaster-mcp
+secrets: []
+srcPath: src
+url: https://glama.ai/mcp/servers/koo5epnlc7

@@ -1,0 +1,19 @@
+branch: main
+categories:
+- finance
+- trading
+- other
+description: A Model Context Protocol server for interacting with the Paradex trading
+  platform.
+displayName: MCP Paradex Server
+icon: https://example.com/icon.png
+language: python
+longDescription: This MCP server implementation enables AI assistants to interact
+  with the Paradex perpetual futures trading platform. It allows for retrieving market
+  data, managing trading accounts, placing orders, and monitoring positions.
+repository: https://github.com/sv/mcp-paradex-py
+secrets:
+- paradexEnvironment
+- paradexAccountPrivateKey
+srcPath: src/mcp_paradex
+url: https://glama.ai/mcp/servers/cq4bz5ljqj

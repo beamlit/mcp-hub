@@ -9,37 +9,9 @@ import (
 	"strings"
 )
 
-func Inject(ctx context.Context, name string, path string, smitheryDir string, dockerfileDir string, cmd string, deps []string) (string, error) {
-	dockerFilePath := filepath.Join(path, smitheryDir, dockerfileDir)
-	os.Remove(fmt.Sprintf("%s.tmp", dockerFilePath))
-	if smitheryDir == "@mcp-hub" {
-		// Use the current working directory to construct the full path to the source file
-		sourcePath := filepath.Join("dockerfiles", fmt.Sprintf("%s.Dockerfile", strings.ToLower(name)))
-
-		// Open source file
-		sourceFile, err := os.Open(sourcePath)
-		if err != nil {
-			return "", fmt.Errorf("failed to open source file: %w", err)
-		}
-		defer sourceFile.Close()
-
-		// Create destination file
-		destPath := filepath.Join(path, "Dockerfile.tmp")
-		destFile, err := os.Create(destPath)
-		if err != nil {
-			return "", fmt.Errorf("failed to create destination file: %w", err)
-		}
-		defer destFile.Close()
-
-		// Copy the contents
-		_, err = io.Copy(destFile, sourceFile)
-		if err != nil {
-			return "", fmt.Errorf("failed to copy file: %w", err)
-		}
-		return destPath, nil
-	}
-
-	dockerFile, err := os.Open(dockerFilePath)
+func (r *DockerRuntime) Inject(ctx context.Context, name string, path string, smitheryDir string, dockerfileDir string, cmd []string) (string, error) {
+	fmt.Println("Injecting command", cmd, "into Dockerfile", dockerfileDir)
+	dockerFile, err := os.Open(filepath.Join(path, dockerfileDir))
 	if err != nil {
 		return "", err
 	}
@@ -53,7 +25,6 @@ func Inject(ctx context.Context, name string, path string, smitheryDir string, d
 	dockerFileString := string(dockerFileBytes)
 	var lines []string
 
-	// First pass: find the last CMD and ENTRYPOINT
 	for _, line := range strings.Split(dockerFileString, "\n") {
 		if line == "" {
 			continue
@@ -61,10 +32,16 @@ func Inject(ctx context.Context, name string, path string, smitheryDir string, d
 		lines = append(lines, line)
 	}
 	lines[len(lines)-1] = ""
-	for _, dep := range deps {
-		lines = append(lines, fmt.Sprintf("RUN %s", dep))
+	var entrypoint string
+	for i, args := range cmd {
+		var cmdDockerFormat string
+		if i == 0 {
+			cmdDockerFormat = fmt.Sprintf("\"%s\"", args)
+		} else {
+			cmdDockerFormat = fmt.Sprintf(",\"%s\"", args)
+		}
+		entrypoint = fmt.Sprintf("%s %s", entrypoint, cmdDockerFormat)
 	}
-	lines = append(lines, fmt.Sprintf("ENTRYPOINT [%s]", cmd))
-	destPath := fmt.Sprintf("%s.tmp", dockerFilePath)
-	return destPath, os.WriteFile(destPath, []byte(strings.Join(lines, "\n")), 0644)
+	lines[len(lines)-1] = fmt.Sprintf("ENTRYPOINT [%s]", entrypoint)
+	return "", os.WriteFile(filepath.Join(path, dockerfileDir), []byte(strings.Join(lines, "\n")), 0644)
 }

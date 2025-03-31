@@ -1,0 +1,23 @@
+branch: main
+categories:
+- search
+- other
+description: An MCP server that integrates with SerpApi to retrieve search results
+  from multiple search engines including Google, Bing, Yahoo, and others, enabling
+  fast access to both live and archived search data.
+displayName: SerpApi MCP Server
+icon: https://serpapi.com/favicon.ico
+language: python
+longDescription: 'The SerpApi MCP Server integrates with SerpApi to perform searches
+  across various search engines and retrieve both live and archived results. It exposes
+  tools and resources for seamless interaction with MCP clients or hosts, such as
+  Grok or Claude for Desktop. Supported engines include Google, Bing, Yahoo, eBay,
+  YouTube, DuckDuckGo, Yandex, and Baidu. The server can be configured with a SerpApi
+  API key and run in both production and development modes.
+
+  '
+repository: https://github.com/ilyazub/serpapi-mcp-server
+secrets:
+- serpapiApiKey
+srcPath: src/serpapi-mcp-server
+url: https://glama.ai/mcp/servers/ps1js70fi2

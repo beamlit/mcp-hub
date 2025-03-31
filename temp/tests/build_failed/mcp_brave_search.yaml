@@ -1,0 +1,16 @@
+branch: main
+categories:
+- search
+description: MCP server for Brave Search API integration
+displayName: Brave Search MCP Server
+distPath: dist
+icon: https://modelcontextprotocol.io/favicon.ico
+language: typescript
+longDescription: This MCP server integrates with the Brave Search API, allowing for
+  seamless search capabilities within the Model Context Protocol framework. It is
+  designed to be hosted remotely and requires an API key for operation.
+repository: https://github.com/w-jeon/mcp-brave-search
+secrets:
+- braveApiKey
+srcPath: .
+url: https://glama.ai/mcp/servers/5p37vicx4v

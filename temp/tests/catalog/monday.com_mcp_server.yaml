@@ -1,0 +1,18 @@
+branch: main
+categories:
+- other
+description: Enables MCP clients to interact with Monday.com boards, allowing creation
+  and management of items, sub-items, comments, and retrieval of board information.
+displayName: Monday.com MCP Server
+icon: https://monday.com/favicon.ico
+language: python
+longDescription: This MCP server allows clients to interact with Monday.com boards.
+  It supports operations such as creating and updating items, retrieving board columns
+  and groups, and managing sub-items and comments. The server is designed to facilitate
+  seamless integration with Monday.com, providing a robust interface for board management.
+repository: https://github.com/sakce/mcp-server-monday
+secrets:
+- mondayApiKey
+- mondayWorkspaceName
+srcPath: src/mcp_server_monday
+url: https://glama.ai/mcp/servers/vobfpuod5x

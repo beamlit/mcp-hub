@@ -1,0 +1,18 @@
+branch: main
+categories:
+- other
+description: A Model Context Protocol server for ABAP systems.
+displayName: ABAP ADT API MCP Server
+distPath: ./dist
+icon: https://example.com/icon.png
+language: typescript
+longDescription: A Model Context Protocol server that facilitates communication between
+  ABAP systems and MCP clients, providing tools for managing ABAP objects, handling
+  transport requests, and performing code analysis to enhance ABAP development workflows.
+repository: https://github.com/mario-andreschak/mcp-abap-abap-adt-api
+secrets:
+- sapUrl
+- sapUser
+- sapPassword
+srcPath: ./src
+url: https://glama.ai/mcp/servers/p1uxnf0htn

@@ -12,9 +12,9 @@ var (
 	push       bool
 	registry   string
 	mcp        string
-	skipBuild  bool
 	tag        string
 	debug      bool
+	platform   string
 )
 
 var rootCmd = &cobra.Command{

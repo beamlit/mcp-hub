@@ -1,0 +1,24 @@
+branch: main
+categories:
+- database
+- data-analysis
+- other
+description: DButils is an all-in-one MCP service that enables your AI to do data
+  analysis by accessing versatile types of database (sqlite, mysql, postgres, and
+  more) within a unified connection configuration in a safe way.
+displayName: MCP DButils
+icon: https://github.com/donghao1393/mcp-dbutils/raw/main/docs/icon.png
+language: python
+longDescription: 'MCP DButils is a comprehensive service designed to facilitate data
+  analysis by providing seamless access to various types of databases such as SQLite,
+  MySQL, and PostgreSQL. It offers a unified connection configuration that ensures
+  safe and efficient database interactions. The service is equipped with features
+  that support hybrid hosting and can be easily integrated into AI workflows to enhance
+  data processing capabilities.
+
+  '
+repository: https://github.com/donghao1393/mcp-dbutils
+secrets:
+- configPath
+srcPath: src/mcp_dbutils
+url: https://glama.ai/mcp/servers/jrocqkgtpd

@@ -1,0 +1,28 @@
+branch: main
+categories:
+- cloud
+- management
+- other
+description: A Model Context Protocol server that enables Claude to execute Python
+  code using boto3 to query and manage AWS resources directly from conversations.
+displayName: AWS Resources MCP Server
+icon: https://img.shields.io/docker/v/buryhuang/mcp-server-aws-resources?label=Docker%20Hub
+language: python
+longDescription: 'The AWS Resources MCP Server is a Model Context Protocol (MCP) server
+  implementation that provides the ability to run generated Python code to query any
+  AWS resources through boto3. It allows users to perform management operations based
+  on their AWS user role permissions. The server is designed to run directly from
+  a Docker image, making it easy for Python developers to contribute and maintain.
+  It includes proper sandboxing for code execution and keeps everything containerized
+  and clean. The server exposes a dynamic resource `aws://query_resources` for accessing
+  AWS resources through boto3 queries. It supports executing AWS queries using a tool
+  called `query_aws_resources`, which allows users to input Python code snippets to
+  query AWS resources.
+
+  '
+repository: https://github.com/baryhuang/mcp-server-aws-resources-python
+secrets:
+- awsAccessKeyId
+- awsSecretAccessKey
+srcPath: src/mcp_server_aws_resources
+url: https://glama.ai/mcp/servers/nx30klxurg

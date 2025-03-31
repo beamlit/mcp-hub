@@ -1,0 +1,28 @@
+name: pulsecnmcpserver
+displayName: Pulse CN MCP Server
+description: A server module for managing Pulse CN data using the MCP framework.
+longDescription: The Pulse CN MCP Server is designed to facilitate the management and processing of data within the Pulse CN ecosystem, leveraging the Model Context Protocol (MCP) for seamless integration and functionality.
+siteUrl: https://github.com/wangtsiao/pulse-cn-mcp
+icon: https://img.shields.io/badge/License-MIT-yellow.svg
+categories:
+  - server
+  - data-management
+  - MCP
+version: 1.0.0
+
+tools: []
+
+source:
+  repo: https://github.com/wangtsiao/pulse-cn-mcp
+  branch: main
+  path: .
+
+build:
+  language: typescript
+  command: npm run build
+  output: dist
+
+run:
+  config: {}
+  entrypoint: ["node", "build/src/index.js"]
+  env: {}

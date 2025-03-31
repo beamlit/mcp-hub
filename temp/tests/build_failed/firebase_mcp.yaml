@@ -1,0 +1,23 @@
+branch: main
+categories:
+- other
+description: The Firebase MCP server provides a standardized interface to interact
+  with Firebase services, including Firebase Authentication, Firestore, and Firebase
+  Storage.
+displayName: Firebase MCP
+distPath: dist
+icon: https://firebase.google.com/downloads/brand-guidelines/PNG/logo-vertical.png
+language: typescript
+longDescription: 'The Firebase MCP server is designed to provide a seamless and standardized
+  interface for interacting with various Firebase services. It supports operations
+  such as adding, listing, updating, and deleting documents in Firestore, managing
+  Firebase Authentication users, and handling files in Firebase Storage. This server
+  is built using the Model Context Protocol (MCP) to ensure compatibility and ease
+  of integration with other services and tools.
+
+  '
+repository: https://github.com/gannonh/firebase-mcp
+secrets:
+- serviceAccountKeyPath
+srcPath: src
+url: https://glama.ai/mcp/servers/x4i8z2xmrq
