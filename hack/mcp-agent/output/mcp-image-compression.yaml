@@ -1,0 +1,91 @@
+categories:
+- Image Processing
+- Microservices
+- MCP
+description: A high-performance image compression microservice based on MCP architecture.
+displayName: MCP Image Compression
+icon: https://img.logo.dev/inhiblabcore.com/mcp-image-compression
+longDescription: mcp-image-compression is designed to efficiently compress images,
+  leveraging various libraries and technologies to ensure optimal performance and
+  quality. This microservice can be integrated into applications requiring image processing
+  capabilities, making it a valuable tool for developers.
+name: mcp-image-compression
+siteUrl: https://github.com/InhiblabCore/mcp-image-compression
+version: 1.0.0
+source:
+  branch: main
+  path: .
+  repo: https://github.com/InhiblabCore/mcp-image-compression
+build:
+  command: npm run build
+  language: typescript
+  output: dist
+  path: .
+run:
+  config:
+    format:
+      arg: --format
+      default: jpeg
+      enum: null
+      env: OUTPUT_FORMAT
+      example: png
+      hidden: null
+      label: Output Format
+      max: null
+      min: null
+      pattern: null
+      required: false
+      secret: null
+      type: string
+    port:
+      arg: --port
+      default: '9003'
+      enum: null
+      env: PORT
+      example: 9003
+      hidden: null
+      label: Server Port
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: null
+      type: number
+    quality:
+      arg: --quality
+      default: '75'
+      enum: null
+      env: COMPRESSION_QUALITY
+      example: 80
+      hidden: null
+      label: Compression Quality
+      max: null
+      min: null
+      pattern: null
+      required: false
+      secret: null
+      type: number
+  entrypoint:
+  - node
+  - server.js
+  env: {}
+tools:
+- name: image_compression
+  description: Compress an image
+  inputSchema:
+    properties:
+      format:
+        description: Image format
+        type: string
+      quantity:
+        default: 80
+        description: Number of transcripts to return
+        type: number
+      urls:
+        description: URL of the image to compress,If it's a local file, do not add
+          any prefix.
+        type: string[]
+    required:
+    - urls
+    type: object
+  outputSchema: null

@@ -9,9 +9,12 @@ import (
 
 func (b *Build) Test(name string, repository *hub.Repository) error {
 	envKeys := []string{}
-	for key := range repository.Run.Env {
-		envKeys = append(envKeys, key)
-		os.Setenv(key, "TEST_VALUE")
+	for _, property := range repository.Run.Config {
+		if property.Env == "" {
+			continue
+		}
+		envKeys = append(envKeys, property.Env)
+		os.Setenv(property.Env, "TEST_VALUE")
 	}
 	log.Printf("Starting MCP %s", name)
 	err := b.dockerRun(name, repository.Build.Language, envKeys, false)

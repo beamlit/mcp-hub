@@ -1,7 +1,7 @@
-CHECKPOINT="abap_adt_api_mcp_server.yaml"
+CHECKPOINT="cal-server.yaml"
 IS_CHECKPOINT=false
 FAIL_LIST=()
-for server in $(ls hack/discovery/servers/catalog); do
+for server in $(ls hack/mcp-agent/output); do
     if [ "$server" == "$CHECKPOINT" ]; then
         IS_CHECKPOINT=true
     fi
@@ -13,8 +13,8 @@ for server in $(ls hack/discovery/servers/catalog); do
 
     file_name=$(basename $server | sed 's/.yaml//g')
     echo "Building $file_name"
-    go run main.go import -c hack/discovery/servers/catalog/  -m $file_name  --debug
-    if [ $? -ne 0 ]; then
+    go run main.go import -c hack/mcp-agent/output/  -m $file_name  --debug
+    if [ $? -ne 0 ]; then  
         echo "Failed to build $file_name"
         FAIL_LIST+=($file_name)
     fi

@@ -1,0 +1,206 @@
+categories:
+- API
+- Server
+- MCP
+description: A Model Context Protocol (MCP) server for interacting with the Omi API.
+displayName: Omi MCP Server
+icon: https://img.logo.dev/fourcolors.com
+longDescription: The Omi MCP Server provides tools for reading conversations and memories,
+  as well as creating new interactions with the Omi API. It is built using JavaScript/TypeScript
+  and leverages various dependencies to enhance its functionality.
+name: omi-mcp-server
+siteUrl: https://github.com/fourcolors/omi-mcp
+version: 1.0.0
+source:
+  branch: main
+  path: .
+  repo: https://github.com/fourcolors/omi-mcp
+build:
+  command: npm run build
+  language: typescript
+  output: dist
+  path: .
+run:
+  config:
+    apiKey:
+      arg: null
+      default: none
+      enum: null
+      env: API_KEY
+      example: your_api_key
+      hidden: null
+      label: API Key
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: true
+      type: string
+    appId:
+      arg: null
+      default: none
+      enum: null
+      env: APP_ID
+      example: your_app_id
+      hidden: null
+      label: Application ID
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: true
+      type: string
+  entrypoint:
+  - node
+  - ./dist/index.js
+  env: {}
+tools:
+- name: read_omi_memories
+  description: Retrieves user memories from Omi with pagination options
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      limit:
+        description: 'Maximum number of memories to return (max: 1000, default: 100)'
+        type: number
+      offset:
+        description: 'Number of memories to skip for pagination (default: 0)'
+        type: number
+      user_id:
+        description: The user ID to fetch memories for
+        type: string
+    required:
+    - user_id
+    type: object
+  outputSchema: null
+- name: create_omi_conversation
+  description: Creates a new Omi conversation with text content and metadata
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      finished_at:
+        description: When the conversation/event ended in ISO 8601 format. Optional.
+        type: string
+      geolocation:
+        additionalProperties: false
+        description: Location data for the conversation. Optional object containing
+          latitude and longitude.
+        properties:
+          latitude:
+            description: Latitude coordinate. Required when geolocation is provided.
+            type: number
+          longitude:
+            description: Longitude coordinate. Required when geolocation is provided.
+            type: number
+        required:
+        - latitude
+        - longitude
+        type: object
+      language:
+        default: en
+        description: Language code (e.g., "en" for English). Optional, defaults to
+          "en".
+        type: string
+      started_at:
+        description: When the conversation/event started in ISO 8601 format. Optional.
+        type: string
+      text:
+        description: The full text content of the conversation
+        type: string
+      text_source:
+        description: 'Source of the text content. Required. Options: "audio_transcript",
+          "message", "other_text".'
+        enum:
+        - audio_transcript
+        - message
+        - other_text
+        type: string
+      text_source_spec:
+        description: Additional specification about the source. Optional.
+        type: string
+      user_id:
+        description: The user ID to create the conversation for
+        type: string
+    required:
+    - text
+    - user_id
+    - text_source
+    type: object
+  outputSchema: null
+- name: create_omi_memories
+  description: Creates Omi memories by extracting from text or using explicit memory
+    objects
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      memories:
+        description: An array of explicit memory objects to be created directly. Either
+          this or text must be provided.
+        items:
+          additionalProperties: false
+          properties:
+            content:
+              description: The content of the memory. Required.
+              type: string
+            tags:
+              description: Optional tags for the memory.
+              items:
+                description: A tag for the memory.
+                type: string
+              type: array
+          required:
+          - content
+          type: object
+        type: array
+      text:
+        description: The text content from which memories will be extracted. Either
+          this or memories must be provided.
+        type: string
+      text_source:
+        description: 'Source of the text content. Optional. Options: "email", "social_post",
+          "other".'
+        enum:
+        - email
+        - social_post
+        - other
+        type: string
+      text_source_spec:
+        description: Additional specification about the source. Optional.
+        type: string
+      user_id:
+        description: The user ID to create memories for
+        type: string
+    required:
+    - user_id
+    type: object
+  outputSchema: null
+- name: read_omi_conversations
+  description: Retrieves user conversations from Omi with pagination and filtering
+    options
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      include_discarded:
+        description: 'Whether to include discarded conversations (default: false)'
+        type: boolean
+      limit:
+        description: 'Maximum number of conversations to return (max: 1000, default:
+          100)'
+        type: number
+      offset:
+        description: 'Number of conversations to skip for pagination (default: 0)'
+        type: number
+      statuses:
+        description: Comma-separated list of statuses to filter conversations by
+        type: string
+      user_id:
+        description: The user ID to fetch conversations for
+        type: string
+    required:
+    - user_id
+    type: object
+  outputSchema: null

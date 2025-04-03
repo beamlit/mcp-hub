@@ -1,0 +1,99 @@
+categories:
+- Gaming
+- Middleware
+- Server
+description: A middleware server for PlayFab.
+displayName: PlayFab MCP Server
+icon: https://img.logo.dev/akiojin/playfab-mcp-server
+longDescription: The PlayFab MCP Server acts as a middleware solution, facilitating
+  interactions with PlayFab services and providing a streamlined interface for developers
+  to integrate gaming functionalities into their applications.
+name: playfab-mcp-server
+siteUrl: https://github.com/akiojin/playfab-mcp-server
+version: 1.0.0
+source:
+  branch: main
+  path: .
+  repo: https://github.com/akiojin/playfab-mcp-server
+build:
+  command: npm run build
+  language: typescript
+  output: dist
+  path: .
+run:
+  config:
+    playfabDevSecretKey:
+      arg: null
+      default: none
+      enum: null
+      env: PLAYFAB_DEV_SECRET_KEY
+      example: your_playfab_dev_secret_key
+      hidden: null
+      label: PlayFab Developer Secret Key
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: true
+      type: string
+    playfabTitleId:
+      arg: null
+      default: none
+      enum: null
+      env: PLAYFAB_TITLE_ID
+      example: your_playfab_title_id
+      hidden: null
+      label: PlayFab Title ID
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: true
+      type: string
+  entrypoint:
+  - node
+  - ./dist/index.js
+  env: {}
+tools:
+- name: search_items
+  description: PlayFab search items
+  inputSchema:
+    properties:
+      continuationToken:
+        description: An opaque token used to retrieve the next page of items, if any
+          are available.
+        type: string
+      count:
+        description: Number of items to retrieve. This value is optional. Maximum
+          page size is 50. Default value is 10.
+        type: number
+      filter:
+        description: 'An OData filter used to refine the search query (For example:
+          "type eq ''ugc''"). More info about Filter Complexity limits can be found
+          here: https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/catalog/search#limits'
+        type: string
+      orderBy:
+        description: 'An OData orderBy used to order the results of the search query.
+          For example: "rating/average asc"'
+        type: string
+      search:
+        description: The text to search for.
+        type: string
+    required:
+    - count
+    type: object
+  outputSchema: null
+- name: get_all_segments
+  description: PlayFab get all segments
+  inputSchema:
+    properties: {}
+    required: []
+    type: object
+  outputSchema: null
+- name: get_all_players
+  description: PlayFab get all players
+  inputSchema:
+    properties: {}
+    required: []
+    type: object
+  outputSchema: null

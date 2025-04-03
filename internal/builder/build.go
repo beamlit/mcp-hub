@@ -30,6 +30,9 @@ func (b *Build) Build(name string, repository *hub.Repository) error {
 	}
 
 	buildArgs := map[string]string{}
+	if repository.Build.Command != "" {
+		buildArgs["BUILD_COMMAND"] = repository.Build.Command
+	}
 	if repository.Build.Path != "" {
 		buildArgs["BUILD_PATH"] = "/" + repository.Build.Path
 	}

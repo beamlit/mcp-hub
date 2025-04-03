@@ -1,0 +1,194 @@
+categories:
+- E-commerce
+- API
+- GraphQL
+- Server
+description: MCP Server for Shopify API, enabling interaction with store data through
+  GraphQL API.
+displayName: Shopify MCP
+icon: https://img.logo.dev/shopify.com
+longDescription: This server provides tools for managing products, custom data, and
+  other store functionalities through the Shopify GraphQL API, allowing developers
+  to easily integrate and manipulate store data.
+name: shopify-mcp
+siteUrl: https://github.com/GeLi2001/shopify-mcp
+version: 1.0.5
+source:
+  branch: main
+  path: .
+  repo: https://github.com/GeLi2001/shopify-mcp
+build:
+  command: npm run build
+  language: typescript
+  output: dist
+  path: .
+run:
+  config:
+    accessToken:
+      arg: --accessToken
+      default: none
+      enum: null
+      env: SHOPIFY_ACCESS_TOKEN
+      example: your_access_token
+      hidden: null
+      label: Shopify Access Token
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: true
+      type: string
+    domain:
+      arg: --domain
+      default: none
+      enum: null
+      env: MYSHOPIFY_DOMAIN
+      example: your-store.myshopify.com
+      hidden: null
+      label: Shopify Domain
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: null
+      type: string
+  entrypoint:
+  - node
+  - ./dist/index.js
+  env: {}
+tools:
+- name: get-products
+  description: ''
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      limit:
+        default: 10
+        type: number
+      searchTitle:
+        type: string
+    type: object
+  outputSchema: null
+- name: get-product-by-id
+  description: ''
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      productId:
+        minLength: 1
+        type: string
+    required:
+    - productId
+    type: object
+  outputSchema: null
+- name: get-customers
+  description: ''
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      limit:
+        default: 10
+        type: number
+      searchQuery:
+        type: string
+    type: object
+  outputSchema: null
+- name: get-orders
+  description: ''
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      limit:
+        default: 10
+        type: number
+      status:
+        default: any
+        enum:
+        - any
+        - open
+        - closed
+        - cancelled
+        type: string
+    type: object
+  outputSchema: null
+- name: update-order
+  description: ''
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      customAttributes:
+        items:
+          additionalProperties: false
+          properties:
+            key:
+              type: string
+            value:
+              type: string
+          required:
+          - key
+          - value
+          type: object
+        type: array
+      email:
+        format: email
+        type: string
+      id:
+        minLength: 1
+        type: string
+      metafields:
+        items:
+          additionalProperties: false
+          properties:
+            id:
+              type: string
+            key:
+              type: string
+            namespace:
+              type: string
+            type:
+              type: string
+            value:
+              type: string
+          required:
+          - value
+          type: object
+        type: array
+      note:
+        type: string
+      shippingAddress:
+        additionalProperties: false
+        properties:
+          address1:
+            type: string
+          address2:
+            type: string
+          city:
+            type: string
+          company:
+            type: string
+          country:
+            type: string
+          firstName:
+            type: string
+          lastName:
+            type: string
+          phone:
+            type: string
+          province:
+            type: string
+          zip:
+            type: string
+        type: object
+      tags:
+        items:
+          type: string
+        type: array
+    required:
+    - id
+    type: object
+  outputSchema: null

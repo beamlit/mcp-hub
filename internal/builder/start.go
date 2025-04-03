@@ -13,11 +13,14 @@ import (
 func (b *Build) Start(name string, repository *hub.Repository) error {
 
 	envKeys := []string{}
-	for key := range repository.Run.Env {
-		envKeys = append(envKeys, key)
-		err := b.checkEnvironmentVariable(name, repository.Run.Env, key)
+	for _, property := range repository.Run.Config {
+		if property.Env == "" {
+			continue
+		}
+		envKeys = append(envKeys, property.Env)
+		err := b.checkEnvironmentVariable(name, repository.Run.Config, property.Env)
 		if err != nil {
-			log.Printf("environment variable %s is not set and is required for the MCP %s", key, name)
+			log.Printf("environment variable %s is not set and is required for the MCP %s", property.Env, name)
 			os.Exit(1)
 		}
 	}

@@ -47,21 +47,6 @@ type Schema struct {
 	Properties map[string]Property `yaml:"properties" mandatory:"true"`
 }
 
-type Property struct {
-	Type     string   `yaml:"type" mandatory:"true"`
-	Required bool     `yaml:"required" mandatory:"true"`
-	Default  string   `yaml:"default" mandatory:"false"`
-	Enum     []string `yaml:"enum" mandatory:"false"`
-	Hidden   bool     `yaml:"hidden" mandatory:"false"`
-	Secret   bool     `yaml:"secret" mandatory:"false"`
-	Label    string   `yaml:"label" mandatory:"false"`
-	Min      int      `yaml:"min" mandatory:"false"`
-	Max      int      `yaml:"max" mandatory:"false"`
-	Pattern  string   `yaml:"pattern" mandatory:"false"`
-	Format   string   `yaml:"format" mandatory:"false"`
-	Example  string   `yaml:"example" mandatory:"false"`
-}
-
 type Source struct {
 	Repo      string `yaml:"repo" mandatory:"true"`
 	Branch    string `yaml:"branch" mandatory:"true"`
@@ -80,7 +65,23 @@ type Build struct {
 type Run struct {
 	Config     map[string]Property `yaml:"config" mandatory:"true"`
 	Entrypoint []string            `yaml:"entrypoint" mandatory:"true"`
-	Env        map[string]Property `yaml:"env" mandatory:"true"`
+}
+
+type Property struct {
+	Type     string   `yaml:"type" mandatory:"true"`
+	Required bool     `yaml:"required" mandatory:"true"`
+	Default  string   `yaml:"default" mandatory:"false"`
+	Enum     []string `yaml:"enum" mandatory:"false"`
+	Env      string   `yaml:"env" mandatory:"false"`
+	Arg      string   `yaml:"arg" mandatory:"false"`
+	Hidden   bool     `yaml:"hidden" mandatory:"false"`
+	Secret   bool     `yaml:"secret" mandatory:"false"`
+	Label    string   `yaml:"label" mandatory:"false"`
+	Min      int      `yaml:"min" mandatory:"false"`
+	Max      int      `yaml:"max" mandatory:"false"`
+	Pattern  string   `yaml:"pattern" mandatory:"false"`
+	Format   string   `yaml:"format" mandatory:"false"`
+	Example  string   `yaml:"example" mandatory:"false"`
 }
 
 type OAuth struct {

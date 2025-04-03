@@ -1,0 +1,43 @@
+categories:
+- Mathematics
+- Server
+- MCP
+description: A MCP server for evaluating mathematical expressions.
+displayName: Cal Server
+icon: https://img.logo.dev/pwh-pwh/cal-mcp
+longDescription: Cal Server is a simple mathematical expression evaluation service
+  built on the FastMCP framework, utilizing the Bun runtime environment. It leverages
+  the expr-eval library for expression parsing and evaluation, providing a robust
+  solution for mathematical computations.
+name: cal-mcp
+siteUrl: https://github.com/pwh-pwh/cal-mcp
+version: 1.0.0
+source:
+  branch: main
+  path: .
+  repo: https://github.com/pwh-pwh/cal-mcp
+build:
+  command: npm run build
+  language: typescript
+  output: dist
+  path: .
+run:
+  config:
+    expression:
+      arg: --expression
+      default: none
+      enum: null
+      env: EXPRESSION
+      example: 2 + 3 * PI
+      hidden: null
+      label: Mathematical Expression
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: null
+      type: string
+  entrypoint:
+  - node
+  - ./dist/index.js
+  env: {}

@@ -1,153 +1,180 @@
-from langchain_core.prompts import ChatPromptTemplate
+"""
+Source Agent Module
+
+This module provides an agent for generating the source section of MCP YAML files.
+"""
+
+from typing import Dict, Any, Union
+from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
-from langchain.tools import Tool
-from langchain.agents import AgentExecutor, create_openai_functions_agent
-from langchain_community.tools.file_management import ReadFileTool, ListDirectoryTool
-import os
-import subprocess
-from typing import Dict, Any
 
-def extract_source_info(repo_path: str) -> Dict[str, Any]:
-    """Extract source information from a repository."""
-    source_info = {
-        "repo": None,
-        "branch": None,
-        "path": "."  # Default to root path
-    }
-    
-    # Try to get repository information using git
-    try:
-        # Get remote URL
-        remote_url = subprocess.run(
-            ["git", "config", "--get", "remote.origin.url"],
-            cwd=repo_path,
-            check=True,
-            capture_output=True,
-            text=True,
-            timeout=30
-        ).stdout.strip()
-        
-        # Format the URL to remove any authentication info
-        if remote_url:
-            # Convert SSH urls to HTTPS
-            if remote_url.startswith("git@"):
-                parts = remote_url.split(":")
-                if len(parts) > 1:
-                    domain = parts[0].replace("git@", "")
-                    repo_path = parts[1]
-                    if repo_path.endswith(".git"):
-                        repo_path = repo_path[:-4]
-                    remote_url = f"https://{domain}/{repo_path}"
-            
-            # Remove .git suffix if present
-            if remote_url.endswith(".git"):
-                remote_url = remote_url[:-4]
-                
-            source_info["repo"] = remote_url
-        
-        # Get current branch
-        branch = subprocess.run(
-            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
-            cwd=repo_path,
-            check=True,
-            capture_output=True,
-            text=True,
-            timeout=30
-        ).stdout.strip()
-        
-        if branch:
-            source_info["branch"] = branch
-            
-        # Check if the code is in a subdirectory
-        # This is a heuristic - look for key files that might indicate the main code path
-        project_indicators = [
-            "package.json",
-            "setup.py",
-            "requirements.txt",
-            "pyproject.toml",
-            "Cargo.toml",
-            "go.mod",
-            "pom.xml",
-            "build.gradle",
-            "Gemfile"
-        ]
-        
-        # First check if any of these files exist in the root
-        root_has_indicator = any(os.path.exists(os.path.join(repo_path, indicator)) 
-                              for indicator in project_indicators)
-        
-        # If not, try to find them in subdirectories
-        if not root_has_indicator:
-            for root, dirs, files in os.walk(repo_path):
-                rel_path = os.path.relpath(root, repo_path)
-                if rel_path == ".":
-                    continue
-                    
-                # Skip hidden directories and common non-code directories
-                if any(part.startswith(".") for part in rel_path.split(os.sep)) or \
-                   any(excluded in rel_path.split(os.sep) for excluded in ["node_modules", "venv", "dist", "build"]):
-                    continue
-                
-                if any(indicator in files for indicator in project_indicators):
-                    source_info["path"] = rel_path
-                    break
-            
-    except subprocess.SubprocessError as e:
-        print(f"Error extracting git information: {e}")
-        
-    return source_info
+from .base_agent import BaseAgent
 
-def create_source_agent():
-    """Create an agent to generate the source section of the MCP YAML file."""
-    tools = [
-        Tool(
-            name="ReadFile",
-            description="Read a file from the repository to analyze its content.",
-            func=ReadFileTool().run
-        ),
-        Tool(
-            name="ListDirectory",
-            description="List contents of a repository directory to discover important files with tool definitions.",
-            func=ListDirectoryTool().run
-        ),
-        Tool(
-            name="ExtractSourceInfo",
-            description="Extract source information from the repository.",
-            func=lambda repo_path: extract_source_info(repo_path)
-        )
-    ]
+class SourceInfo(BaseModel):
+    """Source repository information according to Go struct."""
+    repo: str = Field(description="The full URL to the git repository")
+    branch: str = Field(description="The specific branch to use", default="main")
+    path: str = Field(description="Path to the project root directory", default=".")
+
+class SourceResponse(BaseModel):
+    """Structured response for source section."""
+    source: SourceInfo = Field(
+        description="Source section containing repository information",
+        default_factory=lambda: SourceInfo(repo="", branch="main", path=".")
+    )
+
+
+class SourceAgent(BaseAgent):
+    """Agent for generating the source section of an MCP YAML file."""
     
-    system_message = """You are an expert at defining source information for MCP modules.
-    Your task is to generate a properly formatted source section for an MCP YAML file.
+    def __init__(self):
+        """Initialize the source agent."""
+        super().__init__(structured_output_class=SourceResponse)
+        
+        # Define the system and human messages for the agent
+        self.system_message = """You are an expert at defining source repositories for MCP modules.
+        Your task is to extract repository information from the provided analysis and generate the source section of an MCP YAML file.
+        
+        Focus ONLY on generating the source section with these fields:
+        - source.repo: The full URL to the git repository
+        - source.branch: The specific branch to use (typically "main" or "master" if not specified)
+        - source.path: The path to the project root directory (e.g. "."). Where the package.json is located, where I should run the build command.
+        
+        Base your source section on the provided analysis and repository URL, making sure it's properly formatted according to YAML standards.
+        
+        The output should be a valid YAML object for the source section, looking like this:
+        
+        source:
+          repo: <repo_url>
+          branch: <branch>
+          path: <path>
+        """
+        
+        self.human_message_template = """Generate the source section for an MCP module based on this analysis:
+
+        Repository: {repository_url}
+        Repo Path: {repo_path}
+        Branch: {branch}
+
+        Analysis:
+        {analysis}
+
+        Please generate ONLY the source section of the YAML file with proper formatting, ensuring the repository URL is correctly included in the 'repo' field."""
+        
+    def initialize_agent(self):
+        """Initialize the agent with the chain."""
+        # Set up the chain using the base class method
+        self.chain = self.setup_chain(self.system_message, self.human_message_template)
+
+    async def ainvoke(self, inputs: Dict[str, Any]) -> Union[str, Dict[str, Any]]:
+        """Asynchronously invoke the source agent.
+        
+        Args:
+            inputs: Dictionary with keys:
+                - repository_url: Repository URL
+                - repo_path: Path to repository on disk
+                - branch: Repository branch
+                - analysis: Repository analysis
+                
+        Returns:
+            The source section as structured output (SourceResponse)
+        """
+        # Ensure the repository_url is available and not empty
+        if not inputs.get("repository_url"):
+            # Create a more informative error or provide a default
+            print("Warning: repository_url is empty or not provided in inputs")
+        
+        # Call the chain directly to get the structured output
+        response = await self.chain.ainvoke(inputs)
+        
+        # If we got a dict response directly, make sure it has the proper structure
+        if isinstance(response, dict):
+            if "source" not in response:
+                # Create a properly structured response
+                response = {
+                    "source": {
+                        "repo": inputs.get("repository_url", ""),
+                        "branch": inputs.get("branch", "main"),
+                        "path": "."
+                    }
+                }
+            elif isinstance(response["source"], dict):
+                # Make sure 'source' has the correct fields
+                source = response["source"]
+                # Check if there's a nested 'git' that needs to be flattened
+                if "git" in source and isinstance(source["git"], dict):
+                    git_info = source["git"]
+                    source = {
+                        "repo": git_info.get("repository", inputs.get("repository_url", "")),
+                        "branch": git_info.get("branch", inputs.get("branch", "main")),
+                        "path": git_info.get("path", ".")
+                    }
+                    response["source"] = source
+                
+                # Ensure required fields exist
+                if "repo" not in source:
+                    source["repo"] = inputs.get("repository_url", "")
+                if "branch" not in source:
+                    source["branch"] = inputs.get("branch", "main")
+                if "path" not in source:
+                    source["path"] = "."
+                
+                # Remove any other fields that shouldn't be there
+                for key in list(source.keys()):
+                    if key not in ["repo", "branch", "path"]:
+                        del source[key]
+        
+        # Return the response directly - it's already structured
+        return response
     
-    Focus ONLY on the source section which must include:
-    - repo: URL to the source code repository
-    - branch: Branch to use (typically main or master)
-    - path: Path to the module code within the repository. Should be relative to the root of the repository e.g. src/mypkg or .
+    def invoke(self, inputs: Dict[str, Any]) -> Union[str, Dict[str, Any]]:
+        """Synchronously invoke the source agent.
+        
+        Args:
+            inputs: Dictionary with keys:
+                - repository_url: Repository URL
+                - repo_path: Path to repository on disk
+                - branch: Repository branch
+                - analysis: Repository analysis
+                
+        Returns:
+            The source section as structured output (SourceResponse)
+        """
+        # For consistency, use the async implementation through an event loop
+        import asyncio
+        
+        # Create an event loop if one doesn't exist
+        try:
+            loop = asyncio.get_event_loop()
+        except RuntimeError:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            
+        # Run the async method
+        return loop.run_until_complete(self.ainvoke(inputs))
+
+
+def create_source_agent(model_name: str = "gpt-4o-mini", temperature: float = 0) -> SourceAgent:
+    """Create a source agent instance.
     
-    Ensure all fields are properly formatted and accurate based on the provided repository information.
-    Use the tools provided to extract detailed source information directly from the repository.
+    This function maintains backward compatibility with the original implementation.
+    
+    Args:
+        model_name: The OpenAI model to use
+        temperature: Temperature setting for the model
+        
+    Returns:
+        SourceAgent instance
     """
+    source_agent = SourceAgent()
     
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    # Set the model name and temperature
+    source_agent.llm = ChatOpenAI(
+        model_name=model_name,
+        temperature=temperature
+    )
     
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", system_message),
-        ("human", "Generate the source section for an MCP module based on this information:\n\n"
-                "Repository URL: {repository_url}\n"
-                "Repository Path: {repo_path}\n"
-                "Branch: {branch}\n"
-                "Analysis:\n{analysis}\n\n"
-                "Please generate ONLY the source section of the YAML file with proper formatting."),
-        ("placeholder", "{agent_scratchpad}")
-    ])
+    # Initialize the agent
+    source_agent.initialize_agent()
     
-    agent = create_openai_functions_agent(llm, tools, prompt)
-    
-    return AgentExecutor(
-        agent=agent,
-        tools=tools,
-        verbose=True,
-        handle_parsing_errors=True,
-        max_iterations=15
-    ) 
+    return source_agent 

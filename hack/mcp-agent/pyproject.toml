@@ -14,4 +14,6 @@ dependencies = [
     "openai",
     "langchain-experimental>=0.3.4",
     "duckduckgo-search>=7.5.2",
+    "langgraph>=0.3.21",
+    "langgraph-prebuilt>=0.1.7",
 ]

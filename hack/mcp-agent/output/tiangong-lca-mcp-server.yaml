@@ -1,0 +1,181 @@
+categories:
+- Server
+- Protocol
+- Model Context
+description: A server implementation for the TianGong LCA Model Context Protocol.
+displayName: TianGong LCA MCP Server
+icon: https://img.logo.dev/tiangong-lca-mcp
+longDescription: The TianGong LCA MCP Server supports both STDIO and SSE protocols,
+  providing a robust solution for managing model context interactions. It is built
+  using JavaScript/TypeScript and integrates with various dependencies to enhance
+  functionality.
+name: tiangong-lca-mcp-server
+siteUrl: https://github.com/linancn/tiangong-lca-mcp
+version: 1.0.0
+source:
+  branch: main
+  path: .
+  repo: https://github.com/linancn/tiangong-lca-mcp
+build:
+  command: npm run build
+  language: typescript
+  output: dist
+  path: .
+run:
+  config:
+    baseUrl:
+      arg: null
+      default: none
+      enum: null
+      env: BASE_URL
+      example: https://your.base.url
+      hidden: null
+      label: Base URL
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: null
+      type: string
+    bearerKey:
+      arg: null
+      default: none
+      enum: null
+      env: BEARER_KEY
+      example: your_bearer_key
+      hidden: null
+      label: Bearer Key
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: true
+      type: string
+    supabaseAnonKey:
+      arg: null
+      default: none
+      enum: null
+      env: SUPABASE_ANON_KEY
+      example: your_supabase_anon_key
+      hidden: null
+      label: Supabase Anon Key
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: true
+      type: string
+    xApiKey:
+      arg: null
+      default: none
+      enum: null
+      env: X_API_KEY
+      example: your_x_api_key
+      hidden: null
+      label: X API Key
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: true
+      type: string
+    xRegion:
+      arg: null
+      default: none
+      enum: null
+      env: X_REGION
+      example: your_region
+      hidden: null
+      label: X Region
+      max: null
+      min: null
+      pattern: null
+      required: false
+      secret: null
+      type: string
+  entrypoint:
+  - node
+  - ./dist/src/index.js
+  env: {}
+tools:
+- name: Weaviate Hybrid Search with Extension
+  description: Hybrid search in Weaviate with context extension
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      collection:
+        type: string
+      extK:
+        minimum: 0
+        type: number
+      query:
+        type: string
+      topK:
+        type: number
+    required:
+    - collection
+    - query
+    - topK
+    - extK
+    type: object
+  outputSchema: null
+- name: Search_ESG_Tool
+  description: Perform search on ESG database.
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    additionalProperties: false
+    properties:
+      dateFilter:
+        additionalProperties: false
+        description: DO NOT USE IT IF NOT EXPLICIT REQUESTED IN THE QUERY. Optional
+          filter conditions for date ranges in UNIX timestamps.
+        properties:
+          publication_date:
+            additionalProperties: false
+            properties:
+              gte:
+                type: number
+              lte:
+                type: number
+            type: object
+        type: object
+      extK:
+        default: 0
+        description: Number of additional chunks to include before and after each
+          topK result.
+        type: number
+      filter:
+        additionalProperties: false
+        description: DO NOT USE IT IF NOT EXPLICIT REQUESTED IN THE QUERY. Optional
+          filter conditions for specific fields, as an object with optional arrays
+          of values.
+        properties:
+          country:
+            description: Filter by country.
+            items:
+              type: string
+            type: array
+          rec_id:
+            description: Filter by record ID.
+            items:
+              type: string
+            type: array
+        type: object
+      metaContains:
+        description: An optional keyword string used for fuzzy searching within document
+          metadata, such as report titles, company names, or other metadata fields.
+          DO NOT USE IT BY DEFAULT.
+        type: string
+      query:
+        description: Requirements or questions from the user.
+        minLength: 1
+        type: string
+      topK:
+        default: 5
+        description: Number of top chunk results to return.
+        type: number
+    required:
+    - query
+    type: object
+  outputSchema: null

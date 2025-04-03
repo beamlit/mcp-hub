@@ -1,0 +1,57 @@
+categories:
+- Media Processing
+- Server
+- MCP
+description: An MCP server designed to work with FFmpeg.
+displayName: FFmpeg MCP Server
+icon: https://img.logo.dev/github.com/ZizoTheDev/ffmpeg-mcp
+longDescription: The FFmpeg MCP Server is a module that facilitates the integration
+  of FFmpeg functionalities within an MCP environment, allowing for efficient media
+  processing and manipulation. It leverages various dependencies to provide a robust
+  server solution for handling multimedia tasks.
+name: ffmpeg-mcp
+siteUrl: https://github.com/ZizoTheDev/ffmpeg-mcp
+version: 1.0.0
+source:
+  branch: main
+  path: .
+  repo: https://github.com/ZizoTheDev/ffmpeg-mcp
+build:
+  command: npm run build
+  language: typescript
+  output: dist
+  path: .
+run:
+  config:
+    ffmpegPath:
+      arg: --ffmpeg-path
+      default: none
+      enum: null
+      env: FFMPEG_PATH
+      example: /usr/bin/ffmpeg
+      hidden: null
+      label: FFmpeg Path
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: false
+      type: string
+    serverPort:
+      arg: --port
+      default: '3000'
+      enum: null
+      env: SERVER_PORT
+      example: 3000
+      hidden: null
+      label: Server Port
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: false
+      type: number
+  entrypoint:
+  - node
+  - ./cli.js
+  env: {}

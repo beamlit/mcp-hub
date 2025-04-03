@@ -1,28 +1,44 @@
-name: mcp-repl
-displayName: MCP REPL
-description: Simple REPL server using the Model Context Protocol.
-longDescription: A secure JavaScript REPL (Read-Eval-Print-Loop) for executing code snippets with comprehensive error handling, memory management, and output formatting.
-siteUrl: https://github.com/AnEntrypoint/mcp-repl
-icon: https://img.logo.dev/mcp-repl
 categories:
-  - REPL
-  - JavaScript
-  - Development Tools
+- Development
+- REPL
+- JavaScript
+- Protocol
+description: Simple REPL server using the Model Context Protocol.
+displayName: MCP REPL
+icon: https://img.logo.dev/github.com/AnEntrypoint/mcp-repl
+longDescription: A secure JavaScript REPL (Read-Eval-Print-Loop) for executing code
+  snippets with comprehensive error handling, memory management, and output formatting.
+  This module allows users to interactively run JavaScript code in a secure environment,
+  making it ideal for testing and development purposes.
+name: mcp-repl
+siteUrl: https://github.com/AnEntrypoint/mcp-repl
 version: 1.0.0
-
-tools: []
-
 source:
-  repo: https://github.com/AnEntrypoint/mcp-repl
   branch: main
   path: .
-
+  repo: https://github.com/AnEntrypoint/mcp-repl
 build:
+  command: npm run start
   language: javascript
-  command: npm run build
-  output: dist
-
+  output: .
+  path: .
 run:
-  config: {}
-  entrypoint: ["node", "simple-repl-server.js"]
+  config:
+    workingDirectory:
+      arg: --working-directory
+      default: none
+      enum: null
+      env: WORKING_DIRECTORY
+      example: /path/to/working/directory
+      hidden: null
+      label: Working Directory
+      max: null
+      min: null
+      pattern: null
+      required: false
+      secret: null
+      type: string
+  entrypoint:
+  - node
+  - simple-repl-server.js
   env: {}

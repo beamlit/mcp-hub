@@ -1,6 +1,7 @@
 ### BUILD IMAGE
 FROM node:21-alpine AS build
 RUN apk add --no-cache git
+RUN npm install -g typescript
 
 WORKDIR /blaxel
 
