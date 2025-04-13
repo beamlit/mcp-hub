@@ -48,14 +48,13 @@ type Schema struct {
 }
 
 type Source struct {
-	Repo      string `yaml:"repo" mandatory:"true"`
-	Branch    string `yaml:"branch" mandatory:"true"`
-	Path      string `yaml:"path" mandatory:"false"`
-	LocalPath string `yaml:"localPath" mandatory:"false"`
+	Repository string `yaml:"repository" mandatory:"true"`
+	Branch     string `yaml:"branch" mandatory:"true"`
+	Path       string `yaml:"path" mandatory:"false"`
+	LocalPath  string `yaml:"localPath" mandatory:"false"`
 }
 
 type Build struct {
-	Path         string   `yaml:"path" mandatory:"true"`
 	Language     string   `yaml:"language" mandatory:"true"`
 	Command      string   `yaml:"command" mandatory:"true"`
 	Output       string   `yaml:"output" mandatory:"true"`

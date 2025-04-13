@@ -53,6 +53,8 @@ func (b *Build) dockerRun(mcp string, language string, envKeys []string, attache
 		dockerRunCmd = append(dockerRunCmd, image)
 	}
 	cmd := exec.Command("docker", dockerRunCmd...)
+	command := strings.Join(dockerRunCmd, " ")
+	fmt.Printf("Running docker image ==> docker %s\n", command)
 	// Connect command's stdout and stderr to our process stdout and stderr
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

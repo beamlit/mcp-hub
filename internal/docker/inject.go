@@ -9,9 +9,8 @@ import (
 	"strings"
 )
 
-func (r *DockerRuntime) Inject(ctx context.Context, name string, path string, smitheryDir string, dockerfileDir string, cmd []string) (string, error) {
-	fmt.Println("Injecting command", cmd, "into Dockerfile", dockerfileDir)
-	dockerFile, err := os.Open(filepath.Join(path, dockerfileDir))
+func (r *DockerRuntime) Inject(ctx context.Context, name string, path string, cmd []string) (string, error) {
+	dockerFile, err := os.Open(filepath.Join(path, "Dockerfile"))
 	if err != nil {
 		return "", err
 	}
@@ -43,5 +42,5 @@ func (r *DockerRuntime) Inject(ctx context.Context, name string, path string, sm
 		entrypoint = fmt.Sprintf("%s %s", entrypoint, cmdDockerFormat)
 	}
 	lines[len(lines)-1] = fmt.Sprintf("ENTRYPOINT [%s]", entrypoint)
-	return "", os.WriteFile(filepath.Join(path, dockerfileDir), []byte(strings.Join(lines, "\n")), 0644)
+	return "", os.WriteFile(filepath.Join(path, "Dockerfile"), []byte(strings.Join(lines, "\n")), 0644)
 }

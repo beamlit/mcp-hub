@@ -1,0 +1,13 @@
+# - id: 92mrqijm10
+#   name: Playwright MCP
+# - id: 4pijmyi7gc
+#   name: GenAI script
+# - id: m6x141u6rd
+#   name: Genkit
+#   comment: DO NOT ADD THIS ONE IT USES DEPENDENCY from repository workspace
+#   path: js/plugins/mcp
+- id: hjs41u3g46
+  name: NX
+  path: libs/nx-mcp/nx-mcp-server
+# - id: uw9yuno75g
+#   name: cloudflare

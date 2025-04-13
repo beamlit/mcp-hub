@@ -16,5 +16,27 @@ test:
 	&& cp src/configs/config.$(ARGS).ts src/config.ts \
 	&& pnpm run test
 
+agent-count:
+	cd hack/mcp-agent \
+	&& uv run main.py --count $(ARGS)
+
+agent-server-id:
+	cd hack/mcp-agent \
+	&& uv run main.py --server-id $(ARGS)
+
+agent-server-name:
+	cd hack/mcp-agent \
+	&& uv run main.py --server-name $(ARGS)
+
+agent-server-run:
+	sh scripts/test-run-server.sh $(ARGS)
+
+agent-run:
+	sh scripts/test-run.sh
+
+agent:
+	cd hack/mcp-agent && uv run main.py
+	sh scripts/test-run.sh
+
 %:
 	@:

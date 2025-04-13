@@ -1,0 +1,33 @@
+name: NX
+displayName: Nx MCP Server
+description: The Nx MCP server provides LLMs with insights into your monorepo, enabling
+  code production aligned with your architecture.
+longDescription: The Nx MCP server offers comprehensive insights into your monorepo,
+  including project dependencies, file relationships, executable tasks, ownership
+  metadata, technology stacks, custom generators, and Nx documentation. This deep
+  context enables LLMs to produce code perfectly aligned with your architecture.
+siteUrl: https://nx.dev
+icon: https://img.logo.dev/nx.dev
+categories:
+- monorepo
+- LLM
+- development tools
+version: 1.0.0
+id: hjs41u3g46
+source:
+  repository: https://github.com/nrwl/nx-console
+  branch: master
+  path: libs/nx-mcp/nx-mcp-server
+build:
+  language: typescript
+  command: tsc
+  output: dist
+  path: libs/nx-mcp/nx-mcp-server
+tools: []
+run:
+  config: {}
+  entrypoint:
+  - npm
+  - start
+  language: typescript
+  error: null

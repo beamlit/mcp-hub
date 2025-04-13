@@ -9,7 +9,7 @@ type Build struct {
 }
 
 type Runtime interface {
-	Inject(ctx context.Context, name string, path string, smitheryDir string, dockerfileDir string, cmd []string) (string, error)
+	Inject(ctx context.Context, name string, path string, cmd []string) (string, error)
 	Build(ctx context.Context, imageName string, repoPath string, buildArgs map[string]string) error
 	Push(ctx context.Context, imageName string) error
 }

@@ -12,23 +12,23 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var testCmd = &cobra.Command{
-	Use:   "test",
-	Short: "Test the MCP server",
-	Long:  `test is a CLI tool to test the MCP server`,
-	Run:   runTest,
+var dockerrunCmd = &cobra.Command{
+	Use:   "dockerrun",
+	Short: "Run the MCP server in a docker container",
+	Long:  `dockerrun is a CLI tool to run the MCP server in a docker container`,
+	Run:   runDockerrun,
 }
 
 func init() {
-	testCmd.Flags().StringVarP(&configPath, "config", "c", "hub", "The path to the config files")
-	testCmd.Flags().StringVarP(&registry, "registry", "r", "ghcr.io/beamlit/hub", "The registry to push the images to")
-	testCmd.Flags().StringVarP(&mcp, "mcp", "m", "", "The MCP to import, if not provided")
-	testCmd.Flags().StringVarP(&tag, "tag", "t", "latest", "The tag to use for the image")
-	testCmd.Flags().BoolVarP(&debug, "debug", "d", false, "Enable debug mode, will not save the catalog")
-	rootCmd.AddCommand(testCmd)
+	dockerrunCmd.Flags().StringVarP(&configPath, "config", "c", "hub", "The path to the config files")
+	dockerrunCmd.Flags().StringVarP(&registry, "registry", "r", "ghcr.io/beamlit/hub", "The registry to push the images to")
+	dockerrunCmd.Flags().StringVarP(&mcp, "mcp", "m", "", "The MCP to import, if not provided")
+	dockerrunCmd.Flags().StringVarP(&tag, "tag", "t", "latest", "The tag to use for the image")
+	dockerrunCmd.Flags().BoolVarP(&debug, "debug", "d", false, "Enable debug mode, will not save the catalog")
+	rootCmd.AddCommand(dockerrunCmd)
 }
 
-func runTest(cmd *cobra.Command, args []string) {
+func runDockerrun(cmd *cobra.Command, args []string) {
 	// Load .env file if it exists
 	if err := godotenv.Load(); err != nil {
 		log.Printf("Warning: No .env file found or error loading it: %v", err)
@@ -56,18 +56,7 @@ func runTest(cmd *cobra.Command, args []string) {
 	buildInstance := builder.NewBuild(tag, debug, runtime)
 	defer buildInstance.Clean()
 
-	_, err := buildInstance.CloneRepository(mcp, repository)
-	if err != nil {
-		log.Printf("Failed to process repository %s: %v", mcp, err)
-		os.Exit(1)
-	}
-	err = buildInstance.Build(mcp, repository)
-	if err != nil {
-		log.Printf("Failed to build image for repository %s: %v", mcp, err)
-		os.Exit(1)
-	}
-
-	err = buildInstance.Test(mcp, repository, false)
+	err := buildInstance.Test(mcp, repository, true)
 	if err != nil {
 		log.Printf("Failed to test image for repository %s: %v", mcp, err)
 		os.Exit(1)

@@ -2,7 +2,6 @@ package unikraft
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -17,13 +16,8 @@ type Kraftfile struct {
 	Labels  map[string]string `yaml:"labels"`
 }
 
-func (r *UnikraftRuntime) Inject(ctx context.Context, name string, path string, smitheryDir string, dockerfileDir string, cmd []string) (string, error) {
+func (r *UnikraftRuntime) Inject(ctx context.Context, name string, path string, cmd []string) (string, error) {
 	kraftFilePath := filepath.Join(path, "Kraftfile")
-	if smitheryDir == "@mcp-hub" {
-		fmt.Println("Ignoring @mcp-hub Kraftfile")
-		return "", nil
-	}
-
 	// First read the existing file
 	kraftFileBytes, err := os.ReadFile(kraftFilePath)
 	if err != nil {

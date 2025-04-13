@@ -33,14 +33,11 @@ func (b *Build) Build(name string, repository *hub.Repository) error {
 	if repository.Build.Command != "" {
 		buildArgs["BUILD_COMMAND"] = repository.Build.Command
 	}
-	if repository.Build.Path != "" {
-		buildArgs["BUILD_PATH"] = "/" + repository.Build.Path
-	}
 	if repository.Build.Output != "" {
 		buildArgs["DIST_PATH"] = repository.Build.Output
 	}
-	smitheryDir := filepath.Join(repository.Source.Path, "smithery")
-	dockerfileDir := filepath.Join(repository.Source.Path, "Dockerfile")
+	buildArgs["BUILD_PATH"] = ""
+	dockerfileDir := filepath.Join("")
 	var cmd []string
 	switch language {
 	case "typescript", "javascript":
@@ -49,7 +46,7 @@ func (b *Build) Build(name string, repository *hub.Repository) error {
 		cmd = []string{"/usr/bin/python3", "-m", fmt.Sprintf("blaxel.%s", strings.ReplaceAll(repository.Build.Output, "/", "."))}
 	}
 	fmt.Println("Injecting command", cmd, "into Dockerfile", dockerfileDir, "in", repository.Source.LocalPath)
-	_, err := b.runtime.Inject(context.Background(), name, fmt.Sprintf("%s/%s", repository.Source.LocalPath, repository.Source.Path), smitheryDir, dockerfileDir, cmd)
+	_, err := b.runtime.Inject(context.Background(), name, fmt.Sprintf("%s/%s", repository.Source.LocalPath, repository.Source.Path), cmd)
 	if err != nil {
 		return fmt.Errorf("inject: %w", err)
 	}
@@ -69,7 +66,7 @@ func (b *Build) preparePython(repository *hub.Repository) error {
 		fmt.Sprintf("%s/transport.py", repository.Build.Output): "envs/python/transport.py",
 	}
 	for dst, src := range filesToCopy {
-		err := files.CopyFile(src, filepath.Join(srcPath, dst))
+		err := files.CopyFile(src, filepath.Join(srcPath, repository.Source.Path, dst))
 		if err != nil {
 			return fmt.Errorf("copy %s: %w", dst, err)
 		}
@@ -93,15 +90,12 @@ func (b *Build) preparePython(repository *hub.Repository) error {
 
 func (b *Build) prepareTypescript(repository *hub.Repository) error {
 	basePath := repository.Source.LocalPath
-	if repository.Build.Path != "" {
-		basePath = filepath.Join(repository.Source.LocalPath, repository.Build.Path)
-	}
 	filesToCopy := map[string]string{
 		"Dockerfile": "envs/typescript/Dockerfile",
 		"Kraftfile":  "envs/typescript/Kraftfile",
 	}
 	for dst, src := range filesToCopy {
-		err := files.CopyFile(src, filepath.Join(basePath, dst))
+		err := files.CopyFile(src, filepath.Join(basePath, repository.Source.Path, dst))
 		if err != nil {
 			return fmt.Errorf("copy %s: %w", dst, err)
 		}

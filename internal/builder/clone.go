@@ -14,7 +14,7 @@ func (b *Build) CloneRepository(name string, repository *hub.Repository) (string
 	if repository.Source.LocalPath != "" {
 		repoPath = repository.Source.LocalPath
 	} else {
-		repoPath = fmt.Sprintf("%s/%s/%s", tmpDir, strings.TrimPrefix(repository.Source.Repo, githubPrefix), repository.Source.Branch)
+		repoPath = fmt.Sprintf("%s/%s/%s", tmpDir, strings.TrimPrefix(repository.Source.Repository, githubPrefix), repository.Source.Branch)
 	}
 
 	if repository.Disabled {
@@ -28,7 +28,7 @@ func (b *Build) CloneRepository(name string, repository *hub.Repository) (string
 	}
 
 	if repository.Source.LocalPath == "" {
-		if _, err := git.CloneRepository(repoPath, repository.Source.Branch, repository.Source.Repo); err != nil {
+		if _, err := git.CloneRepository(repoPath, repository.Source.Branch, repository.Source.Repository); err != nil {
 			return "", fmt.Errorf("clone repository: %w", err)
 		}
 		repository.Source.LocalPath = repoPath

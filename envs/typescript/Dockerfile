@@ -1,6 +1,6 @@
 ### BUILD IMAGE
-FROM node:21-alpine AS build
-RUN apk add --no-cache git
+FROM node:22-alpine AS build
+RUN apk add --no-cache git g++ make py3-pip
 RUN npm install -g typescript
 
 WORKDIR /blaxel
@@ -16,7 +16,10 @@ ARG INSTALL_COMMAND="npm install"
 ARG BUILD_COMMAND="npm run build"
 
 RUN ${INSTALL_COMMAND}
-RUN npm install https://github.com/beamlit/blaxel-mcp-typescript-sdk-fork.git 
+RUN npm install https://github.com/beamlit/blaxel-mcp-typescript-sdk-fork.git
+
+# Set PATH to include node_modules/.bin
+ENV PATH="/blaxel/node_modules/.bin:${PATH}"
 RUN ${BUILD_COMMAND}
 
 ### SYSTEM IMAGE
@@ -24,15 +27,15 @@ RUN ${BUILD_COMMAND}
 FROM alpine:3 AS sys
 
 RUN set -xe; \
-    mkdir -p /target/etc; \
-    mkdir -p /blank; \
-    apk --no-cache add \
-      ca-certificates \
-      tzdata \
-    ; \
-    update-ca-certificates; \
-    ln -sf /usr/share/zoneinfo/Etc/UTC /target/etc/localtime; \
-    echo "Etc/UTC" > /target/etc/timezone;
+  mkdir -p /target/etc; \
+  mkdir -p /blank; \
+  apk --no-cache add \
+  ca-certificates \
+  tzdata \
+  ; \
+  update-ca-certificates; \
+  ln -sf /usr/share/zoneinfo/Etc/UTC /target/etc/localtime; \
+  echo "Etc/UTC" > /target/etc/timezone;
 
 ### RUNTIME IMAGE
 FROM scratch
@@ -45,6 +48,9 @@ COPY --from=sys /blank /tmp
 
 # # Node binary
 COPY --from=build /usr/local/bin/node /usr/bin/node
+COPY --from=build /usr/local/bin/npm /usr/bin/npm
+COPY --from=build /usr/local/bin/npx /usr/bin/npx
+COPY --from=build /usr/local/bin/yarn /usr/bin/yarn
 
 # # System libraries
 COPY --from=build /lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
@@ -62,5 +68,7 @@ COPY --from=build /blaxel${BUILD_PATH}/package.json /blaxel/package.json
 COPY --from=build /blaxel/${DIST_PATH} /blaxel/${DIST_PATH}
 
 WORKDIR /blaxel
+
+ENV PATH="/blaxel/node_modules/.bin:${PATH}"
 
 ENTRYPOINT ["/usr/bin/node",  "/blaxel/${DIST_PATH}/loader.js"] # Will be replaced by the entrypoint in the MCP server

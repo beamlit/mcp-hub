@@ -16,4 +16,8 @@ dependencies = [
     "duckduckgo-search>=7.5.2",
     "langgraph>=0.3.21",
     "langgraph-prebuilt>=0.1.7",
+    "langgraph-supervisor>=0.0.16",
+    "litellm>=1.66.0",
+    "cua-computer>=0.1.22",
+    "cua-agent[all]>=0.1.28",
 ]
