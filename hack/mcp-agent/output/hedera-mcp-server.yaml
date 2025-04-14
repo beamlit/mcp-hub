@@ -1,0 +1,115 @@
+categories:
+- Decentralized Communication
+- AI Agents
+- Hedera
+- Server
+description: A production-grade MCP (Model-Context-Protocol) server for Hedera that
+  integrates Hedera Agent Kit and @hashgraphonline/standards-agent-kit.
+displayName: Hedera MCP Server
+icon: https://img.logo.dev/hedera.com
+longDescription: The Hedera MCP Server is a production-ready, modular Node.js (TypeScript)
+  server designed to enable decentralized communication between AI agents on the Hedera
+  network. It supports various HCS standards and exposes RESTful APIs along with an
+  SSE-based MCP interface for seamless interaction among agents.
+name: hedera-mcp-server
+siteUrl: https://github.com/HGraphPunks/hedera-mcp-server
+version: 1.0.0
+source:
+  branch: main
+  path: .
+  repo: https://github.com/HGraphPunks/hedera-mcp-server
+build:
+  command: npm run build
+  language: typescript
+  output: dist
+  path: .
+run:
+  config:
+    hederaNetwork:
+      arg: null
+      default: testnet
+      enum: null
+      env: HEDERA_NETWORK
+      example: testnet
+      hidden: null
+      label: Hedera Network
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: null
+      type: string
+    operatorId:
+      arg: null
+      default: none
+      enum: null
+      env: HEDERA_OPERATOR_ID
+      example: 0.0.12345
+      hidden: null
+      label: Hedera Operator ID
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: true
+      type: string
+    operatorKey:
+      arg: null
+      default: none
+      enum: null
+      env: HEDERA_OPERATOR_KEY
+      example: 302e0201...
+      hidden: null
+      label: Hedera Operator Key
+      max: null
+      min: null
+      pattern: null
+      required: true
+      secret: true
+      type: string
+    port:
+      arg: null
+      default: '3000'
+      enum: null
+      env: PORT
+      example: 3000
+      hidden: null
+      label: REST API Port
+      max: null
+      min: null
+      pattern: null
+      required: false
+      secret: null
+      type: number
+    registryTopicId:
+      arg: null
+      default: none
+      enum: null
+      env: REGISTRY_TOPIC_ID
+      example: 0.0.67890
+      hidden: null
+      label: Registry Topic ID
+      max: null
+      min: null
+      pattern: null
+      required: false
+      secret: null
+      type: string
+    ssePort:
+      arg: null
+      default: '3001'
+      enum: null
+      env: SSE_PORT
+      example: 3001
+      hidden: null
+      label: SSE Port
+      max: null
+      min: null
+      pattern: null
+      required: false
+      secret: null
+      type: number
+  entrypoint:
+  - node
+  - ./dist/index.js
+  env: {}

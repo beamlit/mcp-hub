@@ -16,4 +16,7 @@ dependencies = [
     "duckduckgo-search>=7.5.2",
     "langgraph>=0.3.21",
     "langgraph-prebuilt>=0.1.7",
+    "langgraph-supervisor>=0.0.16",
+    "google-adk>=0.1.0",
+    "litellm>=1.66.0",
 ]
