@@ -1,0 +1,2 @@
+- repository: https://github.com/modelcontextprotocol/servers.git
+  path: src/brave-search

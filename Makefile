@@ -16,5 +16,8 @@ test:
 	&& cp src/configs/config.$(ARGS).ts src/config.ts \
 	&& pnpm run test
 
+mcp-agent:
+	uv run mcp-agent/main.py --repository $(ARGS)
+
 %:
 	@:

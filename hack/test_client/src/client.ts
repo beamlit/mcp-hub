@@ -6,7 +6,8 @@ global.WebSocket = WebSocket;
 import { logger, newClient } from "@blaxel/sdk";
 import { LocalToolkit } from "@blaxel/sdk/functions/local";
 import { exit } from "process";
-import { name, payload, url } from "./configs/config.exa"; // TODO: Update here like: /configs/config.exa
+// DO NOT EDIT, The file will be replace automatically while running make test NAME_MCP_SERVER
+import { name, payload, url } from "./config";
 
 const main = async () => {
   const client = newClient();

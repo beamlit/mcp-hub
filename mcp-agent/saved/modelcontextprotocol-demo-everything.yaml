@@ -1,0 +1,31 @@
+name: modelcontextprotocol-demo-everything
+displayName: Everything
+repository: https://github.com/modelcontextprotocol/servers.git
+path: src/everything
+description: Test protocol features and tools for client compatibility.
+longDescription: This MCP server, developed by Anthropic, serves as a comprehensive
+  demo suite for MCP client implementations. It exercises the full range of MCP protocol
+  features including prompts, tools, resources, and sampling. Built in TypeScript,
+  the server implements various tools like echo, math operations, and LLM sampling,
+  as well as 100 test resources in both plaintext and binary formats. By providing
+  a standardized testing ground, this server enables MCP client developers to validate
+  their implementations against a wide array of protocol functionalities. It is particularly
+  useful for ensuring compatibility, debugging edge cases, and demonstrating the capabilities
+  of the MCP protocol in a controlled environment.
+language: typescript
+githubStars: 38382
+packageRegistry: npm
+packageName: '@modelcontextprotocol/server-everything'
+packageDownloadCount: 60881
+icon: https://avatars.githubusercontent.com/u/182288589?s=200&v=4
+site: https://modelcontextprotocol.io
+categories:
+- MCP
+- AI
+- LLM
+- integration
+- tools
+- resources
+- testing
+- demo
+config: {}

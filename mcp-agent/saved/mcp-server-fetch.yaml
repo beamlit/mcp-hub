@@ -1,0 +1,48 @@
+name: mcp-server-fetch
+displayName: Fetch
+repository: https://github.com/modelcontextprotocol/servers.git
+path: src/fetch
+description: Retrieve and convert web content to markdown for analysis.
+longDescription: This fetch MCP server, developed by Anthropic, provides AI assistants
+  with web content retrieval capabilities. It integrates with web servers to fetch
+  and process HTML content, converting it to markdown for easier consumption by language
+  models. Built in Python, the implementation handles URL fetching, content extraction,
+  and HTML-to-markdown conversion. By bridging AI models and web content, this server
+  allows AI systems to access and analyze online information in a structured format.
+  It supports chunked reading of long web pages and offers customization options for
+  user agents and robots.txt handling. The fetch server is particularly useful for
+  AI assistants needing to retrieve and process web-based information, conduct research,
+  or provide summaries of online content.
+language: python
+githubStars: 38382
+packageRegistry: pypi
+packageName: mcp-server-fetch
+packageDownloadCount: 751866
+icon: https://avatars.githubusercontent.com/u/182288589?s=200&v=4
+site: https://modelcontextprotocol.io
+categories:
+- web content retrieval
+- AI tools
+- MCP server
+- HTML to markdown
+- data integration
+- language models
+config:
+  ignore_robots_txt:
+    required: false
+    label: Ignore Robots.txt
+    secret: false
+    arg: --ignore-robots-txt
+    env: IGNORE_ROBOTS_TXT
+  user_agent:
+    required: false
+    label: User Agent
+    secret: false
+    arg: --user-agent
+    env: USER_AGENT
+  proxy_url:
+    required: false
+    label: Proxy URL
+    secret: false
+    arg: --proxy-url
+    env: PROXY_URL
