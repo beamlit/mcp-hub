@@ -1,0 +1,6 @@
+# - repository: https://github.com/modelcontextprotocol/servers.git
+#   path: src/brave-search
+# - repository: https://github.com/modelcontextprotocol/servers.git
+#   path: src/postgres
+- repository: https://github.com/isaacwasserman/mcp-snowflake-server.git
+  query: snowflake

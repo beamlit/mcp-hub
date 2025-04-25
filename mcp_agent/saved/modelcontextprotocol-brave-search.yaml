@@ -1,0 +1,37 @@
+name: modelcontextprotocol-brave-search
+displayName: Brave Search
+repository: https://github.com/modelcontextprotocol/servers.git
+path: src/brave-search
+description: Retrieve web pages, news, and local business results via Brave API.
+longDescription: This Brave Search MCP server, developed by ModelContextProtocol,
+  integrates the Brave Search API to provide web and local search capabilities for
+  AI assistants. It offers flexible querying options including pagination, result
+  filtering, and content freshness controls. The implementation handles API authentication
+  and exposes Brave's search functionality through a standardized MCP interface. By
+  bridging AI models and Brave's privacy-focused search engine, this server enables
+  AI systems to retrieve relevant web pages, news articles, and local business information.
+  It is particularly useful for AI assistants needing to gather up-to-date information
+  from the web, conduct research, or provide location-based recommendations while
+  respecting user privacy.
+language: typescript
+githubStars: 38382
+packageRegistry: npm
+packageName: '@modelcontextprotocol/server-brave-search'
+packageDownloadCount: 537064
+icon: https://avatars.githubusercontent.com/u/182288589?s=280&v=4
+site: https://modelcontextprotocol.io
+categories:
+- search
+- web
+- local
+- business
+- api
+- mcp-server
+- llm-integration
+config:
+  braveApiKey:
+    required: true
+    label: Brave Search API Key
+    secret: true
+    arg: --brave-api-key
+    env: BRAVE_API_KEY

@@ -1,0 +1,7 @@
+[project]
+name = "mcp-agent"
+version = "0.1.0"
+description = "A tool to discover MCP servers"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["httpx", "pydantic", "litellm>=1.66.0", "google-adk>=0.2.0"]

@@ -1,0 +1,39 @@
+name: modelcontextprotocol-postgres
+displayName: PostgreSQL
+repository: https://github.com/modelcontextprotocol/servers.git
+path: src/postgres
+description: Access and analyze Postgres databases with read-only queries.
+longDescription: This PostgreSQL MCP server, developed by Anthropic, provides a read-only
+  interface for language models to interact with PostgreSQL databases. It enables
+  AI agents to inspect database schemas and execute SQL queries through a controlled
+  interface. The server integrates with Claude Desktop and can be run as a standalone
+  application, offering deployment flexibility. By focusing on read-only access and
+  using environment variables for configuration, it maintains data security while
+  allowing AI systems to explore and analyze relational data. This implementation
+  is particularly useful for AI assistants designed to perform database schema exploration,
+  generate SQL queries, or provide data-driven insights using PostgreSQL as the backend.
+language: typescript
+githubStars: 40648
+packageRegistry: npm
+packageName: '@modelcontextprotocol/server-postgres'
+packageDownloadCount: 488153
+icon: https://avatars.githubusercontent.com/u/182288589?s=200&v=4
+site: https://modelcontextprotocol.io
+categories:
+- database
+- postgresql
+- llm-integration
+- data-analysis
+config:
+  databaseUrl:
+    required: true
+    label: PostgreSQL Database URL
+    secret: true
+    arg: <database-url>
+    env: DATABASE_URL
+entrypoint:
+  command:
+  - node
+  - dist/index.js
+  argv:
+  - $databaseUrl

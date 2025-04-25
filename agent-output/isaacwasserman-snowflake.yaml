@@ -1,0 +1,112 @@
+name: isaacwasserman-snowflake
+displayName: Snowflake
+repository: https://github.com/isaacwasserman/mcp-snowflake-server.git
+path: /Users/cploujoux/project/beamlit/mcp/mcp-hub/mcp_agent/.
+description: Run SQL queries and other interactions against Snowflake databases
+longDescription: This MCP server, developed by Isaac Wasserman, enables AI assistants
+  like Claude to interact with Snowflake databases. Built in Python, it provides capabilities
+  for executing SQL queries, managing database schema, and maintaining a dynamic insights
+  memo. The implementation stands out by offering a standardized interface to Snowflake's
+  powerful data warehousing capabilities, allowing AI systems to analyze and manipulate
+  large-scale datasets. By connecting AI capabilities with enterprise data infrastructure,
+  this server enables AI assistants to perform complex data analysis, generate insights,
+  and interact with business intelligence workflows. It is particularly useful for
+  data exploration tasks, automated reporting, and building AI-powered analytics tools
+  that can leverage the full power of Snowflake's cloud data platform.
+language: python
+githubStars: 56
+packageRegistry: pypi
+packageName: mcp_snowflake_server
+packageDownloadCount: null
+icon: https://avatars.githubusercontent.com/u/1498116?v=4
+site: http://isaacwasserman.com
+categories:
+- database
+- snowflake
+- sql
+- mcp-server
+config:
+  snowflakeUser:
+    required: true
+    label: Snowflake Username
+    secret: false
+    arg: --user
+    env: SNOWFLAKE_USER
+  snowflakePassword:
+    required: true
+    label: Snowflake Password
+    secret: true
+    arg: --password
+    env: SNOWFLAKE_PASSWORD
+  snowflakeAccount:
+    required: true
+    label: Snowflake Account Identifier
+    secret: false
+    arg: --account
+    env: SNOWFLAKE_ACCOUNT
+  snowflakeRole:
+    required: false
+    label: Snowflake Role
+    secret: false
+    arg: --role
+    env: SNOWFLAKE_ROLE
+  snowflakeDatabase:
+    required: true
+    label: Snowflake Database
+    secret: false
+    arg: --database
+    env: SNOWFLAKE_DATABASE
+  snowflakeSchema:
+    required: true
+    label: Snowflake Schema
+    secret: false
+    arg: --schema
+    env: SNOWFLAKE_SCHEMA
+  snowflakeWarehouse:
+    required: true
+    label: Snowflake Warehouse
+    secret: false
+    arg: --warehouse
+    env: SNOWFLAKE_WAREHOUSE
+  snowflakeAuthenticator:
+    required: false
+    label: Snowflake Authenticator (e.g. externalbrowser)
+    secret: false
+    arg: --authenticator
+    env: SNOWFLAKE_AUTHENTICATOR
+  allowWrite:
+    required: false
+    label: Allow Write Operations
+    secret: false
+    arg: --allow_write
+    env: null
+  logDir:
+    required: false
+    label: Log Directory
+    secret: false
+    arg: --log_dir
+    env: null
+  logLevel:
+    required: false
+    label: Log Level
+    secret: false
+    arg: --log_level
+    env: null
+  prefetch:
+    required: false
+    label: Prefetch Table Descriptions
+    secret: false
+    arg: --prefetch
+    env: null
+  excludeTools:
+    required: false
+    label: Exclude Tools
+    secret: false
+    arg: --exclude_tools
+    env: null
+entrypoint:
+  command:
+  - python
+  - -m
+  - mcp_snowflake_server
+  argv: []

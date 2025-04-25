@@ -14,6 +14,9 @@ run:
 catalog:
 	go run main.go catalog -m $(ARGS) -r $(REGISTRY)
 
+agent:
+	uv run python -m mcp_agent
+
 test:
 	cd hack/test_client \
 	&& cp src/configs/config.$(ARGS).ts src/config.ts \
@@ -21,6 +24,7 @@ test:
 
 clean:
 	rm -rf tmp/*
+	rm -rf mcp_agent/tmp/*
 
 %:
 	@:
