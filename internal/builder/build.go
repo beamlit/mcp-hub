@@ -87,13 +87,13 @@ func (b *Build) preparePython(name string, repository *hub.Repository) error {
 		return fmt.Errorf("read dockerfile: %w", err)
 	}
 
-	if len(repository.Entrypoint) == 0 {
+	if repository.Entrypoint == "" {
 		return fmt.Errorf("entrypoint is not set, required for python")
 	}
 	newContent := strings.ReplaceAll(
 		string(dockerfileContent),
 		"${ENTRYPOINT}",
-		fmt.Sprintf("\"%s\"", strings.Join(repository.Entrypoint, "\", \"")),
+		fmt.Sprintf("\"%s\"", strings.Join(strings.Split(repository.Entrypoint, " "), "\", \"")),
 	)
 
 	err = os.WriteFile(dockerfilePath, []byte(newContent), 0644)
