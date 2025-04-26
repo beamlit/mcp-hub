@@ -67,6 +67,7 @@ class MCPStateRequestRun(BaseModel):
 class RunConfigField(BaseModel):
     """Model for a configuration field."""
     required: bool = Field(description="Whether the field is required")
+    description: str = Field(description="The description of the field")
     label: str = Field(description="The human-readable label for the field")
     secret: bool = Field(description="Whether the field contains sensitive information")
     arg: Optional[str] = Field(description="The command line argument name for this field")
@@ -82,6 +83,9 @@ class MCPStateResponseRun(BaseModel):
     """Complete module configuration model."""
     config: dict[str, RunConfigField] = Field(description="The configuration of the module")
     entrypoint: MCPStateResponseRunEntrypoint = Field(description="The entrypoint of the module")
+    srcPath: str = Field(description="The path to the source code", default="")
+    distPath: str = Field(description="The path where the code is built, for typescript", default="")
+
     @classmethod
     def llm_format(cls):
         return json.dumps({
@@ -90,6 +94,7 @@ class MCPStateResponseRun(BaseModel):
                     "label": "Example Arg 1",
                     "arg": "--name-args-secret-1",
                     "env": "NAME_ARGS_SECRET_1",
+                    "description": "This is a description",
                     "required": True,
                     "secret": True,
                 },
@@ -97,6 +102,7 @@ class MCPStateResponseRun(BaseModel):
                     "label": "Example Arg 2",
                     "arg": "--name-args-2",
                     "env": "NAME_ARGS_2",
+                    "description": "This is a description",
                     "required": False,
                     "secret": False,
                 }
@@ -109,7 +115,9 @@ class MCPStateResponseRun(BaseModel):
                 "argv": [
                     "$nameArgs2"
                 ]
-            }
+            },
+            "srcPath": "src/postgres",
+            "distPath": "dist/postgres"
         })
 
 class MCPStateResponseBuildRequest(BaseModel):
@@ -158,23 +166,54 @@ class MCPState(Server):
 
     def to_yaml(self):
         with open(os.path.join("agent-output", f"{self.name}.yaml"), "w") as f:
-
+            form = {
+                "config": {},
+                "secrets": {}
+            }
+            entrypoint = {
+                "env": {},
+                "args": []
+            }
+            dockerEntrypoint = ""
+            if self.run:
+                for key, value in self.run.config.items():
+                    if value.env:
+                        entrypoint["env"][value.env] = f"${key}"
+                    if value.secret:
+                        form["secrets"][key] = {
+                            "description": value.description,
+                            "label": value.label,
+                            "required": value.required,
+                        }
+                    else:
+                        form["config"][key] = {
+                            "description": value.description,
+                            "label": value.label,
+                            "required": value.required,
+                        }
+                entrypoint["args"] = self.run.entrypoint.argv or []
+                dockerEntrypoint = " ".join(self.run.entrypoint.command)
             result = {
                 "name": self.name,
+                "language": self.language,
                 "displayName": self.display_name,
                 "repository": self.repository,
-                "path": self.path,
+                "icon": self.metadata.icon,
+                "url": self.metadata.site,
                 "description": self.short_description,
                 "longDescription": self.EXPERIMENTAL_ai_generated_description,
-                "language": self.language,
+                "categories": self.metadata.categories,
                 "githubStars": self.github_stars,
                 "packageRegistry": self.package_registry,
                 "packageName": self.package_name,
                 "packageDownloadCount": self.package_download_count,
-                "icon": self.metadata.icon,
-                "site": self.metadata.site,
-                "categories": self.metadata.categories,
-                "config": self.run.model_dump()["config"],
-                "entrypoint": self.run.model_dump()["entrypoint"]
+                # Build arguments
+                "path": self.path,
+                "srcPath": self.run.srcPath,
+                "distPath": self.run.distPath,
+                "dockerEntrypoint": dockerEntrypoint,
+                # Run arguments for catalog
+                "entrypoint": entrypoint,
+                "form": form
             }
             yaml.dump(result, f, sort_keys=False, default_flow_style=False, Dumper=yaml.SafeDumper)

@@ -1,7 +1,9 @@
 name: isaacwasserman-snowflake
+language: python
 displayName: Snowflake
 repository: https://github.com/isaacwasserman/mcp-snowflake-server.git
-path: /Users/cploujoux/project/beamlit/mcp/mcp-hub/mcp_agent/.
+icon: https://avatars.githubusercontent.com/u/1498116?v=4
+url: https://github.com
 description: Run SQL queries and other interactions against Snowflake databases
 longDescription: This MCP server, developed by Isaac Wasserman, enables AI assistants
   like Claude to interact with Snowflake databases. Built in Python, it provides capabilities
@@ -13,100 +15,124 @@ longDescription: This MCP server, developed by Isaac Wasserman, enables AI assis
   and interact with business intelligence workflows. It is particularly useful for
   data exploration tasks, automated reporting, and building AI-powered analytics tools
   that can leverage the full power of Snowflake's cloud data platform.
-language: python
-githubStars: 56
-packageRegistry: pypi
-packageName: mcp_snowflake_server
-packageDownloadCount: null
-icon: https://avatars.githubusercontent.com/u/1498116?v=4
-site: http://isaacwasserman.com
 categories:
 - database
 - snowflake
 - sql
-- mcp-server
-config:
-  snowflakeUser:
-    required: true
-    label: Snowflake Username
-    secret: false
-    arg: --user
-    env: SNOWFLAKE_USER
-  snowflakePassword:
-    required: true
-    label: Snowflake Password
-    secret: true
-    arg: --password
-    env: SNOWFLAKE_PASSWORD
-  snowflakeAccount:
-    required: true
-    label: Snowflake Account Identifier
-    secret: false
-    arg: --account
-    env: SNOWFLAKE_ACCOUNT
-  snowflakeRole:
-    required: false
-    label: Snowflake Role
-    secret: false
-    arg: --role
-    env: SNOWFLAKE_ROLE
-  snowflakeDatabase:
-    required: true
-    label: Snowflake Database
-    secret: false
-    arg: --database
-    env: SNOWFLAKE_DATABASE
-  snowflakeSchema:
-    required: true
-    label: Snowflake Schema
-    secret: false
-    arg: --schema
-    env: SNOWFLAKE_SCHEMA
-  snowflakeWarehouse:
-    required: true
-    label: Snowflake Warehouse
-    secret: false
-    arg: --warehouse
-    env: SNOWFLAKE_WAREHOUSE
-  snowflakeAuthenticator:
-    required: false
-    label: Snowflake Authenticator (e.g. externalbrowser)
-    secret: false
-    arg: --authenticator
-    env: SNOWFLAKE_AUTHENTICATOR
-  allowWrite:
-    required: false
-    label: Allow Write Operations
-    secret: false
-    arg: --allow_write
-    env: null
-  logDir:
-    required: false
-    label: Log Directory
-    secret: false
-    arg: --log_dir
-    env: null
-  logLevel:
-    required: false
-    label: Log Level
-    secret: false
-    arg: --log_level
-    env: null
-  prefetch:
-    required: false
-    label: Prefetch Table Descriptions
-    secret: false
-    arg: --prefetch
-    env: null
-  excludeTools:
-    required: false
-    label: Exclude Tools
-    secret: false
-    arg: --exclude_tools
-    env: null
+githubStars: 56
+packageRegistry: pypi
+packageName: mcp_snowflake_server
+packageDownloadCount: null
+path: /Users/cploujoux/project/beamlit/mcp/mcp-hub/mcp_agent/tmp/isaacwasserman-snowflake
+srcPath: src/mcp_snowflake_server
+distPath: src/mcp_snowflake_server
+dockerEntrypoint: uv run mcp_snowflake_server
 entrypoint:
-  command:
-  - python
-  - -m
-  - mcp_snowflake_server
-  argv: []
+  env:
+    SNOWFLAKE_ACCOUNT: $account
+    SNOWFLAKE_WAREHOUSE: $warehouse
+    SNOWFLAKE_USER: $user
+    SNOWFLAKE_PASSWORD: $password
+    SNOWFLAKE_ROLE: $role
+    SNOWFLAKE_DATABASE: $database
+    SNOWFLAKE_SCHEMA: $schema
+    SNOWFLAKE_AUTHENTICATOR: $authenticator
+    ALLOW_WRITE: $allowWrite
+    LOG_DIR: $logDir
+    LOG_LEVEL: $logLevel
+    EXCLUDE_TOOLS: $excludeTools
+    CONFIG_FILE: $configFile
+    PREFETCH: $prefetch
+  args:
+  - --account
+  - $account
+  - --warehouse
+  - $warehouse
+  - --user
+  - $user
+  - --password
+  - $password
+  - --role
+  - $role
+  - --database
+  - $database
+  - --schema
+  - $schema
+  - --authenticator
+  - $authenticator
+  - --allow-write
+  - $allowWrite
+  - --log-dir
+  - $logDir
+  - --log-level
+  - $logLevel
+  - --exclude-tools
+  - $excludeTools
+  - --config-file
+  - $configFile
+  - --prefetch
+  - $prefetch
+form:
+  config:
+    account:
+      description: Your Snowflake account identifier.
+      label: Snowflake Account
+      required: true
+    warehouse:
+      description: The default Snowflake warehouse to use.
+      label: Snowflake Warehouse
+      required: true
+    user:
+      description: Your Snowflake username.
+      label: Snowflake User
+      required: true
+    role:
+      description: The default Snowflake role to use.
+      label: Snowflake Role
+      required: true
+    database:
+      description: The default Snowflake database to use.
+      label: Snowflake Database
+      required: true
+    schema:
+      description: The default Snowflake schema to use.
+      label: Snowflake Schema
+      required: true
+    authenticator:
+      description: Authentication method (e.g., 'externalbrowser' for SSO). If omitted,
+        username/password is used.
+      label: Snowflake Authenticator
+      required: false
+    allowWrite:
+      description: Enable tools that perform write operations (INSERT, UPDATE, DELETE,
+        CREATE TABLE). Disabled by default.
+      label: Allow Write Operations
+      required: false
+    logDir:
+      description: Absolute path to a directory for log files.
+      label: Log Directory
+      required: false
+    logLevel:
+      description: Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL). Default
+        is INFO.
+      label: Log Level
+      required: false
+    excludeTools:
+      description: List of tool names to disable.
+      label: Exclude Tools
+      required: false
+    configFile:
+      description: 'Path to the runtime configuration JSON file (e.g., for exclusion
+        patterns). Default: runtime_config.json'
+      label: Config File Path
+      required: false
+    prefetch:
+      description: Enable prefetching of table schemas to expose them as context resources.
+      label: Prefetch Schema
+      required: false
+  secrets:
+    password:
+      description: Your Snowflake password. Use authenticator='externalbrowser' for
+        SSO.
+      label: Snowflake Password
+      required: true

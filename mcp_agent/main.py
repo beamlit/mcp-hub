@@ -41,11 +41,10 @@ async def get_initial_state(server: Server):
     except subprocess.SubprocessError as e:
         raise Exception(f"Repository cloning failed: {e}")
 
-
-    directory = tmp_dir
     if server.path != ".":
-        directory += f"/{server.path}"
-    server.path = f"{os.path.dirname(os.path.abspath(__file__))}/{server.path}"
+        server.path = f"{tmp_dir}/{server.path}"
+    else:
+        server.path = tmp_dir
 
     def get_language() -> str:
         if "npm" in server.package_registry:
@@ -58,7 +57,7 @@ async def get_initial_state(server: Server):
     state = MCPState(
         **server.model_dump(),
         branch=branch,
-        directory=directory,
+        directory=tmp_dir,
         language=get_language(),
         errors=[],
         messages=[]

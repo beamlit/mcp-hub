@@ -24,32 +24,32 @@ const (
 )
 
 type Repository struct {
-	Repository      string                   `yaml:"repository" mandatory:"false"`
-	Path            string                   `yaml:"path" mandatory:"false"`
-	BasePath        string                   `yaml:"basePath" mandatory:"false" default:""`
-	SrcPath         string                   `yaml:"srcPath" mandatory:"false" default:"src"`
-	DistPath        string                   `yaml:"distPath" mandatory:"false" default:"dist"`
-	Entrypoint      string                   `yaml:"entrypoint" mandatory:"false"`
-	Smithery        *smithery.SmitheryConfig `yaml:"smithery" mandatory:"false"`
-	Language        string                   `yaml:"language" mandatory:"false" default:"typescript"`
-	PackageManager  PackageManager           `yaml:"packageManager" mandatory:"false" default:"apk"`
-	DoNotShow       []string                 `yaml:"doNotShow" mandatory:"false"`
-	HasNPM          bool                     `yaml:"hasNPM" mandatory:"false" default:"true"`
-	Branch          string                   `yaml:"branch" mandatory:"false" default:"main"`
-	URL             string                   `yaml:"url" mandatory:"false"`
-	DisplayName     string                   `yaml:"displayName" mandatory:"true"`
-	Icon            string                   `yaml:"icon" mandatory:"true"`
-	Disabled        bool                     `yaml:"disabled" mandatory:"false" default:"false"`
-	Description     string                   `yaml:"description" mandatory:"true"`
-	LongDescription string                   `yaml:"longDescription" mandatory:"true"`
-	Enterprise      bool                     `yaml:"enterprise" mandatory:"false" default:"false"`
-	ComingSoon      bool                     `yaml:"comingSoon" mandatory:"false" default:"false"`
-	Secrets         []string                 `yaml:"secrets" mandatory:"false"`
-	HiddenSecrets   []string                 `yaml:"hiddenSecrets" mandatory:"false"`
-	OAuth           *OAuth                   `yaml:"oauth" mandatory:"false"`
-	Integration     string                   `yaml:"integration" mandatory:"false"`
-	Tags            []string                 `yaml:"tags"`
-	Categories      []string                 `yaml:"categories"`
+	Repository       string                   `yaml:"repository" mandatory:"false"`
+	Path             string                   `yaml:"path" mandatory:"false"`
+	BasePath         string                   `yaml:"basePath" mandatory:"false" default:""`
+	SrcPath          string                   `yaml:"srcPath" mandatory:"false" default:"src"`
+	DistPath         string                   `yaml:"distPath" mandatory:"false" default:"dist"`
+	DockerEntrypoint string                   `yaml:"dockerEntrypoint" mandatory:"false"`
+	Smithery         *smithery.SmitheryConfig `yaml:"smithery" mandatory:"false"`
+	Language         string                   `yaml:"language" mandatory:"false" default:"typescript"`
+	PackageManager   PackageManager           `yaml:"packageManager" mandatory:"false" default:"apk"`
+	DoNotShow        []string                 `yaml:"doNotShow" mandatory:"false"`
+	HasNPM           bool                     `yaml:"hasNPM" mandatory:"false" default:"true"`
+	Branch           string                   `yaml:"branch" mandatory:"false" default:"main"`
+	URL              string                   `yaml:"url" mandatory:"false"`
+	DisplayName      string                   `yaml:"displayName" mandatory:"true"`
+	Icon             string                   `yaml:"icon" mandatory:"true"`
+	Disabled         bool                     `yaml:"disabled" mandatory:"false" default:"false"`
+	Description      string                   `yaml:"description" mandatory:"true"`
+	LongDescription  string                   `yaml:"longDescription" mandatory:"true"`
+	Enterprise       bool                     `yaml:"enterprise" mandatory:"false" default:"false"`
+	ComingSoon       bool                     `yaml:"comingSoon" mandatory:"false" default:"false"`
+	Secrets          []string                 `yaml:"secrets" mandatory:"false"`
+	HiddenSecrets    []string                 `yaml:"hiddenSecrets" mandatory:"false"`
+	OAuth            *OAuth                   `yaml:"oauth" mandatory:"false"`
+	Integration      string                   `yaml:"integration" mandatory:"false"`
+	Tags             []string                 `yaml:"tags"`
+	Categories       []string                 `yaml:"categories"`
 }
 
 type OAuth struct {

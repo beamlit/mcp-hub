@@ -6,7 +6,7 @@ def get_model_small():
     return gemini_flash()
 
 def get_model():
-    return gpt_41()
+    return gemini_pro_preview()
 
 def get_model_big():
-    return gpt_41()
+    return gemini_pro_preview()

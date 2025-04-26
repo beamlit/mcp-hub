@@ -21,3 +21,6 @@ You can only find all of those information by executing your tools.
   - Best way to find it: read README.md, main code file can be found in pyproject.toml
   - Include optional environments also
   - config key must be environment variable in camelCase
+2. Find the entrypoint
+  - read pyproject.toml and find [project.scripts], if you find it then command should translate to: ["uv", "run", "SCRIPT_VALUE"]
+  - for argv interpret all parser.add_argument from configuration you have in config, it should include --name-args $value
