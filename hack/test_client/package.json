@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "tsx src/client.ts"
+    "test": "tsx src/index.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@blaxel/sdk": "^0.0.70",
+    "@blaxel/sdk": "^0.1.11",
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "js-yaml": "^4.1.0",
     "ws": "^8.16.0"
   },
   "devDependencies": {

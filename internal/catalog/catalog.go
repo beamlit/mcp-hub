@@ -17,20 +17,24 @@ const (
 )
 
 type Artifact struct {
-	Name            string     `json:"name"`
-	Image           string     `json:"image"`
-	Enterprise      bool       `json:"enterprise"`
-	ComingSoon      bool       `json:"coming_soon"`
-	DisplayName     string     `json:"displayName"`
-	Categories      []string   `json:"categories"`
-	Integration     string     `json:"integration"`
-	Description     string     `json:"description"`
-	LongDescription string     `json:"longDescription"`
-	Icon            string     `json:"icon"`
-	URL             string     `json:"url"`
-	Form            Form       `json:"form"`
-	HiddenSecrets   []string   `json:"hiddenSecrets"`
-	Entrypoint      Entrypoint `json:"entrypoint"`
+	Name            string        `json:"name"`
+	Image           string        `json:"image"`
+	Enterprise      bool          `json:"enterprise"`
+	ComingSoon      bool          `json:"coming_soon"`
+	DisplayName     string        `json:"displayName"`
+	Categories      []string      `json:"categories"`
+	Integration     string        `json:"integration"`
+	Description     string        `json:"description"`
+	LongDescription string        `json:"longDescription"`
+	Icon            string        `json:"icon"`
+	URL             string        `json:"url"`
+	Form            Form          `json:"form"`
+	HiddenSecrets   []string      `json:"hiddenSecrets"`
+	Entrypoint      Entrypoint    `json:"entrypoint"`
+	GithubStar      int           `json:"githubStar"`
+	Download        int           `json:"download"`
+	Language        string        `json:"language"`
+	Tools           []interface{} `json:"tools"`
 }
 
 type Form struct {
@@ -119,6 +123,10 @@ func (c *Catalog) Load(name string, hub *hub.Repository, registry string, imageN
 			DisplayName:     hub.DisplayName,
 			Description:     hub.Description,
 			LongDescription: hub.LongDescription,
+			GithubStar:      hub.GithubStar,
+			Download:        hub.Download,
+			Language:        hub.Language,
+			Tools:           hub.Tools,
 			Icon:            hub.Icon,
 			Categories:      hub.Categories,
 			URL:             hub.URL,
@@ -193,6 +201,10 @@ func (c *Catalog) Load(name string, hub *hub.Repository, registry string, imageN
 		DisplayName:     hub.DisplayName,
 		Description:     hub.Description,
 		LongDescription: hub.LongDescription,
+		GithubStar:      hub.GithubStar,
+		Download:        hub.Download,
+		Language:        hub.Language,
+		Tools:           hub.Tools,
 		Icon:            hub.Icon,
 		Categories:      hub.Categories,
 		URL:             hub.URL,

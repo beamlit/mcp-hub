@@ -1,0 +1,110 @@
+---
+description: 
+globs: hub/*.yaml
+alwaysApply: false
+---
+Find the repository url, number of github star, number of download
+Repository url should include full path: https://github...
+*** VERY IMPORTANT*** Then clone the repository in tmp folder
+
+
+## Find icon and metadata
+### Guidelines
+- Extract README.md content, figure out categories and website from the content
+- Generate a description and a long description for this hub
+- Limit to 3 or 4 categories, category should be in lowercase
+- Retrieve icon from github on repository organization "https://avatars.githubusercontent..."
+- branch => execute command git branch --show-current | cat
+
+Give me all the output in this format, it should be written in hub/${NAME}.yml
+```yaml
+repository: REPOSITORY
+displayName: DISPLAY_NAME
+description: DESCRIPTION
+longDescription: LONG_DESCRIPTION
+url: WEBSITE
+icon: ICON
+branch: DEFAULT_BRANCH
+githubStar: GITHUB_STAR_NUMBER
+download: DONWLOAD
+categories:
+  - category1
+  - category2
+```
+
+## Figure out the language of the repository
+Give me all the output in this format, in lowercase. It should be written in hub/${NAME}.yml
+```yaml
+language: LANGUAGE
+```
+
+## Run configuration
+- Figure out the basePath, for instance take a look at hub/sequentialthinking or hub/postgres.yaml. It is not the path of the directory cloned. It is the path inside the repository that you must run command from
+- Figure out the srcPath, it can be at the root level, but most of the times it is in src, src/MCP_NAME...
+- For typescript I need to know the distPath. Generally it is in dist or build folder
+- For python I need to know the entrypoint, generally it is found inside pyproject.toml, for example take a look at hub/discord.yaml or hub/snowflake.yaml
+Give me all the output in this format. It should be written in hub/${NAME}.yml
+```yaml
+basePath: BASE_PATH (only if necessary, not .)
+srcPath: SRC_PATH
+distPath: DIST_PATH (only in typescript)
+entrypoint: ENTRYPOINT (only in python)
+```
+
+## Generate smithery config
+Find every config for the MCP server
+  - leave command in commandFunction empty, it is handled in Dockerfile
+  - args in commandFunction are only for command line argv or argparse
+  - take a look at argv (Typescript) or argparse (Python) usage
+  - take a look at process.env (Typescript) or os.environ (Python) usage
+  - name of the config is the argv or environment variable in camelCase
+  - Mark credentials should be put to secret for security reason
+  - Best way to find it: read README.md, main code file (index.ts), .env.sample
+  - Include optional environments also
+  - config key must be environment variable in camelCase
+
+### Very important do not add properties you did not find in the repository. It can be empty
+
+Give me all the output in this format. It should be written in hub/${NAME}.yml
+```yaml
+secrets:
+  - secretNumberOne
+smithery:
+  startCommand:
+    type: stdio or sse
+    configSchema:
+      # JSON Schema defining the configuration options for the MCP.
+      type: object
+      required:
+        - secretNumberOne
+      properties:
+        configNumberOne:
+          type: string
+          description: A small description of the configuration
+        secretNumberOne:
+          type: string
+          description: A small description of the secret
+    commandFunction:
+      # A function that produces the CLI command to start the MCP on stdio.
+      |-
+      config=>({command:'',args:[],env:{CONFIG_NUMBER_ONE:config.configNumberOne, SECRET_NUMBER_ONE: config.secretNumberOne}})
+```
+
+Now remove useless spaces in the YAML file
+
+## Create test file
+
+- Create a test file: hack/test_client/src/configs/config.context7.ts
+```ts
+export const payload: ((previousResult: Record<string, any>) => {
+  name: string;
+  arguments: Record<string, any>;
+})[] = [];
+
+export const description = "DESCRIPTION";
+export const name = "NAME";
+export const url = "http://localhost:8080";
+```
+
+Add fake environment variable in .env file into root directory
+Add some documentation also

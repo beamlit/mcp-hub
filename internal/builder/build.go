@@ -37,6 +37,23 @@ func (b *Build) Build(name string, repository *hub.Repository) error {
 		return fmt.Errorf("unsupported language: %s", repository.Language)
 	}
 
+	for _, file := range repository.Files {
+		filePath := filepath.Join(repository.Path, file.Path)
+		if _, err := os.Stat(filePath); err == nil {
+			// File exists, update it
+			err := os.WriteFile(filePath, []byte(file.Content), 0644)
+			if err != nil {
+				return fmt.Errorf("update file: %w", err)
+			}
+		} else {
+			// File doesn't exist, create it
+			err := files.CreateFileIfNotExists(filePath, file.Content)
+			if err != nil {
+				return fmt.Errorf("create file: %w", err)
+			}
+		}
+		fmt.Printf("Updated file: %s\n", filePath)
+	}
 	buildArgs := map[string]string{}
 	if repository.BasePath != "" {
 		buildArgs["BUILD_PATH"] = "/" + repository.BasePath

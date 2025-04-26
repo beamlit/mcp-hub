@@ -50,6 +50,15 @@ type Repository struct {
 	Integration     string                   `yaml:"integration" mandatory:"false"`
 	Tags            []string                 `yaml:"tags"`
 	Categories      []string                 `yaml:"categories"`
+	Files           []File                   `yaml:"files" mandatory:"false"`
+	GithubStar      int                      `yaml:"githubStar" mandatory:"false"`
+	Download        int                      `yaml:"download" mandatory:"false"`
+	Tools           []interface{}            `yaml:"tools" mandatory:"false"`
+}
+
+type File struct {
+	Path    string `yaml:"path"`
+	Content string `yaml:"content"`
 }
 
 type OAuth struct {

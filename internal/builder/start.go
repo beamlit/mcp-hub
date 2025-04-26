@@ -47,11 +47,17 @@ func (b *Build) dockerRun(mcp string, artifact catalog.Artifact, envKeys []strin
 	}
 	dockerRunCmd = append(dockerRunCmd, artifact.Image)
 
-	dockerCmd := artifact.Entrypoint.Command
-	for _, arg := range artifact.Entrypoint.Args {
-		dockerCmd += " " + arg
+	if artifact.Entrypoint.Command != "" {
+		dockerCmd := artifact.Entrypoint.Command
+		dockerRunCmd = append(dockerRunCmd, dockerCmd)
 	}
-	dockerRunCmd = append(dockerRunCmd, dockerCmd)
+	if len(artifact.Entrypoint.Args) > 0 {
+		dockerArgs := ""
+		for _, arg := range artifact.Entrypoint.Args {
+			dockerArgs += " " + arg
+		}
+		dockerRunCmd = append(dockerRunCmd, dockerArgs)
+	}
 
 	cmd := exec.Command("docker", dockerRunCmd...)
 	fmt.Println("dockerRunCmd", strings.Join(dockerRunCmd, " "))
