@@ -5,7 +5,8 @@ alwaysApply: false
 ---
 Find the repository url, number of github star, number of download
 Repository url should include full path: https://github...
-*** VERY IMPORTANT*** Then clone the repository in tmp folder
+
+*** VERY IMPORTANT*** CLONE THE REPOSITORY IN TMP FOLDER AND ANALYZE CONTENT
 
 
 ## Find icon and metadata
