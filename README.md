@@ -11,8 +11,9 @@ A command-line interface (CLI) tool for importing Model Context Protocol servers
 ## Generating
 - Find the server you want to use on https://www.pulsemcp.com
 - Create a file in hub.yaml. The name should be the name of the MCP server exposed on Blaxel
-- Open file
+- Open file and add repository url and optional: basePath (example servers from modelcontextprotocol)
 - Use Cursor agent
 ```bash
-Start @https://www.pulsemcp.com/servers/$SERVER and follow cursor rules
+Start
+Find star and download info from: @https://www.pulsemcp.com/servers/modelcontextprotocol-puppeteer
 ```

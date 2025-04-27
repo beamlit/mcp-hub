@@ -3,14 +3,12 @@ description:
 globs: hub/*.yaml
 alwaysApply: false
 ---
-Find the repository url, number of github star, number of download
-Repository url should include full path: https://github...
-
 *** VERY IMPORTANT*** CLONE THE REPOSITORY IN TMP FOLDER AND ANALYZE CONTENT
 
 
 ## Find icon and metadata
 ### Guidelines
+- path is where the content is interesting
 - Extract README.md content, figure out categories and website from the content
 - Generate a description and a long description for this hub
 - Limit to 3 or 4 categories, category should be in lowercase

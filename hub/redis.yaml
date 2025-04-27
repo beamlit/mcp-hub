@@ -1,0 +1,33 @@
+repository: https://github.com/modelcontextprotocol/servers
+displayName: Redis MCP Server
+description: A Model Context Protocol server that provides access to Redis databases
+longDescription: This server enables LLMs to interact with Redis key-value stores through a set of standardized tools, supporting operations like set, get, delete, and list keys.
+url: https://github.com/redis
+icon: https://avatars.githubusercontent.com/redis
+branch: main
+githubStar: 41200
+download: -1
+categories:
+  - database
+  - key-value
+  - caching
+language: typescript
+basePath: src/redis
+srcPath: src/redis/src
+distPath: src/redis/dist
+secrets:
+  - redisUrl
+smithery:
+  startCommand:
+    type: stdio
+    configSchema:
+      type: object
+      required:
+        - redisUrl
+      properties:
+        redisUrl:
+          type: string
+          description: Redis connection URL (e.g. redis://localhost:6379)
+    commandFunction:
+      |-
+      config=>({command:'',args:[],env:{REDIS_URL:config.redisUrl}})
