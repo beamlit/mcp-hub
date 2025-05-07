@@ -27,4 +27,4 @@ smithery:
     commandFunction:
       # A function that produces the CLI command to start the MCP on stdio.
       |-
-      config=>({command:'node',args:['/blaxel/loader.js'],env:{PRIVATE_APP_ACCESS_TOKEN:config.hubspotPrivateAppAccessToken}})
+      config=>({command:'',args:[],env:{PRIVATE_APP_ACCESS_TOKEN:config.hubspotPrivateAppAccessToken}})

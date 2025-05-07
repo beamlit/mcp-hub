@@ -54,4 +54,4 @@ ENV ENTRYPOINT=${ENTRYPOINT}
 
 COPY --from=build /blaxel /blaxel
 
-ENTRYPOINT ["/usr/bin/node",  "/blaxel/loader.js"]
+ENTRYPOINT ["/usr/bin/node", "/blaxel/loader.js"]

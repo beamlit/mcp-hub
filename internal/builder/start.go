@@ -56,6 +56,7 @@ func (b *Build) dockerRun(mcp string, artifact catalog.Artifact, envKeys []strin
 		for _, arg := range artifact.Entrypoint.Args {
 			dockerArgs += " " + arg
 		}
+		dockerArgs = strings.Trim(dockerArgs, " ")
 		dockerRunCmd = append(dockerRunCmd, dockerArgs)
 	}
 

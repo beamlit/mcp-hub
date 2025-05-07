@@ -1,0 +1,95 @@
+repository: https://github.com/resend/mcp-send-email.git
+displayName: Resend Email
+description: Send emails using Resend's API directly from your AI assistant
+longDescription: >-
+  A powerful MCP server that enables sending emails using Resend's API. Perfect
+  for letting AI assistants compose and send emails without manual copy-pasting.
+  Supports plain text and HTML emails, scheduling, CC/BCC, and reply-to
+  addresses.
+url: https://resend.com
+icon: https://avatars.githubusercontent.com/resend
+branch: main
+githubStar: 0
+download: 0
+categories:
+  - email
+  - communication
+  - productivity
+language: typescript
+srcPath: .
+basePath: .
+distPath: build
+package: send-email
+entrypoint: index.js
+secrets:
+  - resendApiKey
+smithery:
+  startCommand:
+    type: stdio
+    configSchema:
+      type: object
+      required:
+        - resendApiKey
+      properties:
+        resendApiKey:
+          type: string
+          description: Your Resend API key
+        senderEmailAddress:
+          type: string
+          description: Your sender email address from a verified domain (optional)
+        replyToEmailAddresses:
+          type: string
+          description: Comma-separated list of reply-to email addresses (optional)
+    commandFunction: >-
+      config=>({command:'',args:[],env:{RESEND_API_KEY:config.resendApiKey,
+      SENDER_EMAIL_ADDRESS:config.senderEmailAddress,
+      REPLY_TO_EMAIL_ADDRESSES:config.replyToEmailAddresses}})
+tools:
+  - name: send-email
+    description: Send an email using Resend
+    inputSchema:
+      type: object
+      properties:
+        to:
+          type: string
+          format: email
+          description: Recipient email address
+        subject:
+          type: string
+          description: Email subject line
+        text:
+          type: string
+          description: Plain text email content
+        html:
+          type: string
+          description: >-
+            HTML email content. When provided, the plain text argument MUST be
+            provided as well.
+        cc:
+          type: array
+          items:
+            type: string
+            format: email
+          description: >-
+            Optional array of CC email addresses. You MUST ask the user for this
+            parameter. Under no circumstance provide it yourself
+        bcc:
+          type: array
+          items:
+            type: string
+            format: email
+          description: >-
+            Optional array of BCC email addresses. You MUST ask the user for
+            this parameter. Under no circumstance provide it yourself
+        scheduledAt:
+          type: string
+          description: >-
+            Optional parameter to schedule the email. This uses natural
+            language. Examples would be 'tomorrow at 10am' or 'in 2 hours' or
+            'next day at 9am PST' or 'Friday at 3pm ET'.
+      required:
+        - to
+        - subject
+        - text
+      additionalProperties: false
+      $schema: http://json-schema.org/draft-07/schema#

@@ -6,7 +6,6 @@ url: https://github.com/redis
 icon: https://avatars.githubusercontent.com/redis
 branch: main
 githubStar: 41200
-download: -1
 categories:
   - database
   - key-value

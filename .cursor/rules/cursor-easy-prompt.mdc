@@ -25,14 +25,13 @@ url: WEBSITE
 icon: ICON
 branch: DEFAULT_BRANCH
 githubStar: GITHUB_STAR_NUMBER
-download: DONWLOAD
 categories:
   - category1
   - category2
 ```
 
 ## Figure out the language of the repository
-Give me all the output in this format, in lowercase. It should be written in hub/${NAME}.yml
+It is "javascript" if in README.md there is a way to start it with "npx -y"
 ```yaml
 language: LANGUAGE
 ```
@@ -41,13 +40,15 @@ language: LANGUAGE
 - Figure out the basePath, for instance take a look at hub/sequentialthinking or hub/postgres.yaml. It is not the path of the directory cloned. It is the path inside the repository that you must run command from
 - Figure out the srcPath, it can be at the root level, but most of the times it is in src, src/MCP_NAME...
 - For typescript I need to know the distPath. Generally it is in dist or build folder
+- For javascript I need to know the entrypoint and the package, for example take a look at hub/hubspot.yaml
 - For python I need to know the entrypoint, generally it is found inside pyproject.toml, for example take a look at hub/discord.yaml or hub/snowflake.yaml
 Give me all the output in this format. It should be written in hub/${NAME}.yml
 ```yaml
-basePath: BASE_PATH (only if necessary, not .)
 srcPath: SRC_PATH
+basePath: BASE_PATH (only if necessary, not .)
 distPath: DIST_PATH (only in typescript)
-entrypoint: ENTRYPOINT (only in python)
+package: "PACKAGE_TO_INSTALL" (only in typescript or javascript, it is the name in package.json, needs to be with quotes)
+entrypoint: ENTRYPOINT
 ```
 
 ## Generate smithery config
@@ -86,8 +87,10 @@ smithery:
     commandFunction:
       # A function that produces the CLI command to start the MCP on stdio.
       |-
-      config=>({command:'',args:[],env:{CONFIG_NUMBER_ONE:config.configNumberOne, SECRET_NUMBER_ONE: config.secretNumberOne}})
+      config=>({command:'node',args:['/blaxel/build/loader.js'],env:{CONFIG_NUMBER_ONE:config.configNumberOne, SECRET_NUMBER_ONE: config.secretNumberOne}})
 ```
+
+### If language = javascript replace repository by: https://github.com/beamlit/sdk-typescript.git
 
 Now remove useless spaces in the YAML file
 
@@ -106,4 +109,7 @@ export const url = "http://localhost:8080";
 ```
 
 Add fake environment variable in .env file into root directory
-Add some documentation also
+
+Now run in parallel:
+- make run NAME_OF_THE_MCP
+- make test NAME_OF_THE_MCP (before running the test you need to make sure the first command is running on the port 8080)

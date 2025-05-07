@@ -10,7 +10,6 @@ url: https://www.pulsemcp.com/servers/modelcontextprotocol-puppeteer
 icon: https://avatars.githubusercontent.com/modelcontextprotocol
 branch: main
 githubStar: 41000
-download: 161000
 language: typescript
 srcPath: src/puppeteer
 distPath: src/puppeteer/dist
